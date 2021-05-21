@@ -18,6 +18,7 @@
     href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
     rel="stylesheet">
 
+
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,12 +26,13 @@
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
+
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" rel="stylesheet">
   <!-- =======================================================
   * Template Name: iPortfolio - v3.2.0
   * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
@@ -52,11 +54,15 @@
         <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
         <h1 class="text-light"><a href="index.html">Alex Smith</a></h1>
         <div class="social-links mt-3 text-center">
-          <a href="#" class="twitter"><i class="fas fa-envelope big-icon"></i></a>
-          <a href="#" class="facebook"><i class="ai ai-google-scholar big-icon"></i></a>
-          <a href="#" class="instagram"><i class="ai ai-researchgate big-icon"></i></a>
-          <a href="#" class="google-plus"><i class="fa fa-github"></i></a>
-          <a href="#" class="linkedin"><i class="ai ai-cv big-icon"></i></a>
+          <!-- <a href="#" class="email"><i class="fa fa-envelope big-icon"></i></a> -->
+          <a href="https://scholar.google.com/citations?user=BCrQPWUAAAAJ&hl=en" target="_blank"
+            class="google-scholar"><i class="ai ai-google-scholar big-icon"></i></a>
+          <a href="https://www.researchgate.net/profile/Yukun-Guo-4" target="_blank" class="researchgate"><i
+              class="ai ai-researchgate big-icon"></i></a>
+          <a href="https://orcid.org/0000-0002-6784-2355" target="_blank" class="orcid"><i
+              class="ai ai-orcid big-icon"></i></a>
+          <a href="https://github.com/Yukun-Guo" target="_blank" class="github"><i class="fa fa-github"></i></a>
+          <a href="#" target="_blank" class="cv"><i class="ai ai-cv big-icon"></i></a>
         </div>
       </div>
 
@@ -65,7 +71,7 @@
           <li><a href="#biography" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Biography</span></a></li>
           <li><a href="#publications" class="nav-link scrollto"><i class="bx bx-file-blank"></i>
               <span>Publications</span></a></li>
-          <li><a href="#posts" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Posts</span></a></li>
+          <li><a href="#works" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Featured works</span></a></li>
         </ul>
       </nav><!-- .nav-menu -->
     </div>
@@ -80,62 +86,62 @@
           <div class="col-12 col-lg-4" data-aos="fade-right">
             <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
             <div class="hero-container" data-aos="fade-in">
-              <h2>Yukun Guo</h2>
+              <h1>Yukun Guo</h1>
               <h4>BME PhD Candidate</h4>
               <h4>Oregon Health &amp; Science University</h4>
             </div>
           </div>
-          <div class="col-12 col-lg-8" data-aos="fade-left">
-            <h1>Biography</h1>
+          <div class="col-12 col-lg-8" style="font-size: small;" data-aos="fade-left">
+            <h2>Biography</h2>
             <p>
-              I am a PhD candidate advised by Dr. Young Hwan Chang in the Computational Biology Program and Biomedical
-              Engineering Department at Oregon Health & Science University. My research focuses on the development of
-              reproducible, scalable, and robust computational applications for digital pathology.
-              </p>
-              <p>
-                Spatial biology and digital pathology today are what clinical genomics was twenty years ago: rapidly
-                evolving technologies with profound implications for precision medicine, but with much still to prove.
-                To maximize their positive impact on both basic and clinical research, we must not only develop
-                best-in-class algorithms for image analysis, but also invent data integration approaches which synergize
-                biomarkers across imaging and molecular assays. Further, we must do it all in a way that scales up to
-                billions of pixels and millions of cells, or more. These concerns have been central to my graduate
-                research.
-              </p>
-              <p>
-                As a graduate trainee under the auspices of the Knight Cancer Institute and the National Cancer
-                Institute’s Human Tumor Atlas Network and Cancer Systems Biology Consortium, I have helped lead digital
-                pathology and image analysis projects from conception to publication and provisional patent filing.
-                These projects include the development of a mathematical morphology-based epidermis segmentation
-                algorithm; a GPU-boosted, machine learning-based framework which enables normalization, compilation, and
-                phenotyping of millions of single-cell measurements from multiplex imaging data in minutes (see BCTMA
-                paper); and deep learning-based algorithms for optimal sample selection and
-                histological-to-immunofluorescent transformation of whole slide images (see SHIFT paper).
-              </p>
-              <p>
-                Some of these projects have been undertaken in the context of SMMART, an ongoing clinical trial focused
-                on breast cancer precision oncology, through which I have learned to become an active collaborator with
-                an interdisciplinary team of clinicians, pathologists, and other scientists.
-              </p>
-              <p>
-                With this skill set, experience, and the ability and desire to learn new things, I am poised to make
-                immediate impact in a scientific role in industry.
-              </p>
-              Please find my CV here.
+              I am a PhD candidate advised by Dr. Yali Jia in the Department of Biomedical Engineering at Oregon Health
+              & Science University.
+              My research focuses on the development of optic coherence tomography angiography (OCTA).
             </p>
+            <p>
+              OCTA is a new modality of imaging in retina. Spatial biology and digital pathology today are what clinical
+              genomics was twenty years ago: rapidly
+              evolving technologies with profound implications for precision medicine, but with much still to prove.
+              To maximize their positive impact on both basic and clinical research, we must not only develop
+              best-in-class algorithms for image analysis, but also invent data integration approaches which synergize
+              biomarkers across imaging and molecular assays. Further, we must do it all in a way that scales up to
+              billions of pixels and millions of cells, or more. These concerns have been central to my graduate
+              research.
+            </p>
+            <p>
+              As a graduate trainee under the auspices of the Knight Cancer Institute and the National Cancer
+              Institute’s Human Tumor Atlas Network and Cancer Systems Biology Consortium, I have helped lead digital
+              pathology and image analysis projects from conception to publication and provisional patent filing.
+              These projects include the development of a mathematical morphology-based epidermis segmentation
+              algorithm; a GPU-boosted, machine learning-based framework which enables normalization, compilation, and
+              phenotyping of millions of single-cell measurements from multiplex imaging data in minutes (see BCTMA
+              paper); and deep learning-based algorithms for optimal sample selection and
+              histological-to-immunofluorescent transformation of whole slide images (see SHIFT paper).
+            </p>
+            <p>
+              Some of these projects have been undertaken in the context of SMMART, an ongoing clinical trial focused
+              on breast cancer precision oncology, through which I have learned to become an active collaborator with
+              an interdisciplinary team of clinicians, pathologists, and other scientists.
+            </p>
+            <p>
+              With this skill set, experience, and the ability and desire to learn new things, I am poised to make
+              immediate impact in a scientific role in industry.
+            </p>
+            <p>A full version of my Résumé can be find here.</p>
             <div class="row">
               <div class="col-lg-6">
                 <h5>Interests</h5>
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <span>Deep learning</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <span>Computer vision</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <span>Digital Image processing</span></li>
+                  <li><i class="bi"></i> <span>Deep learning</span></li>
+                  <li><i class="bi"></i> <span>Computer vision</span></li>
+                  <li><i class="bi"></i> <span>Digital Image processing</span></li>
                 </ul>
               </div>
               <div class="col-lg-6">
                 <h5>Education</h5>
                 <ul>
-                  <li><i class="bi bi-chevron-right"></i> <span>MS in University of Jinan, 2017</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <span>BS in University of Jinan, 2013</span></li>
+                  <li><i class="bi"></i> <span>MS in University of Jinan, 2017</span></li>
+                  <li><i class="bi"></i> <span>BS in University of Jinan, 2013</span></li>
                 </ul>
               </div>
             </div>
@@ -282,7 +288,6 @@
     </section><!-- End publications Section -->
 
 
-
     <!-- ======= Resume Section ======= -->
     <!-- <section id="resume" class="resume">
       <div class="container">
@@ -350,31 +355,31 @@
     </section> -->
     <!-- End Resume Section -->
 
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio section-bg">
+    <!-- ======= Featured works Section ======= -->
+    <section id="works" class="portfolio section-bg">
       <div class="container">
 
         <div class="section-title">
-          <h2>Portfolio</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
+          <h2>Featured works</h2>
+          <!-- <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
             consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
-            in iste officiis commodi quidem hic quas.</p>
+            in iste officiis commodi quidem hic quas.</p> -->
         </div>
 
         <div class="row" data-aos="fade-up">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
+              <li data-filter=".filter-app">OCTA</li>
+              <li data-filter=".filter-card">Deep learning</li>
+              <li data-filter=".filter-web">Biomarker</li>
             </ul>
           </div>
         </div>
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app filter-web">
             <div class="portfolio-wrap">
               <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
               <div class="portfolio-links">
@@ -480,7 +485,7 @@
     <!-- End Portfolio Section -->
 
     <!-- ======= Services Section ======= -->
-    <section id="services" class="services">
+    <!-- <section id="services" class="services">
       <div class="container">
 
         <div class="section-title">
@@ -530,7 +535,7 @@
         </div>
 
       </div>
-    </section>
+    </section> -->
     <!-- End Services Section -->
 
     <!-- ======= Testimonials Section ======= -->
