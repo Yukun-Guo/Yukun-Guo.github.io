@@ -25,7 +25,7 @@ $(document).ready(function () {
         table_data += '</li>';
       }
       table_data += '</ol>';
-      $('#publication_table').html(table_data);//.replaceAll("|", ',')
+      $('#publication_table').html(table_data);
     }
   });
 });
