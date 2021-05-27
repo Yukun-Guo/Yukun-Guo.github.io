@@ -14,12 +14,12 @@ body {
 }
 
 a {
-  color: #149ddd;
+  color: #1868de;
   text-decoration: none;
 }
 
 a:hover {
-  color: #37b3ed;
+  color: #a000fd;
   text-decoration: none;
 }
 
@@ -58,6 +58,17 @@ h1, h2, h3, h4, h5, h6 {
 .back-to-top.active {
   visibility: visible;
   opacity: 1;
+}
+
+#hero a {
+  color: #b7fff9;
+  text-decoration: none;
+
+}
+
+#hero a:hover {
+  color: #c494e0;
+  text-decoration: none;
 }
 
 /*--------------------------------------------------------------
@@ -159,10 +170,10 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   color: #a8a9b4;
-  padding: 12px 15px;
+  padding: 7px 15px;
   margin-bottom: 8px;
   transition: 0.3s;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .nav-menu a i {
