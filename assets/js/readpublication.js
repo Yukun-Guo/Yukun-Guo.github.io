@@ -35,16 +35,29 @@ $(document).ready(function () {
           recent_work_items += '<img src="'+cell_data[9]+'" class="img-fluid" alt="" style="height:300px; width:400px; object-fit: scale-down;"></img>';
           recent_work_items += '<div class="portfolio-links">'
           recent_work_items += '<a href="'+cell_data[9]+'" data-gallery="portfolioGallery" class="portfolio-lightbox" title="'+cell_data[5].replaceAll("|", ',')+'"><i class="bx bx-plus"></i></a>'
-          recent_work_items += '<a href="'+ cell_data[12] +'" title="More Details"><i class="bx bx-link"></i></a>'
+          recent_work_items += '<a href="'+ cell_data[12] +'" target="_blank" title="More Details"><i class="bx bx-link"></i></a>'
           recent_work_items += '</div>';
           recent_work_items += '</div>';
           recent_work_items += '</div>';
         }
         /**** Featured works ****/
+        if (cell_data[16]>0)
+        {
+          featured_work_items += '<div class="col-lg-4 col-md-6 portfolio-item">';
+          featured_work_items += '<div class="portfolio-wrap">';
+          featured_work_items += '<img src="'+cell_data[9]+'" class="img-fluid" alt="" style="height:300px; width:400px; object-fit: scale-down;"></img>';
+          featured_work_items += '<div class="portfolio-links">'
+          featured_work_items += '<a href="'+cell_data[9]+'" data-gallery="portfolioGallery" class="portfolio-lightbox" style="font-size:25px" title="'+cell_data[5].replaceAll("|", ',')+'"><i class="bx bx-plus"></i></a>'
+          featured_work_items += '<a href="'+ cell_data[12] +'" target="_blank" title="More Details"><i class="bx bx-link"></i></a>'
+          featured_work_items += '</div>';
+          featured_work_items += '</div>';
+          featured_work_items += '</div>';         
+        }
       }
       /**** publications ****/
       table_data += '</ol>';
       
+      $('#featured-work-items').html(featured_work_items)
       $('#recent-work-items').html(recent_work_items)
       $('#publication_table').html(table_data);
       /**** Recent works ****/
