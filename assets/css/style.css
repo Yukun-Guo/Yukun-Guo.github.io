@@ -91,10 +91,10 @@ h1, h2, h3, h4, h5, h6 {
 #header .profile img {
   margin: 15px auto;
   display: block;
-  width: 200px;
+  width: 160px;
   border: 8px solid #2c2f3f;
   object-fit: none;
-  object-position: 50% 25%;
+  object-position: 49% 29%;
 }
 
 #header .profile h1 {
