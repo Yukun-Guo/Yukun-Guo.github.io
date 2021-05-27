@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script> -->
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script> -->
+    <script src="assets/js/jspdf.min.js" ></script>
+    <script type="text/javascript">
+    function save_cv_pdf(){
+               // Landscape export, 2×4 inches
+
+        var doc = new jsPDF()
+
+        // I know the proper spelling is colour ;)
+        doc.setTextColor(100)
+        doc.text(20, 20, 'This is gray.')
+
+        doc.setTextColor(150)
+        doc.text(20, 30, 'This is light gray.')
+
+        doc.setTextColor(255, 0, 0)
+        doc.text(20, 40, 'This is red.')
+
+        doc.setTextColor(0, 255, 0)
+        doc.text(20, 50, 'This is green.')
+
+        doc.setTextColor(0, 0, 255)
+        doc.text(20, 60, 'This is blue.')
+        doc.save("two-by-four.pdf"); 
+    }
+
+
+    </script>
+</head>
+<body>
+ <a href='#' onclick='save_cv_pdf()'>save pdf</a>
+</body>
+</html>
