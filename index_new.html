@@ -8,6 +8,10 @@
   <title>iPortfolio Bootstrap Template - Index</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+  
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -34,9 +38,9 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" rel="stylesheet">
   
-  <!-- jquery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
+  
+  
+  
   <!-- =======================================================
   * Template Name: iPortfolio - v3.2.0
   * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
@@ -55,9 +59,9 @@
     <div class="d-flex flex-column">
 
       <div class="profile">
-        <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
+        <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle" >
         <h1 class="text-light"><a href="index.html">Yukun Guo</a></h1>
-        <div class="social-links mt-3 text-center">
+        <div class="social-links mt-3 text-center" style="font-size: xx-large;">
           <!-- <a href="#" class="email"><i class="fa fa-envelope big-icon"></i></a> -->
           <a href="https://scholar.google.com/citations?user=BCrQPWUAAAAJ&hl=en" target="_blank"
             class="google-scholar"><i class="ai ai-google-scholar big-icon"></i></a>
@@ -132,9 +136,9 @@
               immediate impact in a scientific role in industry.
             </p>
             <p>A full version of my Résumé can be find here.</p>
-            <div class="row">
+            <div class="row biography">
               <div class="col-lg-6">
-                <h5>Interests</h5>
+                <h3>Interests</h3>
                 <ul>
                   <li><i class="bi"></i> <span>Deep learning</span></li>
                   <li><i class="bi"></i> <span>Computer vision</span></li>
@@ -142,7 +146,7 @@
                 </ul>
               </div>
               <div class="col-lg-6">
-                <h5>Education</h5>
+                <h3>Education</h3>
                 <ul>
                   <li><i class="bi"></i> <span>MS in University of Jinan, 2017</span></li>
                   <li><i class="bi"></i> <span>BS in University of Jinan, 2013</span></li>
@@ -252,40 +256,7 @@
             in iste officiis commodi quidem hic quas.</p> -->
         </div>
 
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/paperimgs/npa_wfoct.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/paperimgs/npa_wfoct.jpg" data-gallery="portfolioGallery"
-                  class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/paperimgs/npa_wfoct.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/paperimgs/npa_wfoct.jpg" data-gallery="portfolioGallery"
-                  class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/paperimgs/npa_wfoct.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/paperimgs/npa_wfoct.jpg" data-gallery="portfolioGallery"
-                  class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
+        <div id="featured-work-items" class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
 
         </div>
       </div>
@@ -303,85 +274,7 @@
             consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit
             in iste officiis commodi quidem hic quas.</p> -->
         </div>
-
-        <div class="row" data-aos="fade-up">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">OCTA</li>
-              <li data-filter=".filter-card">Deep learning</li>
-              <li data-filter=".filter-web">Biomarker</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery"
-                  class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery"
-                  class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery"
-                  class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-4.jpg" data-gallery="portfolioGallery"
-                  class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-5.jpg" data-gallery="portfolioGallery"
-                  class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-              <div class="portfolio-links">
-                <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery"
-                  class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
+        <div id="recent-work-items" class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
 
         </div>
 
@@ -396,46 +289,7 @@
         <div class="section-title">
           <h2>Publications</h2>
         </div>
-        <div id="publication_table">
-
-        </div>
-
-        <!-- <div class="row no-gutters">
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up">
-            <div class="count-box">
-              <i class="bi bi-emoji-smile"></i>
-              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Happy Clients</strong> consequuntur quae</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="count-box">
-              <i class="bi bi-journal-richtext"></i>
-              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Projects</strong> adipisci atque cum quia aut</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="200">
-            <div class="count-box">
-              <i class="bi bi-headset"></i>
-              <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hours Of Support</strong> aut commodi quaerat</p>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch" data-aos="fade-up" data-aos-delay="300">
-            <div class="count-box">
-              <i class="bi bi-people"></i>
-              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hard Workers</strong> rerum asperiores dolor</p>
-            </div>
-          </div>
-
-        </div> -->
-
+        <div id="publication_table" class="publication-font"></div>
       </div>
     </section><!-- End publications Section -->
 
@@ -735,10 +589,10 @@
       </div>
     </div>
   </footer><!-- End  Footer -->
-
+  
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
-
+      
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -751,8 +605,10 @@
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <!-- custom js-->
   <script src='assets/js/readpublication.js'></script>
+  <script src="assets/js/main.js"></script>
+
 
 </body>
 
