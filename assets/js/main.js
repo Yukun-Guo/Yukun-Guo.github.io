@@ -252,5 +252,22 @@
       mirror: false
     })
   });
+  
+  window.addEventListener('load', () => {
+        //function accepts a string to look through and a string to look for
+        function boldString(str, find) {
+            var re = new RegExp(find, 'g');
+            return str.replace(re, '<I>' + find + '</I>');
+        }
+
+        //this is just pulling the test HTML from above
+        var oldText = document.getElementById("publication_table").innerHTML;
+
+        //calls boldString() function and passes in the old-text content and looks for the string "ch"
+        var result = boldString(oldText, "Guo Y");
+
+        //this is just for this example, but updates the new-text element with the result of the function
+        document.getElementById("publication_table").innerHTML = result;
+    });
 
 })()
