@@ -1,10 +1,10 @@
 /**
-* Template Name: iPortfolio - v3.2.0
-* Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-(function() {
+ * Template Name: iPortfolio - v3.2.0
+ * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+ * Author: BootstrapMade.com
+ * License: https://bootstrapmade.com/license/
+ */
+(function () {
   "use strict";
 
   /**
@@ -90,7 +90,7 @@
   /**
    * Mobile nav toggle
    */
-  on('click', '.mobile-nav-toggle', function(e) {
+  on('click', '.mobile-nav-toggle', function (e) {
     select('body').classList.toggle('mobile-nav-active')
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
@@ -99,7 +99,7 @@
   /**
    * Scrool with ofset on links with a class name .scrollto
    */
-  on('click', '.scrollto', function(e) {
+  on('click', '.scrollto', function (e) {
     if (select(this.hash)) {
       e.preventDefault()
 
@@ -149,7 +149,7 @@
     new Waypoint({
       element: skilsContent,
       offset: '80%',
-      handler: function(direction) {
+      handler: function (direction) {
         let progress = select('.progress .progress-bar', true);
         progress.forEach((el) => {
           el.style.width = el.getAttribute('aria-valuenow') + '%'
@@ -170,9 +170,9 @@
 
       let portfolioFilters = select('#portfolio-flters li', true);
 
-      on('click', '#portfolio-flters li', function(e) {
+      on('click', '#portfolio-flters li', function (e) {
         e.preventDefault();
-        portfolioFilters.forEach(function(el) {
+        portfolioFilters.forEach(function (el) {
           el.classList.remove('filter-active');
         });
         this.classList.add('filter-active');
@@ -180,7 +180,7 @@
         portfolioIsotope.arrange({
           filter: this.getAttribute('data-filter')
         });
-        portfolioIsotope.on('arrangeComplete', function() {
+        portfolioIsotope.on('arrangeComplete', function () {
           AOS.refresh()
         });
       }, true);
@@ -252,22 +252,12 @@
       mirror: false
     })
   });
-  
+
   window.addEventListener('load', () => {
-        //function accepts a string to look through and a string to look for
-        function boldString(str, find) {
-            var re = new RegExp(find, 'g');
-            return str.replace(re, '<I>' + find + '</I>');
-        }
+    //function accepts a string to look through and a string to look for
+    $('span[class="Yukun Guo"]').css('font-weight', 'bold');
 
-        //this is just pulling the test HTML from above
-        var oldText = document.getElementById("publication_table").innerHTML;
 
-        //calls boldString() function and passes in the old-text content and looks for the string "ch"
-        var result = boldString(oldText, "Guo Y");
-
-        //this is just for this example, but updates the new-text element with the result of the function
-        document.getElementById("publication_table").innerHTML = result;
-    });
+  });
 
 })()
