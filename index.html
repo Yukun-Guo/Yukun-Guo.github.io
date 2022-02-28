@@ -24,7 +24,8 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/all.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" rel="stylesheet">
     <bibtex src="data/publications.bib"></bibtex>
     <!-- =======================================================
@@ -62,6 +63,10 @@
             display: inline;
             margin-left: 8px;
         }
+
+        .dispicon {
+            display: contents;
+        }
     </style>
 </head>
 </head>
@@ -80,7 +85,7 @@
                     <a href="https://scholar.google.com/citations?user=BCrQPWUAAAAJ&hl=en" target="_blank" title="Google Scholar Citations" class="google-scholar"><i class="ai ai-google-scholar big-icon"></i></a>
                     <a href="https://www.researchgate.net/profile/Yukun-Guo-4" target="_blank" title="ResearchGate" class="researchgate"><i class="ai ai-researchgate big-icon"></i></a>
                     <a href="https://orcid.org/0000-0002-6784-2355" target="_blank" title="ORCID" class="orcid"><i class="ai ai-orcid big-icon"></i></a>
-                    <a href="https://github.com/Yukun-Guo" target="_blank" title="Github" class="github"><i class="fa fa-github"></i></a>
+                    <a href="https://github.com/Yukun-Guo" target="_blank" title="Github" class="github"><i class="fa-brands fa-github"></i></a>
                     <a href="data/CV_YukunGuo.pdf" class="cv" target="_blank" title="Curriculum Vitae"><i class="ai ai-cv big-icon"></i></a>
                 </div>
             </div>
@@ -89,7 +94,7 @@
                     <li><a href="#hero" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Biography</span></a></li>
                     <li><a href="#featured-works" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Featured works</span></a></li>
                     <li><a href="#recent-works" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Recent works</span></a></li>
-                    <li><a href="#publications" class="nav-link scrollto"><i class="bx bx-file-blank"></i><span>Publications</span></a></li>
+                    <li><a href="#publications" class="nav-link scrollto"><i class="bx bx-book"></i><span>Publications</span></a></li>
                     <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
                 </ul>
             </nav>
@@ -214,24 +219,24 @@
                 <div class="section-title">
                     <h2>Featured works</h2>
                 </div>
-                <!-- <div id="featured-work-items" class="row portfolio-container" data-aos="fade-up" data-aos-delay="100"></div> -->
+                <div id="featured-work-items" class="row portfolio-container" data-aos="fade-up" data-aos-delay="100"></div>
                 <!-- TODO -->
                 <div id="bibtex_featuredwork" class="row portfolio-container" data-aos="fade-up" data-aos-delay="100" style="position: relative; height: 330px;">
                     <div class="col-lg-4 col-md-6 portfolio-item">
-                        <div class="bibtex_template_fw" style="display: none;">
+                        <div class="bibtex_template_fw">
                             <span class="if imgurl">
                                 <div class="portfolio-wrap">
                                     <img class="bibtexVar img-fluid" src="+IMGURL+" alt="" style="height:300px; width:400px; object-fit: scale-down;" extra="imgurl"></img>
                                     <div class="portfolio-links">
-                                        <span class="if file" style="padding-left:10%; padding-right:10%;">
-                                            <a class="portfolio-lightbox bibtexVar" href="+FILE+" target="_blank" data-gallery="portfolioGallery" title="PDF file" extra="file"><i class="bx bxs-file-pdf"></i></a>
+                                        <span class="if file" style="display: contents;">
+                                            <a class="portfolio-lightbox bibtexVar" href="+FILE+" target="_blank" data-gallery="portfolioGallery" title="PDF file" extra="file"><i class="fa-solid fa-file-pdf"></i></a>
                                         </span>
-                                        <span class="if url" style="padding-left:10%; padding-right:10%;">
-                                            <a class="bibtexVar portfolio-lightbox" href=" +URL+" target="_blank" title="More Details" , extra="url"><i class="bx bx-link"></i></a>
+                                        <span class="if url" style="display: contents;">
+                                            <a class="bibtexVar portfolio-lightbox" href=" +URL+" target="_blank" title="More Details" , extra="url"><i class="fas fa-link"></i></a>
                                         </span>
-                                        <span class="if !url" style="padding-left:10%; padding-right:10%;">
-                                            <span class="if doi" style="padding-left:10%; padding-right:10%;">
-                                                <a class="bibtexVar portfolio-lightbox" href="http://dx.doi.org/+DOI+" target="_blank" title="More Details" , extra="doi"><i class="bx bx-link"></i></a>
+                                        <span class="if !url" style="display: contents;">
+                                            <span class="if doi" style="display: contents;">
+                                                <a class="bibtexVar" href="http://dx.doi.org/+DOI+" target="_blank" title="More Details" , extra="doi"><i class="fas fa-link"></i></a>
                                             </span>
                                         </span>
                                     </div>
@@ -259,15 +264,15 @@
                                 <div class="portfolio-wrap">
                                     <img class="bibtexVar img-fluid" src="+IMGURL+" alt="" style="height:300px; width:400px; object-fit: scale-down;" extra="imgurl"></img>
                                     <div class="portfolio-links">
-                                        <span class="if file" style="padding-left:10%; padding-right:10%;">
-                                            <a class="portfolio-lightbox bibtexVar" href="+FILE+" target="_blank" data-gallery="portfolioGallery" class="" extra="file"><i class="bx bxs-file-pdf"></i></a>
+                                        <span class="if file" style="display: contents;">
+                                            <a class="portfolio-lightbox bibtexVar" href="+FILE+" target="_blank" data-gallery="portfolioGallery" class="" extra="file"><i class="fa-solid fa-file-pdf"></i></a>
                                         </span>
-                                        <span class="if url" style="padding-left:10%; padding-right:10%;">
-                                            <a class="bibtexVar portfolio-lightbox" href=" +URL+" target="_blank" title="More Details" , extra="url"><i class="bx bx-link"></i></a>
+                                        <span class="if url" style="display: contents;">
+                                            <a class="bibtexVar portfolio-lightbox" href=" +URL+" target="_blank" title="More Details" , extra="url"><i class="fas fa-link "></i></a>
                                         </span>
-                                        <span class="if !url" style="padding-left:10%; padding-right:10%;">
-                                            <span class="if doi" style="padding-left:10%; padding-right:10%;">
-                                                <a class="bibtexVar portfolio-lightbox" href="http://dx.doi.org/+DOI+" target="_blank" title="More Details" , extra="doi"><i class="bx bx-link"></i></a>
+                                        <span class="if !url" style="display: contents;">
+                                            <span class="if doi" style="display: contents;">
+                                                <a class="bibtexVar" href="http://dx.doi.org/+DOI+" target="_blank" title="More Details" , extra="doi"><i class="fas fa-link "></i></a>
                                             </span>
                                         </span>
                                     </div>
