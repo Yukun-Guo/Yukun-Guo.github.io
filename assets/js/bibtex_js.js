@@ -22,6 +22,7 @@
  *  value_braces -> '{' .*? '"'; // not quite
  *
  */
+var g_bibstring = "";
 
 function BibtexParser() {
     this.pos = 0;
@@ -994,7 +995,6 @@ function BibtexDisplay() {
         } else {
             // iterate over bibTeX entries and add them to template
             var sortedentry = this.sortArray(entries, 'DATE', 'DESC', 'date');
-            console.log(sortedentry)
             for (var entryKey in sortedentry) {
                 var entry = sortedentry[entryKey];
                 // Checking if web is set to visible
@@ -1017,6 +1017,7 @@ function BibtexDisplay() {
 
     this.displayBibtex = function (input, output) {
         // parse bibtex input
+
         var b = new BibtexParser();
         b.setInput(input);
         try {
@@ -1148,7 +1149,6 @@ function BibtexDisplay() {
         var old = output.find("*");
         for (var entryKey in sortedArray) {
             var entry = sortedArray[entryKey];
-            console.log(entry)
             tpl = this.createTemplateWorks(entry, output, 'bibtex_template_pt', 'bibtexentry');
             // Check if template was created
             if (tpl) {
@@ -1205,10 +1205,14 @@ function bibtex_js_draw() {
                 url: $(this).attr('src'),
                 dataType: "text"
             })
-            .done((data) => bibstring += data)
+            .done((data) => {
+                bibstring += data;
+                g_bibstring += data;
+            })
             .fail((request, status, error) => console.error(error))
         requests.push(request);
     });
+
     // Add default author format if it doesn't exist
     var authorFormat = $(".bibtex_template").find("span:not(a).author");
     if (authorFormat.length && !authorFormat.find("span:not(a)").length) {
@@ -1268,10 +1272,6 @@ function bibtex_js_draw() {
             (new BibtexDisplay()).displayAward(bibstring, bibtex_renct);
 
         }
-
-
-
-
         // Remove elements from html that are not needed to display
         $(".bibtex_structure").remove();
         loadExtras();
