@@ -256,8 +256,12 @@
   window.addEventListener('load', () => {
     //function accepts a string to look through and a string to look for
     $('span[class="Yukun Guo"]').css('font-weight', 'bold');
-
-
+    const { userAgent } = navigator;
+    if (userAgent.includes('Windows')) {
+    } else {
+        document.getElementById("cvlink").removeAttribute("target");
+    }  
+    
   });
 
 })()

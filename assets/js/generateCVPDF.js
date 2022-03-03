@@ -62,7 +62,7 @@ function generateCV(personName) {
     doc.setTextColor(0, 0, 0);
     doc.text(24, 11, 'Google Scholar:');
     doc.setTextColor(0, 0, 255);
-    doc.text(31.2, 11, 'https://bit.ly/scholar-Yukun-Guo');
+    doc.text(31, 11, 'https://bit.ly/scholar-Yukun-Guo');
 
     doc.setTextColor(0, 0, 0);
     doc.setFont('times', 'bold');
@@ -228,7 +228,12 @@ function generateCV(personName) {
         doc.text(journalstr, 4, mrgtop);
         mrgtop = mrgtop + 1.2 * journalstr.length + 0.5;
     }
-    window.open(doc.output('bloburl'))
+    const { userAgent } = navigator;
+    if (userAgent.includes('Windows')) {
+        window.open(doc.output('bloburl'))  
+    } else {
+        doc.output('save', 'CV - Yukun Guo.pdf');
+    }  
 }
 
 function spraseAuthor(authors) {
