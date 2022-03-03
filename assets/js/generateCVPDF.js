@@ -228,12 +228,13 @@ function generateCV(personName) {
         doc.text(journalstr, 4, mrgtop);
         mrgtop = mrgtop + 1.2 * journalstr.length + 0.5;
     }
-    const { userAgent } = navigator;
-    if (userAgent.includes('Windows')) {
-        window.open(doc.output('bloburl'))  
-    } else {
-        doc.output('save', 'CV - Yukun Guo.pdf');
-    }  
+    doc.output('save', 'CV - Yukun Guo.pdf');
+    // const { userAgent } = navigator;
+    // if (userAgent.includes('Windows')) {
+    //     window.open(doc.output('bloburl'))  
+    // } else {
+    //     doc.output('save', 'CV - Yukun Guo.pdf');
+    // }  
 }
 
 function spraseAuthor(authors) {
