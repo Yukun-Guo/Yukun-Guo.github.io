@@ -3,4 +3,4 @@ description: Posts Section
 title: POST
 ---
 
-You'll add here a general introduction of your posts.
+These posts are created for the Data visualization class

@@ -59,15 +59,15 @@ menu:
       title: About section
       url: /about/
       weight: -120
-    - identifier: portfolio
-      name: Portfolio
+    - identifier: portfolio 
+      name: Portfolio (disabled)
       title: Portfolio
       #url: /portfolio/
       weight: -110
     - identifier: blog
       name: Post
       title: Blog section
-      #url: /post/
+      url: /post/
       weight: -100
 sitemap:
   changefreq: monthly
