@@ -1,235 +1,597 @@
 <!DOCTYPE html>
-<html lang='en'><head>
-  <title>HOME - Yukun Guo</title>
-  <link rel='canonical' href='https://yukun-guo.github.io/' />
-  <meta charset='utf-8'>
-  <meta name='viewport' content='width=device-width, initial-scale=1' />
-  <meta name='description' content='Welcome to this sample project' />
-  <meta name='theme-color' content='#FD3519' />
-  
+<html lang="en">
 
-  <meta name="generator" content="Hugo 0.98.0" />
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Yukun Guo - Profile</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <!-- Favicons -->
+    <link href="assets/img/favicon.png" rel="icon" type="image/x-icon">
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="assets/css/all.min.css" rel="stylesheet">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" rel="stylesheet">
+    <bibtex src="data/publications.bib"></bibtex>
+    <!-- =======================================================
+  * Template Name: iPortfolio - v3.2.0
+  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+    <style>
+        h1 {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 50px;
+        }
 
-  
+        bibtex {
+            display: none;
+        }
 
+        .searchbar {
+            margin-left: 0px;
+        }
 
+        #bibtex_errors {
+            margin-top: 10px;
+            color: red;
+        }
 
+        h1.header {
+            margin-left: 8px;
+        }
 
+        h1.YEAR {
+            font-size: 22px;
+            font-weight: bold;
+            display: inline;
+            margin-left: 8px;
+        }
 
-<link rel="stylesheet" href="https://yukun-guo.github.io/sass/style.min.eabe1aa4bd266a15f7b39b122bd6a5cc75cb067e5373631ac21d7815d6240d6f.css" integrity="sha256-6r4apL0mahX3s5sSK9alzHXLBn5Tc2Mawh14FdYkDW8=" media="screen">
-<link rel="stylesheet" href="https://yukun-guo.github.io/syntax.min.css" integrity="" media="screen">
-
-  <meta property="og:title" content="HOME" />
-<meta property="og:description" content="Welcome to this sample project" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://yukun-guo.github.io/" /><meta property="og:image" content="https://yukun-guo.github.io/images/sample.jpg" />
-
-
-  <meta itemprop="name" content="HOME">
-<meta itemprop="description" content="Welcome to this sample project">
+        .dispicon {
+            display: contents;
+        }
+    </style>
 </head>
+</head>
+
 <body>
-
-  <header style="background-image:linear-gradient(
-      rgba(0,0,0,0.4),rgba(0,0,0,0.4)
-    ),url(&#39;https://yukun-guo.github.io/images/default-sidebar.jpg&#39;)">
-  <div class="intro">
-    <div class="logo-container">
-      <a href="/">
-        <img src='https://yukun-guo.github.io/images/yukun-guo.jpg' alt="Profile ABOUT" class="rounded-logo">
-      </a>
-    </div>
-    <h2>Hi, I'm Yukun 👋</h2>
-    <h3>I'm a PhD Candidate at Oregon Health & Science University</h3>
-    <div class="menu">
-      
-
-        <p>
-            <a href="/about/">
-                About
-            </a>
-        </p>
-
-        <p>
-            <a href="">
-                Portfolio
-            </a>
-        </p>
-
-        <p>
-            <a href="">
-                Post
-            </a>
-        </p>
-
-      
-        
-        <p>
-            <a href="mailto:guoyukn@gmail.com" target="_blank" rel="external">
-                
-            </a>
-        </p>
-      
-    </div>
-  </div>
-
-  <div class="socials">
-      
-  
-    <a href="https://github.com/Yukun-Guo/" class="social-link" target="_blank" rel="noopener" ><div class="icon">
-  <svg width="35px" height="35px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
-  
-  <path d="M102.679 0H12.32C5.52 0 0 5.519 0 12.321v90.358C0 109.48 5.519 115 12.321 115h90.358c6.802 0 12.321-5.519 12.321-12.321V12.32C115 5.52 109.481 0 102.679 0zM71.182 98.494c-2.156.385-2.952-.95-2.952-2.053 0-1.386.051-8.471.051-14.195 0-4.005-1.335-6.546-2.9-7.881C74.878 73.313 84.89 72.003 84.89 55.6c0-4.671-1.669-7.007-4.39-10.01.436-1.105 1.9-5.648-.436-11.552-3.568-1.104-11.731 4.595-11.731 4.595-3.389-.95-7.06-1.438-10.679-1.438-3.62 0-7.29.488-10.679 1.438 0 0-8.163-5.699-11.73-4.595-2.337 5.878-.899 10.422-.437 11.551-2.72 3.004-4.004 5.34-4.004 10.011 0 16.326 9.574 17.712 19.072 18.765-1.232 1.104-2.336 3.003-2.72 5.724-2.44 1.104-8.677 3.004-12.4-3.568-2.335-4.056-6.545-4.39-6.545-4.39-4.159-.05-.282 2.619-.282 2.619 2.772 1.283 4.723 6.212 4.723 6.212 2.49 7.624 14.4 5.057 14.4 5.057 0 3.568.052 9.37.052 10.422 0 1.104-.77 2.438-2.952 2.053C27.21 92.821 15.35 76.701 15.35 57.86c0-23.564 18.02-41.456 41.585-41.456s42.663 17.892 42.663 41.456c.026 18.842-11.474 34.988-28.416 40.635zM46 82.81c-.488.103-.95-.102-1.001-.436-.051-.385.282-.719.77-.822.488-.05.95.154 1.001.488.077.334-.257.668-.77.77zm-2.439-.23c0 .333-.385.615-.898.615-.565.052-.95-.23-.95-.616 0-.333.385-.616.899-.616.487-.051.95.231.95.616zm-3.516-.283c-.103.334-.616.488-1.053.334-.488-.103-.821-.488-.719-.822.103-.334.617-.488 1.053-.385.513.154.847.54.719.873zm-3.158-1.386c-.23.282-.718.23-1.104-.154-.385-.334-.487-.822-.23-1.053.23-.282.718-.23 1.103.154.334.334.462.847.231 1.053zm-2.336-2.336c-.23.154-.667 0-.95-.385-.282-.385-.282-.822 0-1.001.283-.231.72-.052.95.333.283.385.283.847 0 1.053zm-1.668-2.49c-.231.23-.616.103-.899-.154-.282-.334-.333-.719-.102-.899.23-.23.616-.102.898.154.282.334.334.72.103.899zm-1.72-1.9c-.103.231-.436.283-.719.103-.334-.154-.488-.436-.385-.667.103-.154.385-.231.719-.103.334.18.488.462.385.667z"/>
-  
-  </svg>
-</div>
-</a>
-  
-
-  
-    <a href="https://scholar.google.com/citations?user=BCrQPWUAAAAJ&amp;hl=en/" class="social-link" target="_blank" rel="noopener" ><div class="icon">
-  <svg width="35px" height="35px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
-  
-  <path d="M57.5 92.341 0 45.521 57.5 0zM57.5 92.341l57.5-46.82L57.5 0z"/><circle cx="57.5" cy="81.458" r="33.542"/><path d="M27.186 67.083C32.569 55.751 44.12 47.917 57.5 47.917c13.38 0 24.93 7.834 30.314 19.166H27.186Z"/>
-  
-  </svg>
-</div>
-</a>
-  
-
-  </div>
-</header>
-
-<div class="mobile-header">
-  <p> Yukun Guo </p>
-  <div class="hamburger">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-  </div>
-</div>
-
-<div class="overlay-menu">
-  <header>
-    <div class="intro">
-      <div class="logo-container">
-        <a href="/">
-          <img src='https://yukun-guo.github.io/images/yukun-guo.jpg' alt="Profile ABOUT" class="rounded-logo">
-        </a>
-      </div>
-      <h2>Hi, I'm Yukun 👋</h2>
-      <h3>I'm a PhD Candidate at Oregon Health & Science University</h3>
-      <div class="menu">
-        
-
-        <p>
-            <a href="/about/">
-                About
-            </a>
-        </p>
-
-        <p>
-            <a href="">
-                Portfolio
-            </a>
-        </p>
-
-        <p>
-            <a href="">
-                Post
-            </a>
-        </p>
-
-        
-          
-          <p>
-              <a href="mailto:guoyukn@gmail.com" target="_blank" rel="external">
-                  
-              </a>
-          </p>
-        
-      </div>
-    </div>
-
-    <div class="socials">
-        
-  
-    <a href="https://github.com/Yukun-Guo/" class="social-link" target="_blank" rel="noopener" ><div class="icon">
-  <svg width="35px" height="35px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
-  
-  <path d="M102.679 0H12.32C5.52 0 0 5.519 0 12.321v90.358C0 109.48 5.519 115 12.321 115h90.358c6.802 0 12.321-5.519 12.321-12.321V12.32C115 5.52 109.481 0 102.679 0zM71.182 98.494c-2.156.385-2.952-.95-2.952-2.053 0-1.386.051-8.471.051-14.195 0-4.005-1.335-6.546-2.9-7.881C74.878 73.313 84.89 72.003 84.89 55.6c0-4.671-1.669-7.007-4.39-10.01.436-1.105 1.9-5.648-.436-11.552-3.568-1.104-11.731 4.595-11.731 4.595-3.389-.95-7.06-1.438-10.679-1.438-3.62 0-7.29.488-10.679 1.438 0 0-8.163-5.699-11.73-4.595-2.337 5.878-.899 10.422-.437 11.551-2.72 3.004-4.004 5.34-4.004 10.011 0 16.326 9.574 17.712 19.072 18.765-1.232 1.104-2.336 3.003-2.72 5.724-2.44 1.104-8.677 3.004-12.4-3.568-2.335-4.056-6.545-4.39-6.545-4.39-4.159-.05-.282 2.619-.282 2.619 2.772 1.283 4.723 6.212 4.723 6.212 2.49 7.624 14.4 5.057 14.4 5.057 0 3.568.052 9.37.052 10.422 0 1.104-.77 2.438-2.952 2.053C27.21 92.821 15.35 76.701 15.35 57.86c0-23.564 18.02-41.456 41.585-41.456s42.663 17.892 42.663 41.456c.026 18.842-11.474 34.988-28.416 40.635zM46 82.81c-.488.103-.95-.102-1.001-.436-.051-.385.282-.719.77-.822.488-.05.95.154 1.001.488.077.334-.257.668-.77.77zm-2.439-.23c0 .333-.385.615-.898.615-.565.052-.95-.23-.95-.616 0-.333.385-.616.899-.616.487-.051.95.231.95.616zm-3.516-.283c-.103.334-.616.488-1.053.334-.488-.103-.821-.488-.719-.822.103-.334.617-.488 1.053-.385.513.154.847.54.719.873zm-3.158-1.386c-.23.282-.718.23-1.104-.154-.385-.334-.487-.822-.23-1.053.23-.282.718-.23 1.103.154.334.334.462.847.231 1.053zm-2.336-2.336c-.23.154-.667 0-.95-.385-.282-.385-.282-.822 0-1.001.283-.231.72-.052.95.333.283.385.283.847 0 1.053zm-1.668-2.49c-.231.23-.616.103-.899-.154-.282-.334-.333-.719-.102-.899.23-.23.616-.102.898.154.282.334.334.72.103.899zm-1.72-1.9c-.103.231-.436.283-.719.103-.334-.154-.488-.436-.385-.667.103-.154.385-.231.719-.103.334.18.488.462.385.667z"/>
-  
-  </svg>
-</div>
-</a>
-  
-
-  
-    <a href="https://scholar.google.com/citations?user=BCrQPWUAAAAJ&amp;hl=en/" class="social-link" target="_blank" rel="noopener" ><div class="icon">
-  <svg width="35px" height="35px" viewBox="0 0 115 115" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
-  
-  <path d="M57.5 92.341 0 45.521 57.5 0zM57.5 92.341l57.5-46.82L57.5 0z"/><circle cx="57.5" cy="81.458" r="33.542"/><path d="M27.186 67.083C32.569 55.751 44.12 47.917 57.5 47.917c13.38 0 24.93 7.834 30.314 19.166H27.186Z"/>
-  
-  </svg>
-</div>
-</a>
-  
-
-    </div>
-  </header>
-</div>
-
-  <div class="content-wrapper">
-    
-      <div class="breadcrumb">
-  
-
-<span  class="active">
-  <a href="https://yukun-guo.github.io/">HOME</a>
-  
-</span>
-
-</div>
-
-    
-    <main id="content" class="">
-
-<h1>HOME</h1>
-<p>Hey,</p>
-<p>I&rsquo;m Yukun Guo, a PhD Candidate in Biomedical Engineering at Oregon Health &amp; Science University.</p>
-<p><a href="/about" title="Get to know me better">Get to know me better</a></p>
-
-
-<h2></h2>
-  
-<image src='/images/sample.jpg'></image>
-
-    </main>
-  </div>
-  <footer>
-    <div class="footer-wrapper">
-      <p>Made with ❤️ &mdash; Powered by <a href="https://gohugo.io/" target="_blank" rel="external">Hugo</a> and the <a href="https://github.com/bjacquemet/personal-web" target='_blank' rel="external">Personal Web</a> theme. Icons come from the great <a href="https://fontawesome.com/license" target="_blank" rel="external">Font Awesome</a> library</p>
-      <p>© Yukun Guo</p>
-    </div>
-  </footer>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600|Raleway:400,400i,600" rel="stylesheet">
-  
-  <script type="text/javascript">
-    document.querySelector('.mobile-header').addEventListener('click', function () {
-      var om = document.querySelector(".overlay-menu");
-      if (document.querySelector('.hamburger').classList.contains("cross")) {
-        document.querySelector('.hamburger').classList.remove("cross");
-        om.style.display = "none";
-        om.style.width = "0%";
-        om.style.height = "0%";
-      }
-      else {
-        document.querySelector('.hamburger').classList.add("cross");
-        om.style.width = "100%";
-        om.style.height = "100vh";
-        om.style.display = "block";
-      }
-    });
-  </script>
+    <!-- ======= Mobile nav toggle button ======= -->
+    <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+    <!-- ======= Header ======= -->
+    <header id="header">
+        <div class="d-flex flex-column">
+            <div class="profile">
+                <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
+                <h1 class="text-light"><a href="index.html">Yukun Guo</a></h1>
+                <div class="social-links mt-3 text-center" style="font-size: xx-large;">
+                    <!-- <a href="#" class="email"><i class="fa fa-envelope big-icon"></i></a> -->
+                    <a href="https://scholar.google.com/citations?user=BCrQPWUAAAAJ&hl=en" target="_blank" title="Google Scholar Citations" class="google-scholar"><i class="ai ai-google-scholar big-icon"></i></a>
+                    <a href="https://www.researchgate.net/profile/Yukun-Guo-4" target="_blank" title="ResearchGate" class="researchgate"><i class="ai ai-researchgate big-icon"></i></a>
+                    <a href="https://orcid.org/0000-0002-6784-2355" target="_blank" title="ORCID" class="orcid"><i class="ai ai-orcid big-icon"></i></a>
+                    <a href="https://github.com/Yukun-Guo" target="_blank" title="Github" class="github"><i class="fa-brands fa-github"></i></a>
+                    <a id='cvlink' onclick="generateCV('Yukun Guo')" href="javascript:void(0);" class="cv" title="Curriculum Vitae"><i class="ai ai-cv big-icon"></i></a>
+                </div>
+            </div>
+            <nav id="navbar" class="nav-menu navbar">
+                <ul>
+                    <li><a href="#hero" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Biography</span></a></li>
+                    <li><a href="#featured-works" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Featured works</span></a></li>
+                    <li><a href="#recent-works" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Recent works</span></a></li>
+                    <li><a href="#publications" class="nav-link scrollto"><i class="bx bx-book"></i><span>Publications</span></a></li>
+                    <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+                </ul>
+            </nav>
+            <!-- .nav-menu -->
+        </div>
+    </header>
+    <!-- End Header -->
+    <main id="main">
+        <!-- ======= Hero Section ======= -->
+        <section id="hero" class="home-section wg-about text-light bg-image parallax">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-3" data-aos="fade-right">
+                        <img src="assets/img/profile-img.jpg" style="border-radius: 50%; border-color: aquamarine;" class="img-fluid" alt="">
+                        <div class="hero-container" data-aos="fade-in">
+                            <h1 style="font-family: ' Poppins', sans-serif;">Yukun Guo</h1>
+                            <h4>BME PhD Candidate</h4>
+                            <h4>Oregon Health &amp; Science University</h4>
+                        </div>
+                    </div>
+                    <div class=" col-12 col-lg-9" style="font-size: small;" data-aos="fade-left">
+                        <h2>Biography</h2>
+                        <p> I am a PhD candidate advised by <a href='https://www.ohsu.edu/people/yali-jia-phd'>Dr. Yali Jia</a> in the <a href='https://www.ohsu.edu/school-of-medicine/biomedical-engineering'> Department of Biomedical Engineering</a> at <a href='https://www.ohsu.edu/'>Oregon Health & Science University</a>. My research focuses on the development of optic coherence tomography (OCT) and OCT angiography (OCTA). </p>
+                        <p> As a research assistant in <a href='https://www.coollab.net/'>Center for Ophthalmic Optics and Lasers (COOL)</a> at <a href='https://www.ohsu.edu/casey-eye-institute'>Casey Eye Institute</a>, I contribute to plan, design and conduct highly technical and complex research projects in consultation with supervisor/colleagues; contribute to the development of new concepts, techniques and standards; analyze research data and provide interpretation (projects including segmentation, registration and quantification of OCT angiography); contribute to the development of research documentation for publication and prepare technique reports, papers and grant applications. </p>
+                        <div class="row biography">
+                            <div class="col-lg-6">
+                                <h3>Interests</h3>
+                                <ul>
+                                    <li><i class="bi"></i> <span>Deep learning</span></li>
+                                    <li><i class="bi"></i> <span>Computer vision</span></li>
+                                    <li><i class="bi"></i> <span>Digital Image processing</span></li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6">
+                                <h3>Education</h3>
+                                <ul>
+                                    <li><i class="bi"></i> <span>2022-Present, Ph.D Oregon Health & Science University</span></li>
+                                    <li><i class="bi"></i> <span>2017, MS University of Jinan</span></li>
+                                    <li><i class="bi"></i> <span>2013, BS University of Jinan</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Hero -->
+        <!-- ======= Skills Section ======= -->
+        <section id="skills" class="skills section-bg">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Skills</h2>
+                </div>
+                <div class="row skills-content">
+                    <div class="col-lg-6" data-aos="fade-up">
+                        <div class="progress">
+                            <span class="skill" style="font-size:medium">Python <i class="val">95%</i></span>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <span class="skill" style="font-size:medium">Matlab <i class="val">95%</i></span>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <span class="skill" style="font-size:medium">C/C++ <i class="val">90%</i></span>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <span class="skill" style="font-size:medium">HTML/CSS/JavaScript <i class="val">80%</i></span>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="progress">
+                            <span class="skill" style="font-size:medium">Tensorflow/Pytorch <i class="val">90%</i></span>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <span class="skill" style="font-size:medium">OpenCV <i class="val">90%</i></span>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <span class="skill" style="font-size:medium">MedCalc <i class="val">70%</i></span>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <span class="skill" style="font-size:medium">Blender <i class="val">25%</i></span>
+                            <div class="progress-bar-wrap">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Skills Section -->
+        <!-- =======Featured works Section=======-->
+        <section id="featured-works" class="portfolio section-bg">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Featured works</h2>
+                </div>
+                <!-- <div id="featured-work-items" class="row portfolio-container" data-aos="fade-up" data-aos-delay="100"></div>-->
+                <!-- TODO -->
+                <div id="bibtex_featuredwork" class="row portfolio-container" data-aos="fade-up" data-aos-delay="100" style="position: relative; height: 330px;">
+                    <div class="col-lg-4 col-md-6 portfolio-item">
+                        <div class="bibtex_template_fw">
+                            <span class="if imgurl">
+                                <div class="portfolio-wrap">
+                                    <img class="bibtexVar img-fluid" src="+IMGURL+" alt="" style="height:300px; width:400px; object-fit: scale-down;" extra="imgurl"></img>
+                                    <div class="portfolio-links">
+                                        <span class="if file" style="display: contents;">
+                                            <a class="portfolio-lightbox bibtexVar" href="+FILE+" target="_blank" data-gallery="portfolioGallery" title="PDF file" extra="file"><i class="fa-solid fa-file-pdf"></i></a>
+                                        </span>
+                                        <span class="if url" style="display: contents; font-size: small;">
+                                            <a class="bibtexVar portfolio-lightbox" href=" +URL+" target="_blank" title="More Details" , extra="url"><i class="fas fa-link" style="font-size: 0.9em;"></i></a>
+                                        </span>
+                                        <span class="if !url" style="display: contents; ">
+                                            <span class="if doi" style="display: contents;">
+                                                <a class="bibtexVar" href="http://dx.doi.org/+DOI+" target="_blank" title="More Details" , extra="doi"><i class="fas fa-link" style=" font-size: 0.9em;"></i></a>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- </div> -->
+            </div>
+        </section>
+        <!-- End Featured Section -->
+        <!-- =======Recent works Section=======-->
+        <section id="recent-works" class="portfolio section-bg">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Recent works</h2>
+                </div>
+                <!-- <div id="recent-work-items" class="row portfolio-container" data-aos="fade-up" data-aos-delay="100"></div> -->
+                <!-- TODO -->
+                <div id="bibtex_recentwork" class="row portfolio-container" data-aos="fade-up" data-aos-delay="100" style="position: relative">
+                    <div class="col-lg-4 col-md-6 portfolio-item">
+                        <div class="bibtex_template_rw" style="display: none;">
+                            <span class="if imgurl">
+                                <div class="portfolio-wrap">
+                                    <img class="bibtexVar img-fluid" src="+IMGURL+" alt="" style="height:300px; width:400px; object-fit: scale-down;" extra="imgurl"></img>
+                                    <div class="portfolio-links">
+                                        <span class="if file" style="display: contents;">
+                                            <a class="portfolio-lightbox bibtexVar" href="+FILE+" target="_blank" data-gallery="portfolioGallery" class="" extra="file"><i class="fa-solid fa-file-pdf"></i></a>
+                                        </span>
+                                        <span class="if url" style="display: contents;">
+                                            <a class="bibtexVar portfolio-lightbox" href=" +URL+" target="_blank" title="More Details" , extra="url"><i class="fas fa-link " style="font-size: 0.9em;"></i></a>
+                                        </span>
+                                        <span class="if !url" style="display: contents;">
+                                            <span class="if doi" style="display: contents;">
+                                                <a class="bibtexVar" href="http://dx.doi.org/+DOI+" target="_blank" title="More Details" , extra="doi"><i class="fas fa-link " style="font-size: 0.9em;"></i></a>
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Featured Section -->
+        <!-- ======= publications Section ======= -->
+        <!-- <section id="publications" class="facts">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Publications</h2>
+                </div>
+                <div id="publication_table" class="publication-font"></div>
+            </div>
+        </section> -->
+        <!-- End publications Section -->
+        <!--=======publications Section=======-->
+        <section id="publications" class="facts">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Publications</h2>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="container-fluid" style="margin-bottom: 20px;">
+                            <div class="searchbar">
+                                <div class="mycustom-control">
+                                    <button type="button" class="btn btn-outline-primary" style="text-transform: none; width:70px; height: 40px; margin: 5px;" onclick="reset()">Reset</button>
+                                </div>
+                                <div class="mycustom-control">
+                                    <select id="authorselect" class="btn bibtex_search bibtex_generate_author control-forms" style="border: 1px solid lightgrey; text-transform: none;" search="author">
+                                        <option value="">Search Author</option>
+                                    </select>
+                                </div>
+                                <div class="mycustom-control">
+                                    <input type="text" class="bibtex_search form-control control-search" id="searchbar" placeholder="Search publications">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bibtex_structure">
+                            <div class="group year" extra="DESC number">
+                                <a href="#publications" style="display: inline"><em>(Top of the publications)</em></a>
+                                <div style="padding-bottom:10px;"></div>
+                                <div class="sort journal" extra="DESC string">
+                                    <d i v class="templates">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="bibtex_display">
+                        <div class="bibtex_template" style="display: none;">
+                            <ul>
+                                <li>
+                                    <span class="if url">
+                                        <a class="bibtexVar publication-title" href="+URL+" target="_blank" extra="url">
+                                            <span class="if title"><span class="title" style="text-transform: capitalize"></span></span>
+                                        </a>
+                                    </span>
+                                    <span class="if !url">
+                                        <div class="if doi">
+                                            <a class="bibtexVar publication-title" href="http://dx.doi.org/+DOI+" target="_blank" extra="doi">
+                                                <span class="if title"><span class="title"></span></span>
+                                            </a>
+                                        </div>
+                                    </span>
+                                    <div class=" if author">
+                                        <span class="author"></span>
+                                    </div>
+                                    <div>
+                                        <span class="if url">
+                                            <a class="bibtexVar" href="+URL+" target="_blank" extra="url">
+                                                <span class="if journal"><em><span class="journal"></span></em>,</span>
+                                                <span class="if !journal">
+                                                    <span class="if publisher"><em><span class="publisher"></span></em>,</span>
+                                                </span>
+                                            </a>
+                                        </span>
+                                        <span class="if !url">
+                                            <span class="if doi">
+                                                <a class="bibtexVar" href="http://dx.doi.org/+DOI+" target="_blank" extra="doi">
+                                                    <span class="if journal"><em><span class="journal"></span></em>,</span>
+                                                    <span class="if !journal">
+                                                        <span class="if publisher"><em><span class="publisher"></span></em>,</span>
+                                                    </span>
+                                                </a>
+                                            </span>
+                                        </span>
+                                        <span class="if booktitle">In <em><span class="booktitle"></span></em>,</span>
+                                        <span class="if address"><span class="address"></span>,</span>
+                                        <span class="if month"><span class="month"></span>,</span>
+                                        <span class="if year"><span class="year"></span>.</span>
+                                        <span class="if note"><span class="note"></span></span>
+                                        <span class="if volume"><span class="volume"></span></span>
+                                        <span class="if number">(<span class="number"></span>):</span>
+                                        <span class="if pages"><span class="pages"></span>.</span>
+                                        <a class="bibtexVar publication-buttons" role="button" data-toggle="collapse" href="#bib+BIBTEXKEY+" aria-expanded="false" aria-controls="bib+BIBTEXKEY+" extra="BIBTEXKEY" bibtexjs-css-escape> &nbsp;&nbsp;&nbsp;[BibTex]&nbsp; </a>
+                                        <span class=' if file'><a class="bibtexVar publication-buttons" href="+FILE+" target="_blank" aria-expanded="false" extra="file"> [PDF]&nbsp; </a></span>
+                                        <span class=' if code'><a class="bibtexVar publication-buttons" role="button" href="+CODE+" extra="code" target="_blank">[Code]&nbsp;</a></span>
+                                        <span class='if software'><a class="bibtexVar publication-buttons" role="button" href="+SOFTWARE+" extra="software" target="_blank">[Software]&nbsp;</a></span>
+                                        <span class='if dataset'><a class="bibtexVar publication-buttons" role="button" href="+DATASET+" extra="dataset" target="_blank">[Dataset]</a></span>
+                                    </div>
+                                    <div class="bibtexVar collapse" id="bib+BIBTEXKEY+" extra="BIBTEXKEY">
+                                        <div class="well bibtex-full-width">
+                                            <pre><span class="bibtexraw noread" style="font-size:small;color: #0075bd;"></span></pre>
+                                        </div>
+                                    </div>
+                                    <div style="display:none"><span class="bibtextype"></span></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+        <!-- End publications Section -->
+        <!-- ======= patents Section ======= -->
+        <section id="patents" class="facts">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Patents</h2>
+                </div>
+                <!-- <div id="patent_table" class="publication-font"></div> -->
+                <div id="bibtex_patents">
+                    <div class="bibtex_template_pt" style="display: none;">
+                        <ul>
+                            <li>
+                                <span class="if url">
+                                    <a class="bibtexVar publication-title" href="+URL+" target="_blank" extra="url">
+                                        <span class="if title"><span class="title" style="text-transform: capitalize"></span></span>
+                                    </a>
+                                </span>
+                                <span class="if !url">
+                                    <div class="if doi">
+                                        <a class="bibtexVar publication-title" href="http://dx.doi.org/+DOI+" target="_blank" extra="doi">
+                                            <span class="if title"><span class="title"></span>,</span>
+                                        </a>
+                                    </div>
+                                </span>
+                                <div class=" if author">
+                                    <span class="author">
+                                        <span class="first"></span>
+                                        <span class="von" bibtex-js-rif=""></span>
+                                        <span class="last" bibtex-js-rif=""></span>
+                                        <span class="junior" bibtex-js-rif="">,</span>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="if url">
+                                        <a class="bibtexVar" href="+URL+" target="_blank" extra="url">
+                                            <span class="if journal"><em><span class="journal"></span></em>,</span>
+                                            <span class="if !journal">
+                                                <span class="if publisher"><em><span class="publisher"></span></em>,</span>
+                                            </span>
+                                        </a>
+                                    </span>
+                                    <span class="if !url">
+                                        <span class="if doi">
+                                            <a class="bibtexVar" href="http://dx.doi.org/+DOI+" target="_blank" extra="doi">
+                                                <span class="if journal"><em><span class="journal"></span></em>,</span>
+                                                <span class="if !journal">
+                                                    <span class="if publisher"><em><span class="publisher"></span></em>,</span>
+                                                </span>
+                                            </a>
+                                        </span>
+                                    </span>
+                                    <span class="if year"><span class="year"></span>.</span>
+                                    <a class="bibtexVar publication-buttons" href="+FILE+" target="_blank" aria-expanded="false" extra="file"> [PDF]&nbsp; </a>
+                                </div>
+                                <div class="bibtexVar collapse" id="bib+BIBTEXKEY+" extra="BIBTEXKEY">
+                                    <div class="well bibtex-full-width">
+                                        <pre><span class="bibtexraw noread" style="font-size:small;color: #0075bd;"></span></pre>
+                                    </div>
+                                </div>
+                                <div style="display:none"><span class="bibtextype"></span></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End publications Section -->
+        <!-- ======= award Section ======= -->
+        <section id="award" class="facts">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Award</h2>
+                </div>
+                <div id="bibtex_award">
+                    <div class="bibtex_template_aw" style="display: none;">
+                        <ul>
+                            <li>
+                                <span class="if url">
+                                    <a class="bibtexVar publication-title" href="+URL+" target="_blank" extra="url">
+                                        <span class="if title"><span class="title" style="text-transform: capitalize"></span></span>
+                                    </a>
+                                </span>
+                                <span class="if !url">
+                                    <div class="if doi">
+                                        <a class="bibtexVar publication-title" href="http://dx.doi.org/+DOI+" target="_blank" extra="doi">
+                                            <span class="if title"><span class="title"></span>,</span>
+                                        </a>
+                                    </div>
+                                </span>
+                                <div class=" if author">
+                                    <span class="author">
+                                        <span class="first"></span>
+                                        <span class="von" bibtex-js-rif=""></span>
+                                        <span class="last" bibtex-js-rif=""></span>
+                                        <span class="junior" bibtex-js-rif="">,</span>
+                                    </span>
+                                </div>
+                                <div>
+                                    <span class="if url">
+                                        <a class="bibtexVar" href="+URL+" target="_blank" extra="url">
+                                            <span class="if journal"><em><span class="journal"></span></em>,</span>
+                                            <span class="if !journal">
+                                                <span class="if publisher"><em><span class="publisher"></span></em>,</span>
+                                            </span>
+                                        </a>
+                                    </span>
+                                    <span class="if !url">
+                                        <span class="if doi">
+                                            <a class="bibtexVar" href="http://dx.doi.org/+DOI+" target="_blank" extra="doi">
+                                                <span class="if journal"><em><span class="journal"></span></em>,</span>
+                                                <span class="if !journal">
+                                                    <span class="if publisher"><em><span class="publisher"></span></em>,</span>
+                                                </span>
+                                            </a>
+                                        </span>
+                                    </span>
+                                    <span class="if year"><span class="year"></span>.</span>
+                                    <span class="if file"><a class="bibtexVar publication-buttons" href="+FILE+" target="_blank" aria-expanded="false" extra="file"> [PDF]&nbsp; </a></span>
+                                </div>
+                                <div class="bibtexVar collapse" id="bib+BIBTEXKEY+" extra="BIBTEXKEY">
+                                    <div class="well bibtex-full-width">
+                                        <pre><span class="bibtexraw noread" style="font-size:small;color: #0075bd;"></span></pre>
+                                    </div>
+                                </div>
+                                <div style="display:none"><span class="bibtextype"></span></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End publications Section -->
+        <!-- ======= Contact Section ======= -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Contact</h2>
+                </div>
+                <div class="row" data-aos="fade-in">
+                    <div class="col-lg d-flex align-items-stretch">
+                        <div class="info">
+                            <div class="address">
+                                <i class="bi bi-geo-alt"></i>
+                                <h4>Location:</h4>
+                                <p>COOL lab, CaseyEye Institute. 515 SW Campus Dr. Portland OR, 97239</p>
+                            </div>
+                            <div class="email">
+                                <i class="bi bi-envelope"></i>
+                                <h4>Email:</h4>
+                                <p><a href="mailto:guoyu@ohsu.edu">guoyu@ohsu.edu</a></p>
+                            </div>
+                        </div>
+                        <iframe width=100% height="290" id="gmap_canvas" src="https://maps.google.com/maps?q=515%20SW%20Campus%20Dr.%20Portland%20OR,%2097239&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Contact Section -->
+        <!-- ======= Footer ======= -->
+        <f ooter id="footer">
+            <div class="container">
+                <div class="credits" style="pointer-events:none;">
+                    <!--         <script type="text/javascript" src="https://www.counters-free.net/count/8rur"></script><br>
+              <a href='https://www.counters-free.net/'>https://www.counters-free.net/</a> <script type='text/javascript' src='https://whomania.com/ctr?id=c0e5f0e3a86027281fa9f3224ad67bb69bfbf767'></script> -->
+                </div>
+                <!-- <div class="copyright">
+                &copy; Copyright <strong><span>Yukun Guo</span></strong>
+         </     div> -->
+                <div class="credits" style="pointer-events:all;">
+                    <!-- All the links in the footer should remain intact. -->
+                    <!-- You can delete the links only if you purchased the pro version. -->
+                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                </div>
+            </div>
+            </footer>
+            <!-- End  Footer -->
+            <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+            <!-- Vendor JS Files -->
+            <script src="assets/vendor/aos/aos.js"></script>
+            <!-- <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+            <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+            <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+            <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+            <script src="assets/vendor/php-email-form/validate.js"></script>
+            <script src="assets/vendor/purecounter/purecounter.js"></script>
+            <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+            <script src="assets/vendor/typed.js/typed.min.js"></script>
+            <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+            <!-- Template Main JS File -->
+            <!-- custom js-->
+            <script src='assets/js/readpublication.js'></script>
+            <script src="assets/js/jspdf.umd.min.js"></script>
+            <!-- <script src="assets/js/html2canvas.min.js"></script> -->
+            <script src="assets/js/bibtex_js.js" charset="utf-8"></script>
+            <script src="assets/js/publication-head.js" charset="utf-8"></script>
+            <script src="assets/js/main.js"></script>
+            <script src="assets/js/generateCVPDF.js"></script>
 </body>
+<!---https://www.freevisitorcounters.com/en/home/stats/id/832269-->
+
 </html>
