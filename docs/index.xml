@@ -7,39 +7,68 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Yukun Guo</copyright>
-    <lastBuildDate>Tue, 01 Dec 2020 21:13:14 -0500</lastBuildDate><atom:link href="https://yukun-guo.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 04 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://yukun-guo.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Hello R Markdown</title>
-      <link>https://yukun-guo.github.io/post/2020-12-01-r-rmarkdown/</link>
-      <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
+      <title>Lab 05</title>
+      <link>https://yukun-guo.github.io/post/lab5/lab5/</link>
+      <pubDate>Wed, 04 May 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://yukun-guo.github.io/post/2020-12-01-r-rmarkdown/</guid>
-      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
+      <guid>https://yukun-guo.github.io/post/lab5/lab5/</guid>
+      <description>Lab 5 Deliverable // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.getPrototypeOf,s=t.slice,g=t.flat?function(e){return t.</description>
     </item>
     
     <item>
-      <title>Getting started</title>
-      <link>https://yukun-guo.github.io/post/getting-started/</link>
-      <pubDate>Fri, 03 May 2019 09:37:55 +0200</pubDate>
+      <title>Graph Exploration &amp;amp; Brief</title>
+      <link>https://yukun-guo.github.io/post/graph-exploration-brief/babyname_flowchart/</link>
+      <pubDate>Wed, 27 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://yukun-guo.github.io/post/getting-started/</guid>
-      <description>&lt;p&gt;Here are some details to help you getting started with this theme.&lt;/p&gt;</description>
+      <guid>https://yukun-guo.github.io/post/graph-exploration-brief/babyname_flowchart/</guid>
+      <description>Graph Exploration &amp;amp; Brief// Pandoc 2.9 adds attributes on both header and div. We remove the former (to// be compatible with the behavior of Pandoc :first-child&#34;);var i, h, a;for (i = 0; i 0) h.removeAttribute(a[0].name);}});/*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */!function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?</description>
     </item>
     
     <item>
-      <title>Portfolio Definition</title>
-      <link>https://yukun-guo.github.io/post/portfolio-definition/</link>
-      <pubDate>Thu, 02 May 2019 19:49:05 +0200</pubDate>
+      <title>Lab 04</title>
+      <link>https://yukun-guo.github.io/post/lab4/lab_4_deliverable/</link>
+      <pubDate>Wed, 27 Apr 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://yukun-guo.github.io/post/portfolio-definition/</guid>
-      <description>&lt;p&gt;Here are some details about the portfolio settings.&lt;/p&gt;
-&lt;figure&gt;&lt;img src=&#34;https://yukun-guo.github.io/post/images/portfolio-example.png&#34;
-         alt=&#34;Example of Portfolio page&#34;/&gt;&lt;figcaption&gt;
-            &lt;p&gt;Example of Portfolio page&lt;/p&gt;
-        &lt;/figcaption&gt;
-&lt;/figure&gt;</description>
+      <guid>https://yukun-guo.github.io/post/lab4/lab_4_deliverable/</guid>
+      <description>Lab 04 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
+    </item>
+    
+    <item>
+      <title>Lab 03</title>
+      <link>https://yukun-guo.github.io/post/lab3/lab03/</link>
+      <pubDate>Sun, 17 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://yukun-guo.github.io/post/lab3/lab03/</guid>
+      <description>Lab 03 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
+    </item>
+    
+    <item>
+      <title>Lab 02</title>
+      <link>https://yukun-guo.github.io/post/lab2/lab2/</link>
+      <pubDate>Tue, 12 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://yukun-guo.github.io/post/lab2/lab2/</guid>
+      <description>Lab 02 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
+    </item>
+    
+    <item>
+      <title>Lab 0</title>
+      <link>https://yukun-guo.github.io/post/lab0/babyname_abyz/</link>
+      <pubDate>Tue, 05 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://yukun-guo.github.io/post/lab0/babyname_abyz/</guid>
+      <description>Lab 0 // Pandoc 2.9 adds attributes on both header and div. We remove the former (to // be compatible with the behavior of Pandoc :first-child&#34;); var i, h, a; for (i = 0; i 0) h.removeAttribute(a[0].name); } });  /*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ !function(e,t){&#34;use strict&#34;;&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return t(e)}:t(e)}(&#34;undefined&#34;!=typeof window?window:this,function(C,e){&#34;use strict&#34;;var t=[],r=Object.</description>
+    </item>
+    
+    <item>
+      <title>Lab 01</title>
+      <link>https://yukun-guo.github.io/post/lab1/</link>
+      <pubDate>Tue, 05 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://yukun-guo.github.io/post/lab1/</guid>
+      <description>Lab 01// Pandoc 2.9 adds attributes on both header and div. We remove the former (to// be compatible with the behavior of Pandoc :first-child&#34;);var i, h, a;for (i = 0; i 0) h.removeAttribute(a[0].name);}});/*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */ ! function (e, t) {&#34;use strict&#34;;&#34;object&#34; == typeof module &amp;&amp; &#34;object&#34; == typeof module.</description>
     </item>
     
     <item>
@@ -50,44 +79,6 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
       <guid>https://yukun-guo.github.io/portfolio/sample-project/</guid>
       <description>This would be a description of your sample project. You can add any content you&amp;rsquo;d like.
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
-    </item>
-    
-    <item>
-      <title>Archetypes management</title>
-      <link>https://yukun-guo.github.io/post/archetypes/</link>
-      <pubDate>Thu, 02 May 2019 19:25:30 +0200</pubDate>
-      
-      <guid>https://yukun-guo.github.io/post/archetypes/</guid>
-      <description>&lt;p&gt;The archetypes are defined in the &lt;code&gt;archetypes&lt;/code&gt; folder, for both post and portfolio.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Shortcodes</title>
-      <link>https://yukun-guo.github.io/post/shortcodes/</link>
-      <pubDate>Mon, 29 Apr 2019 16:18:12 +0100</pubDate>
-      
-      <guid>https://yukun-guo.github.io/post/shortcodes/</guid>
-      <description>&lt;p&gt;Introduction of the shortcodes defined in the personal-web theme.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Config File</title>
-      <link>https://yukun-guo.github.io/post/config-file/</link>
-      <pubDate>Sat, 20 Apr 2019 16:18:12 +0100</pubDate>
-      
-      <guid>https://yukun-guo.github.io/post/config-file/</guid>
-      <description>&lt;p&gt;Here is the basic config file used for personal-web.&lt;/p&gt;
-&lt;p&gt;You can use it as a base for your website.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Open Graph image</title>
-      <link>https://yukun-guo.github.io/post/define-specific-og-image/</link>
-      <pubDate>Sat, 20 Apr 2019 11:14:59 +0200</pubDate>
-      
-      <guid>https://yukun-guo.github.io/post/define-specific-og-image/</guid>
-      <description>Within any page, you can add in the FrontMatter a images array that will be used to define a specific Open Graph image.
-For example, see content/_index.md page:</description>
     </item>
     
   </channel>

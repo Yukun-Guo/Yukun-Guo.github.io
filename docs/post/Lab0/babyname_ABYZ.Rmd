@@ -1,0 +1,38 @@
+---
+title: "Lab 0"
+author: "Yukun"
+date: "4/12/2022"
+output: html_document
+---
+
+```{r setup, echo=FALSE, message=FALSE}
+library(babynames) # contains the actual data
+library(dplyr) # for manipulating data
+library(ggplot2) # for plotting data
+library(tidyr)
+library(data.table)
+```
+
+```{r}
+bn <- babynames
+bn$name <- substring(bn$name, 1, 1)
+
+bntb = as.data.table(bn)
+bntb[ , percentage:=sum(prop), by = list(year,sex,name)]
+
+ABvsYZ <- bntb |> 
+  filter(name == "A" | name == "B" | name == "Y"| name == "Z")
+
+babyname_plot <- ggplot(ABvsYZ, aes(x=year, y=percentage,
+                                    group=interaction(name,sex),
+                                    color=name,
+                                    shape=sex))+
+  geom_line() + 
+  geom_point() + 
+  ggtitle("Baby name start with letter 'A','B','Y',and 'Z'") + 
+  annotate(geom="text", x=2010, y=-0.01, label="by Yukun Guo",color="gray")
+
+babyname_plot
+#ggsave("babynames_ABYZ.pdf", babyname_plot, width = 10, height = 8, dpi = 300, units = "in")
+```
+
