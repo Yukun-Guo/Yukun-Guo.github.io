@@ -1,0 +1,223 @@
+---
+title: Lab 5 Deliverable
+author: Yukun Guo
+output: html_document
+---
+
+```{r setup, echo=FALSE, message=FALSE}
+library(tidyverse)
+library(devtools)
+# install_github("ismayc/pnwflights14")
+library(pnwflights14)
+library(dplyr)
+library(gt)
+library(knitr)
+library(kableExtra)
+data("flights", package = "pnwflights14")
+
+options(knitr.table.format = "html")
+options(scipen = 1, digits = 2)
+```
+
+# Lab 5 - Tables & Fonts
+
+## Tables
+
+Note that the [pnwflights14 package](https://github.com/ismayc/pnwflights14) includes several other data sets that may be of use and/or interest: mappings from two-letter airline codes to airline names, weather conditions, etc.
+
+```{r eval=FALSE}
+data("flights", package = "pnwflights14")
+data("weather", package = "pnwflights14")
+data("airports", package = "pnwflights14")
+data("airlines", package = "pnwflights14")
+```
+
+### Which airlines had the best and worst track records of on-time departures in each month? Is it different between PDX and SEA?
+
+```{r}
+worst_q <- flights |>
+    select(month, carrier,origin, dep_delay) |>
+    drop_na() |>
+    group_by(month,origin, carrier) |>
+    arrange(desc(dep_delay)) |>
+    group_by(month,origin) |>
+    slice(1)|>
+    ungroup()
+worst_q |> 
+  gt() |>
+  tab_header(title="The worst track records of on-time departures", subtitle="(Delay in minutes)")|>
+  cols_label(month="Month", carrier="Carrier", origin="Origin", dep_delay="departure delay") |>
+  cols_align(align="center", columns=c(month)) |>
+  tab_style(cell_text(align = "right"),locations = cells_title(groups = c("subtitle"))) |> 
+  tab_style(cell_text(style = "italic"),locations = cells_title(groups=c("title")))
+
+
+best_q <- flights |>
+    select(month, carrier,origin, dep_delay) |>
+    drop_na() |>
+    group_by(month,origin, carrier) |>
+    arrange(dep_delay) |>
+    group_by(month,origin) |>
+    slice(1)|>
+    ungroup()
+
+best_q |> 
+  gt()|>
+  tab_header(title="The best track records of on-time departures", subtitle="(Delay in minutes)") |>
+  cols_label(month="Month", carrier="Carrier", origin="Origin", dep_delay="departure delay") |>
+  cols_align(align="center", columns=c(month)) |>
+  tab_style(cell_text(align = "right"),locations = cells_title(groups = c("subtitle"))) |> 
+  tab_style(cell_text(style = "italic"),locations = cells_title(groups=c("title")))
+
+```
+
+### What cities have the most service from Portland, and which have the worst? (which city received the most flights from Portland, which received the least?)
+```{r}
+t <- flights |>
+     filter(origin=='PDX') |>
+     count(dest)|>
+     arrange(desc(n))
+
+t |> 
+  gt()|>
+  tab_header(title="The number of flights from PDX to each cities in 2014") |>
+  cols_label(dest="Cities", n="Number of lights from PDX") |>
+  cols_align(align="center", columns=c(n))|>
+  tab_style(cell_text(style = "italic"),locations = cells_title(groups=c("title")))
+
+```
+
+
+### Finding busy aircraft (identified by tailnum), with “business” defined as:
+
+#### Which specific aircraft (tailnum) are seen most often, for whom do they fly, and on what routes?
+```{r}
+t <- flights |>
+     mutate(aircraft_flight_route=paste(tailnum, ': from' ,origin,' to ', dest,sep = ''))|>
+     count(aircraft_flight_route)|>
+     arrange(desc(n))|>
+    slice(1:10)
+t |> 
+  gt()|>
+  tab_header(title="Top 10 flights of aircrafts") |>
+  cols_label(aircraft_flight_route="Aircarft", n="Number of lights") |>
+  cols_align(align="center", columns=c(n))|>
+  tab_style(cell_text(style = "italic"),locations = cells_title(groups=c("title")))
+```
+
+#### Which specific aircraft accumulate the most flight time?
+```{r}
+t <- flights |>
+  group_by(tailnum)|>
+  summarise(sum_flight_time=sum(air_time,na.rm = TRUE))|>
+  arrange(desc(sum_flight_time))|>
+  slice(1:10)
+t |> 
+  gt()|>
+  tab_header(title="Top 10 accumulate flight time of aircrafts", subtitle="(flight time in minutes)")|>
+  cols_label(tailnum="Aircarft", sum_flight_time="flight time") |>
+  cols_align(align="center", columns=c(sum_flight_time))|>
+  tab_style(cell_text(align = "right"),locations = cells_title(groups = c("subtitle"))) |> 
+  tab_style(cell_text(style = "italic"),locations = cells_title(groups=c("title")))
+```
+
+
+#### Which specific aircraft log the most distance?
+```{r}
+t <- flights |>
+  group_by(tailnum)|>
+  summarise(sum_distance=sum(distance,na.rm = TRUE))|>
+  arrange(desc(sum_distance))|>
+  slice(1:10)
+t |> 
+  gt()|>
+  tab_header(title="Top 10 flight distance of aircrafts", subtitle="(flight distance in miles)")|>
+  cols_label(tailnum="Aircarft", sum_distance="flight distance") |>
+  cols_align(align="center", columns=c(sum_distance))|>
+  tab_style(cell_text(align = "right"),locations = cells_title(groups = c("subtitle"))) |> 
+  tab_style(cell_text(style = "italic"),locations = cells_title(groups=c("title")))
+```
+
+## Fonts
+
+```{r echo=FALSE, message=FALSE}
+library(extrafont)
+library(showtext)
+```
+
+### Built-in Font Library Exploration
+
+#### Number of Distinct Font Families
+```{r}
+ft <-fonttable() |>
+  distinct(FamilyName)
+ft
+```
+
+#### Analysis of Face Availability
+```{r}
+#font_add("Big Boy", "FaceType - BigBoy.otf") # register the OTF font
+```
+
+#### Number of Fonts per Family
+```{r}
+ft <-fonttable() |>
+  group_by(FamilyName)|>
+  count()|>
+  ungroup()
+ft |> 
+  gt()|>
+  tab_header(title="Number of fonts per family")|>
+  cols_label(FamilyName="FamilyName", n="Font Number") |>
+  cols_align(align="center", columns=c(n))|>
+  tab_style(cell_text(style = "italic"),locations = cells_title(groups=c("title")))
+```
+
+### Custom Font Exploration
+
+#### Serif
+This font may work for the tile or subtitle of a figure.
+```{r}
+library(sysfonts)
+font_add_google("Noto Serif")
+font_families()
+ bg <- ggplot(NULL)+
+   annotate("text", 1, 1, label = "A sample of\nNoto Serif",family = "Noto Serif", size = 15)
+ bg
+ 
+```
+
+#### Sanserif
+This font may work for the annotation or the footnote of a figure.
+```{r}
+font_add_google("Noto Sans")
+font_families()
+ bg <- ggplot(NULL)+
+   annotate("text", 1, 1, label = "A sample of\nNoto Sans",family = "Noto Sans", size = 15)
+ bg
+```
+
+#### Display
+```{r}
+t = flights |>
+  filter(carrier %in% c('AA','DL','UA','AS'))|>
+  select(month, carrier, dep_delay) |>
+  group_by(month,carrier)|>
+  summarise(mean_dep_delay=mean(dep_delay,na.rm=TRUE))|>
+  ungroup()
+
+ggplot(t)+
+  geom_line(aes(x=month,y=mean_dep_delay,group=carrier,color=carrier))+
+  labs(title = "Average departure delay time of four carriers",
+       subtitle = "(in minutes)",
+       x = "Month",
+       y = "Average departure delay time")+
+  theme(plot.title    = element_text(family = "Noto Serif"),
+        plot.subtitle = element_text(family = "Noto Serif"),
+        axis.text.x   = element_text(family = "Noto Sans"),
+        axis.text.y   = element_text(family = "Noto Sans"))
+
+```
+
+### Your Custom Font, "In Action"
+

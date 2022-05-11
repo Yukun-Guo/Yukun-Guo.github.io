@@ -1,5 +1,5 @@
 ---
-title: "Graph Exploration & Brief"
+title: "Graph Exploration and Brief"
 author: "Yukun"
 date: "4/27/2022"
 output:

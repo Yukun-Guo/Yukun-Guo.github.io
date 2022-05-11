@@ -1,0 +1,535 @@
+---
+title: "Lab 03"
+author: "Yukun Guo"
+date: "4/17/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+# Libraries
+
+```{r}
+library(tidyverse)
+library(readr)
+library(wordbankr)
+library(here)
+library(RColorBrewer)
+library(wesanderson)
+library(ggthemes)
+library(ggsci)
+library(beyonce)
+library(cowplot)
+library(viridis)
+library(forcats)
+library(colorspace)
+library(colorblindr)
+library(ggrepel)
+```
+
+## And a few from Github...
+
+```{r,eval=FALSE}
+# Note that I have already taken care of installing these in this RStudio Cloud project, but if you want to use these libraries yourself, here's how you'd install them:
+# library(devtools)
+# devtools::install_github("wilkelab/cowplot")
+# devtools::install_github("clauswilke/colorblindr")
+# devtools::install_github("dill/beyonce")
+
+```
+
+# Reading the data
+
+```{r}
+sounds<-read.csv(here::here("data","animal_sounds_summary.csv"))
+```
+
+We'll be working with `data/animal_sounds_summary.csv`...
+
+# Know your data! (Challenge #1)
+
+## How many variables?
+
+```{r}
+glimpse(sounds)
+```
+
+### Which are continuous
+
+```{r}
+sprintf("continuous variables 'Age':")
+sounds |> 
+  distinct(age)|>
+  pull()
+```
+
+### Which are categorical and ordinal?
+
+```{r}
+sprintf("categorical variables 'sound':")
+sounds |> 
+  distinct(sound)|>
+  pull()
+```
+
+## How many *total* kids?
+
+```{r}
+sounds|>
+  group_by(age) |>
+  summarise(max = max(kids_respond, na.rm=TRUE)) |>
+  sum()
+```
+
+## How many different ages?
+
+```{r}
+sounds |>
+  distinct(age)|>
+  pull()
+```
+
+### How many kids per age?
+
+```{r}
+kids_num <- sounds|>
+  group_by(age) |>
+  summarise(max = max(kids_respond, na.rm=TRUE))
+
+ggplot(kids_num,aes(x=age,y=max))+
+  geom_col()
+```
+
+## How many types of animal sounds, and what are they?
+
+```{r}
+sounds |>
+  distinct(sound)|>
+  knitr::kable()
+  
+```
+
+# Initial EDA Plots
+
+## How many kids produce each kind of sound?
+
+```{r}
+sounds|>
+  group_by(sound)|>
+  summarise(sum(kids_produce))
+
+ggplot(sounds,aes(x=sound,kids_produce))+
+  geom_col()+
+  labs(x = "Sound", y = "Total Children Producing")
+  
+```
+
+## Adding age
+
+```{r}
+sounds|>
+  group_by(sound,age)|>
+  summarise(sum(kids_produce))
+
+
+```
+
+### Bar chart
+
+```{r}
+ggplot(sounds, aes(x = age, y = prop_produce)) + 
+  geom_col() +
+  labs(x = "Age (mos)", y = "Proportion of Children Producing") +
+  facet_wrap(~sound)
+```
+
+### Scatter plot
+
+```{r}
+ggplot(sounds, aes(x = age, y = prop_produce)) + 
+  geom_point() +
+  labs(x = "Age (mos)", y = "Proportion of Children Producing") +
+  facet_wrap(~sound)
+```
+
+# Discrete colors
+
+## Initial (uncolored) plot
+
+*Remember: Make sure to adjust the labels!!*
+
+```{r}
+ggplot(sounds, aes(x = age, y = prop_produce)) + 
+  geom_point(size = 2) +
+  labs(x = "Age (months)", y = "Proportion of Children Producing")
+```
+
+## Default discrete palette (Challenge #2)
+
+```{r}
+ggplot(sounds, aes(x = age, y = prop_produce)) + 
+  geom_point(aes(color = sound), size = 2) +
+  labs(x = "Age (months)", y = "Proportion of Children Producing")
+```
+
+## Adding lines (Challenge #3)
+
+```{r}
+ggplot(sounds, aes(x = age, y = prop_produce)) + 
+  geom_point(aes(color = sound), size = 2) +
+  geom_line(aes(group = sound)) +
+  labs(x = "Age (months)", y = "Proportion of Children Producing") 
+```
+
+## Challenge #4
+
+### Coloring both lines and points
+
+```{r}
+ggplot(sounds, aes(x = age, y = prop_produce, color = sound)) + 
+  geom_line() +
+  geom_point(size = 2) +
+  labs(x = "Age (months)", y = "Proportion of Children Producing") 
+```
+
+### Using `geom_smooth()`
+
+```{r}
+ggplot(sounds, aes(x = age, y = prop_produce, color = sound)) + 
+  geom_smooth(method = 'loess',formula='y ~ x',se = FALSE, lwd = .5) +
+  geom_point(size = 2)  +
+  labs(x = "Age (months)", y = "Proportion of Children Producing") 
+```
+
+## Controlling factor order
+
+```{r}
+fct_reorder2(
+  as.factor(sounds$sound), 
+  sounds$age, # variable "x"
+  sounds$prop_produce #varible "y"
+  ) %>% levels
+```
+
+## Modifying default colors
+
+```{r}
+sounds <- sounds |> 
+  mutate(sound = as.factor(sound))
+
+sound_traj <- ggplot(sounds, aes(x = age, y = prop_produce, color = fct_reorder2(sound, age, prop_produce))) +
+  geom_smooth(method = 'loess',formula='y ~ x',se = FALSE, lwd = .5) +
+  geom_point(size = 2) +
+  labs(x = "Age (months)", y ="Proportion of Children Producing",color = "sound")
+sound_traj
+```
+
+Experiment with each property in `scale_color_hue()` to get a sense of what it does.
+
+## Setting discrete colors
+
+```{r}
+sound_traj +
+  scale_color_hue(h = c(0, 90), l = 65, c = 200)
+```
+
+Experiment with `scale_color_manual()` and some of the various [named colors](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) that come built-in to R!
+
+### Challenge #5
+
+```{r}
+ggplot(sounds, aes(x = age, 
+                         y = prop_produce, 
+                         color = fct_reorder2(sound, age, prop_produce))) + 
+  geom_smooth(method = 'loess',formula='y ~ x',se = FALSE, lwd = .5) +
+  geom_point(size = 2) +
+  labs(x = "Age (months)", 
+       y = "Proportion of Children Producing", 
+       color = "sound") +
+  scale_fill_manual(values = c("cornflowerblue",
+                               "seagreen", "coral"))
+```
+
+Why doesn't the code block change the colors?
+
+```{r}
+ggplot(sounds, aes(x = age, 
+                         y = prop_produce, 
+                         fill = fct_reorder2(sound, age, prop_produce))) + 
+  geom_smooth(method = 'loess',formula='y ~ x',se = FALSE, lwd = .5) +
+  geom_point(size = 2) +
+  labs(x = "Age (months)", 
+       y = "Proportion of Children Producing", 
+       fill = "sound") +
+  scale_fill_manual(values = c("cornflowerblue", 
+                               "seagreen", "coral"))
+```
+
+### Challenge #6
+
+```{r}
+sound_traj
+```
+
+```{r}
+ggplot(sounds, aes(x = age, 
+                   y = prop_produce, 
+                   fill = fct_reorder2(sound, age, prop_produce))) + 
+  geom_smooth(aes(color = fct_reorder2(sound, age, prop_produce)),
+              method = 'loess',formula='y ~ x',se = FALSE, lwd = .5, show.legend = FALSE) +
+  geom_point(size = 2, shape = 21) +
+  labs(x = "Age (months)", 
+       y = "Proportion of Children Producing", 
+       fill = "sound")
+```
+
+```{r}
+ggplot(sounds, aes(x = age, 
+                   y = prop_produce, 
+                   fill = fct_reorder2(sound, age, prop_produce))) + 
+  geom_smooth(aes(color = fct_reorder2(sound, age, prop_produce)),
+              method = 'loess',formula='y ~ x',se = FALSE, lwd = .5, show.legend = FALSE) +
+  geom_point(size = 2, shape = 21) +
+  labs(x = "Age (months)", 
+       y = "Proportion of Children Producing", 
+       fill = "sound") +
+  scale_fill_manual(values = c("cornflowerblue", 
+                               "seagreen", "coral")) +
+  scale_color_manual(values = c("cornflowerblue", 
+                               "seagreen", "coral"))
+```
+
+```{r}
+my_colors <- c("cadetblue", "steelblue", "salmon") # quote color names
+sound_traj +
+  scale_color_manual(values = my_colors) # note: not in quotes
+```
+
+### Challenge #7
+
+```{r}
+sb_colorblind <- c("#0072B2", "#009E73", "#D55E00",
+                        "#CC79A7", "#F0E442", "#56B4E9")
+sound_traj +
+  scale_colour_manual(values = sb_colorblind)
+```
+
+## Built-in descrete color palettes
+
+```{r}
+brewer.pal(5, "Dark2") # list 5 hex colors
+display.brewer.pal(5, "Dark2") # view 5 hex colors
+```
+
+### Using `scale_color_brewer()`
+
+```{r}
+sound_traj +
+  scale_color_brewer(palette = "Dark2")
+```
+
+### Using `wesanderson`
+
+```{r}
+sound_traj +
+  scale_color_manual(values = wes_palette("Darjeeling1"))
+```
+
+```{r}
+sound_traj +
+  scale_color_manual(values = wes_palette("FantasticFox1"))
+```
+
+#### Challenge #8
+
+### Using `ggthemes`
+
+```{r}
+library(ggthemes)
+sound_traj +
+  scale_color_fivethirtyeight()
+```
+
+```{r}
+sound_traj +
+  scale_color_economist()
+```
+
+### Using `beyonce`
+
+```{r}
+library(beyonce)
+sound_traj +
+  scale_color_manual(values = beyonce_palette(18)[3:5])
+```
+
+```{r}
+sound_traj +
+  scale_color_manual(values = beyonce_palette(18)[c(1, 4, 5)])
+```
+
+### Using `viridis`
+
+```{r}
+library(viridis)
+sound_traj +
+  scale_color_viridis(discrete = TRUE) +
+  theme_minimal()
+```
+
+```{r}
+sound_traj +
+  scale_color_viridis(discrete = TRUE, option = "plasma") +
+  theme_minimal()
+```
+
+#### Challenge #9
+
+## Greyscale
+
+Experimenting with `scale_color_grey()`/`scale_fill_grey()`
+
+```{r}
+sound_traj +
+  scale_color_grey() 
+```
+
+```{r}
+ggplot(sounds, aes(x = age, 
+                   y = prop_produce, 
+                   fill = fct_reorder2(sound, age, prop_produce))) + 
+  geom_smooth(aes(color = fct_reorder2(sound, age, prop_produce)),
+              method = 'loess',formula='y ~ x',se = FALSE, lwd = .5, show.legend = FALSE) +
+  geom_point(size = 2, shape = 21) +
+  labs(x = "Age (months)", 
+       y = "Proportion of Children Producing", 
+       fill = "sound") +
+  scale_fill_grey(start = 0.3, end = 1) +
+  scale_color_grey(start = 0.3, end = 1) 
+```
+
+## Using `colorblindr`
+
+```{r}
+my_sound_traj <- sound_traj +
+  scale_color_manual(values = beyonce_palette(18)[c(1, 4, 5)])
+library(colorblindr)
+cvd_grid(my_sound_traj)
+
+```
+
+## Repel labels
+
+```{r}
+library(ggrepel)
+
+sounds <- sounds %>%
+  mutate(label = case_when(
+    age == max(age) ~ sound))
+
+ggplot(sounds, aes(x = age, 
+                   y = prop_produce, 
+                   color = fct_reorder2(sound, age, prop_produce))) +
+  geom_smooth(se = FALSE, lwd = .5) +
+  geom_point(size = 2) +
+  labs(x = "Age (months)", 
+       y = "Proportion of Children Producing") +
+  geom_text_repel(aes(label = label),
+                  nudge_x = 1,
+                  direction = "y",
+                  na.rm = TRUE) +
+  guides(color = FALSE)
+```
+
+# Continuous Colors
+
+Experiment a bit with `scale_color_gradient()`/`scale_fill_gradient()`!
+
+## Built-in continuous palettes
+
+Experiment a bit with `RColorBrewer` and `viridis`
+
+```{r}
+sound_by_age <- ggplot(sounds, aes(x = age, 
+                                   y = prop_produce, 
+                                   color = age)) +
+  geom_line(aes(group = sound), lwd = .5) +
+  geom_point(size = 2) +
+  labs(x = "Age (months)", 
+       y = "Proportion of Children Producing")
+sound_by_age +
+  scale_color_gradientn(colours = brewer.pal(n=5, name="PuBuGn"))
+```
+
+```{r}
+sound_by_age +
+  scale_color_viridis()
+```
+
+# Challenge #10
+
+## Version with *good* color
+
+```{r}
+flights<- read_csv("./data/flights.csv")
+glimpse(flights)
+```
+
+```{r}
+flights |> 
+  distinct(carrier)|>
+  pull()
+
+```
+
+#### In this plot, I can easily find out which airline has the highest arrival delay in each month in 2014. This is a piece of very useful information to remind me which airline should be avoided :)
+
+```{r}
+flights_t<- flights |>
+  drop_na(arr_delay) |>
+  group_by(month, carrier) |>
+  filter(carrier %in% c('AS','DL','AA'))|>
+  summarise_at(vars(arr_delay), list(average_arr_delay = mean))
+  
+my_flight_plot <- ggplot(flights_t, aes(x=month,y=average_arr_delay, color = carrier) )+
+  geom_smooth(method = 'loess',formula='y ~ x',se = FALSE, lwd = .9)+ 
+  geom_point(aes(color = carrier))+
+  labs(x = "Month", y = "Average arrival delay") +
+  ggtitle('Which carrier has the highest arrival delay in 2014? ')+
+  scale_color_manual(values = c("#D81B60","#1E88E5","#FFC107"))
+
+my_flight_plot
+
+```
+
+#### The color I chose is fare for colorblind people.
+
+```{r}
+library(colorblindr)
+cvd_grid(my_flight_plot)
+```
+
+## Version with greyscale
+
+```{r}
+ggplot(flights_t, aes(x=month,y=average_arr_delay, color = carrier) )+
+  geom_smooth(method = 'loess',formula='y ~ x',se = FALSE, lwd = .9)+ 
+  geom_point(aes(color = carrier))+
+  labs(x = "Month", y = "Average arrival delay") +
+  scale_fill_grey(start = 0.1, end = 0.8) +
+  scale_color_grey(start = 0.1, end = 0.8) 
+```
+
+## Version with *dreadful* color
+
+```{r}
+ggplot(flights_t, aes(x=month,y=average_arr_delay, color = month))+
+  geom_line(aes(group = carrier), lwd = .5) + 
+  geom_point(aes(group = carrier))+
+  labs(x = "Month", y = "Average arrival delay") +
+  scale_color_gradientn(colours = brewer.pal(n=5, name="PuBuGn"))
+
+```
