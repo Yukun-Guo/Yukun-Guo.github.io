@@ -21,14 +21,7 @@
     <meta itemprop="description" content="Report Data description The data are collected by The Common Core of Data (CCD). The primary purpose of the CCD is to provide basic information on public elementary and secondary schools, local education agencies (LEAs), and state education agencies (SEAs) for each state. The table used in this project contains 18 variables (include, state, school name, student race, student gender, student count, etc.) and 11,149,338 records of students&rsquo; information across the U.">
     <meta itemprop="wordCount" content="1124">
     <meta itemprop="keywords" content="" />
-    <style>
-        pre code {
-      background-color: #eee;
-      border: 1px solid #999;
-      display: block;
-      padding: 20px;
-    }
-    </style>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
 </head>
 
 <body>
@@ -47,7 +40,7 @@
                 <p>
                     <a href="/about/"> About </a>
                 </p>
-               <!-- <p>
+                <!-- <p>
                     <a href=""> Portfolio (disabled) </a>
                 </p>-->
                 <p>
@@ -158,8 +151,8 @@
             <h2 id="report">Report</h2>
             <h3 id="data-description">Data description</h3>
             <p>The data are collected by <a href="https://nces.ed.gov/ccd/files.asp#Fiscal:2,LevelId:7,SchoolYearId:35,Page:1">The Common Core of Data (CCD)</a>. The primary purpose of the CCD is to provide basic information on public elementary and secondary
-                schools, local education agencies (LEAs), and state education agencies (SEAs) for each state. The <a href="https://nces.ed.gov/ccd/Data/zip/ccd_sch_052_2021_l_1a_080621.zip">table</a> (<a href="tidyschools.csv.gz">tidy version</a>) used in this project contains 18 variables (including,
-                state, school name, student race, student gender, student count, etc.) and 11,149,338 records of students&rsquo; information across the U.S. at the school level.</p>
+                schools, local education agencies (LEAs), and state education agencies (SEAs) for each state. The <a href="https://nces.ed.gov/ccd/Data/zip/ccd_sch_052_2021_l_1a_080621.zip">table</a> (<a href="tidyschools.csv.gz">tidy version</a>) used
+                in this project contains 18 variables (including, state, school name, student race, student gender, student count, etc.) and 11,149,338 records of students&rsquo; information across the U.S. at the school level.</p>
             <h3 id="audience">Audience</h3>
             <p>People who care about the education of public elementary and secondary schools.</p>
             <h3 id="type-of-graph">Type of Graph</h3>
@@ -169,7 +162,7 @@
                 of students. The bar chart shows both the gender and race of students. The first pie chart shows the gender proportion, and the second one shows the race proportion.</p>
             <h5 id="note-since-this-app-takes-too-much-memory-for-run-the-shinyappsiohttps9pyc6f-yukunshinyappsiofinal-visualization_yukun-guo-free-version-plan-cant-run-this-app">Note: since this app takes too much memory to run, the <a href="https://9pyc6f-yukun.shinyapps.io/Final-Visualization_Yukun-Guo/">Shinyapps.io</a> (Free plan) can&rsquo;t run this app.</h5>
             <h3 id="code">Code</h3>
-            <pre tabindex="0"><code class="language-{r}" data-lang="{r}">library(shiny)
+            <pre tabindex="0"><code >library(shiny)
 library(tidyverse)
 library(readr)
 library(ggrepel)
@@ -441,6 +434,10 @@ shinyApp(ui = ui, server = server)
                 om.style.display = "block";
             }
         });
+    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script>
+        hljs.highlightAll();
     </script>
 </body>
 
