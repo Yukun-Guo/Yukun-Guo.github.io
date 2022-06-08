@@ -1,0 +1,34 @@
+---
+title: "Lab 0"
+author: "Yukun"
+date: "4/05/2022"
+output: html_document
+---
+
+
+
+<pre><code>## Warning: package &#39;babynames&#39; was built under R version 4.1.3</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.1.3</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 4.1.3</code></pre>
+<pre><code>## Warning: package &#39;data.table&#39; was built under R version 4.1.3</code></pre>
+<pre class="r"><code>bn &lt;- babynames
+bn$name &lt;- substring(bn$name, 1, 1)
+
+bntb = as.data.table(bn)
+bntb[ , percentage:=sum(prop), by = list(year,sex,name)]
+
+ABvsYZ &lt;- bntb |&gt; 
+  filter(name == &quot;A&quot; | name == &quot;B&quot; | name == &quot;Y&quot;| name == &quot;Z&quot;)
+
+babyname_plot &lt;- ggplot(ABvsYZ, aes(x=year, y=percentage,
+                                    group=interaction(name,sex),
+                                    color=name,
+                                    shape=sex))+
+  geom_line() + 
+  geom_point() + 
+  ggtitle(&quot;Baby name start with letter &#39;A&#39;,&#39;B&#39;,&#39;Y&#39;,and &#39;Z&#39;&quot;) + 
+  annotate(geom=&quot;text&quot;, x=2010, y=-0.01, label=&quot;by Yukun Guo&quot;,color=&quot;gray&quot;)
+
+babyname_plot</code></pre>
+<p><img src="/post/Lab0/babyname_ABYZ_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>#ggsave(&quot;babynames_ABYZ.pdf&quot;, babyname_plot, width = 10, height = 8, dpi = 300, units = &quot;in&quot;)</code></pre>

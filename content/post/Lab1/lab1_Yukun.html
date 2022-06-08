@@ -1,0 +1,296 @@
+---
+title: "Lab 1"
+author: "Yukun Guo"
+date: "4/5/2022"
+output:
+  html_document:
+    theme: flatly
+    toc: TRUE
+    toc_float: TRUE
+    toc_depth: 2
+    number_sections: TRUE
+    code_folding: hide
+---
+
+
+
+<div id="workflow-for-lab-01" class="section level1">
+<h1>Workflow for Lab 01</h1>
+<p>The lab instructions can be found <a href="https://stevenbedrick.github.io/data-vis-labs-2022/01-eda_hot_dogs.html">here</a>; we will work through its contents together via Webex. You will use this RMarkdown file as your workspace and final document. Don’t forget to update the “author” metadata field at the top of the file!</p>
+</div>
+<div id="start-by-loading-libraries" class="section level1">
+<h1>Start by Loading Libraries</h1>
+<pre class="r"><code>2+2</code></pre>
+<pre><code>[1] 4</code></pre>
+</div>
+<div id="loading-and-wrangling-data" class="section level1">
+<h1>Loading and wrangling data</h1>
+<pre class="r"><code>hot_dogs &lt;- read_csv(here::here(&quot;data&quot;, &quot;hot_dog_contest.csv&quot;), 
+    col_types = cols(
+      gender = col_factor(levels = NULL)
+    ))</code></pre>
+<pre><code>Error: &#39;D:/WorkSpace/Yukun-Guo.github.io/data/hot_dog_contest.csv&#39; does not exist.</code></pre>
+<pre class="r"><code>glimpse(hot_dogs)</code></pre>
+<pre><code>Error in glimpse(hot_dogs): object &#39;hot_dogs&#39; not found</code></pre>
+<div id="loading" class="section level2">
+<h2>Loading</h2>
+<p><em>Tip</em>: The data files for this lab are already loaded into this project, under the <code>data/</code> directory.</p>
+</div>
+<div id="wrangling" class="section level2">
+<h2>Wrangling</h2>
+<p>Filtering and indicator field</p>
+<pre class="r"><code>hot_dogs &lt;- hot_dogs %&gt;% 
+  mutate(post_ifoce = year &gt;= 1997) %&gt;% 
+  filter(year &gt;= 1981 &amp; gender == &#39;male&#39;)</code></pre>
+<pre><code>Error in mutate(., post_ifoce = year &gt;= 1997): object &#39;hot_dogs&#39; not found</code></pre>
+<pre class="r"><code>hot_dogs</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;hot_dogs&#39; not found</code></pre>
+</div>
+</div>
+<div id="initial-plot" class="section level1">
+<h1>Initial Plot</h1>
+<pre class="r"><code>ggplot(hot_dogs, aes(x = year, y = num_eaten)) + 
+  geom_col()</code></pre>
+<pre><code>Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object &#39;hot_dogs&#39; not found</code></pre>
+</div>
+<div id="axis-labels-title" class="section level1">
+<h1>Axis Labels &amp; Title</h1>
+<pre class="r"><code>ggplot(hot_dogs, aes(x = year, y = num_eaten)) + 
+  geom_col() +
+  labs(x = &quot;Year&quot;, y = &quot;Hot Dogs and Buns Consumed&quot;) +
+  ggtitle(&quot;Nathan&#39;s Hot Dog Eating Contest Results, 1981-2017&quot;, subtitle = &quot;(Male contestants only)&quot;)</code></pre>
+<pre><code>Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object &#39;hot_dogs&#39; not found</code></pre>
+</div>
+<div id="initial-colors-styling" class="section level1">
+<h1>Initial Colors &amp; Styling</h1>
+<pre class="r"><code>ggplot(hot_dogs, aes(x = year, y = num_eaten)) + 
+  geom_col(colour = &quot;white&quot;) + 
+  labs(x = &quot;Year&quot;, y = &quot;Hot Dogs and Buns Consumed&quot;) +
+  ggtitle(&quot;Nathan&#39;s Hot Dog Eating Contest Results, 1981-2017&quot;, subtitle = &quot;(Male contestants only)&quot;)</code></pre>
+<pre><code>Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object &#39;hot_dogs&#39; not found</code></pre>
+<div id="challenge-1-3-different-versions" class="section level2">
+<h2>Challenge 1: 3 Different Versions</h2>
+<pre class="r"><code>ggplot(hot_dogs, aes(x = year, y = num_eaten)) + 
+  geom_col(colour = &quot;grey&quot;,fill=&#39;navyblue&#39;) + 
+  labs(x = &quot;Year&quot;, y = &quot;Hot Dogs and Buns Consumed&quot;) +
+  ggtitle(&quot;Nathan&#39;s Hot Dog Eating Contest Results, 1981-2017&quot;, 
+          subtitle = &quot;(Male contestants only)&quot;)</code></pre>
+<pre><code>Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object &#39;hot_dogs&#39; not found</code></pre>
+</div>
+<div id="challenge-2-adjusting-the-legend" class="section level2">
+<h2>Challenge 2: Adjusting the Legend</h2>
+<pre class="r"><code>ggplot(hot_dogs, aes(x = year, y = num_eaten)) + 
+  geom_col(aes(fill = post_ifoce), colour = &quot;white&quot;) + 
+  labs(x = &quot;Year&quot;, y = &quot;Hot Dogs and Buns Consumed&quot;) +
+  ggtitle(&quot;Nathan&#39;s Hot Dog Eating Contest Results, 1981-2017&quot;, 
+          subtitle = &quot;(Male contestants only)&quot;) +
+  scale_fill_discrete(name = &quot;&quot;, labels=c(&quot;Pre-IFOCE&quot;, &quot;Post-IFOCE&quot;))</code></pre>
+<pre><code>Error in ggplot(hot_dogs, aes(x = year, y = num_eaten)): object &#39;hot_dogs&#39; not found</code></pre>
+</div>
+</div>
+<div id="change-the-dataset" class="section level1">
+<h1>Change the Dataset</h1>
+<pre class="r"><code>hdm_affil &lt;- read_csv(here::here(&quot;data&quot;, &quot;hot_dog_contest_with_affiliation.csv&quot;), 
+    col_types = cols(
+      affiliated = col_factor(levels = NULL), 
+      gender = col_factor(levels = NULL)
+      )) %&gt;% 
+  mutate(post_ifoce = year &gt;= 1997) %&gt;% 
+  filter(year &gt;= 1981 &amp; gender == &quot;male&quot;) </code></pre>
+<pre><code>Error: &#39;D:/WorkSpace/Yukun-Guo.github.io/data/hot_dog_contest_with_affiliation.csv&#39; does not exist.</code></pre>
+<p>IFOCE affiliation analysis</p>
+<div id="challenge-3-adding-columns-filtering" class="section level2">
+<h2>Challenge 3: Adding Columns, Filtering</h2>
+<pre class="r"><code>hdm_affil &lt;- read_csv(here::here(&quot;data&quot;, &quot;hot_dog_contest_with_affiliation.csv&quot;), 
+    col_types = cols(
+      affiliated = col_factor(levels = NULL), 
+      gender = col_factor(levels = NULL)
+      )) %&gt;% 
+  mutate(post_ifoce = year &gt;= 1997) %&gt;% 
+  filter(year &gt;= 1981 &amp; gender == &quot;male&quot;) </code></pre>
+<pre><code>Error: &#39;D:/WorkSpace/Yukun-Guo.github.io/data/hot_dog_contest_with_affiliation.csv&#39; does not exist.</code></pre>
+<pre class="r"><code>glimpse(hdm_affil)</code></pre>
+<pre><code>Error in glimpse(hdm_affil): object &#39;hdm_affil&#39; not found</code></pre>
+</div>
+<div id="challenge-4-eda" class="section level2">
+<h2>Challenge 4: EDA</h2>
+<pre class="r"><code>hdm_affil %&gt;% 
+  distinct(affiliated)</code></pre>
+<pre><code>Error in distinct(., affiliated): object &#39;hdm_affil&#39; not found</code></pre>
+<pre class="r"><code>hdm_affil %&gt;% 
+  count(affiliated, sort = TRUE)</code></pre>
+<pre><code>Error in count(., affiliated, sort = TRUE): object &#39;hdm_affil&#39; not found</code></pre>
+</div>
+<div id="updated-plot" class="section level2">
+<h2>Updated Plot</h2>
+<pre class="r"><code>ggplot(hdm_affil, aes(x = year, y = num_eaten)) + 
+  geom_col(aes(fill = affiliated)) + 
+  labs(x = &quot;Year&quot;, y = &quot;Hot Dogs and Buns Consumed&quot;) +
+  ggtitle(&quot;Nathan&#39;s Hot Dog Eating Contest Results, 1981-2017&quot;, subtitle = &quot;(Male contestants only)&quot;)</code></pre>
+<pre><code>Error in ggplot(hdm_affil, aes(x = year, y = num_eaten)): object &#39;hdm_affil&#39; not found</code></pre>
+</div>
+<div id="challenge-5-adjusting-the-colors" class="section level2">
+<h2>Challenge 5: Adjusting the Colors</h2>
+<pre class="r"><code>affil_plot &lt;- ggplot(hdm_affil, aes(x = year, y = num_eaten)) + 
+  geom_col(aes(fill = affiliated)) + 
+  labs(x = &quot;Year&quot;, y = &quot;Hot Dogs and Buns Consumed&quot;) +
+  ggtitle(&quot;Nathan&#39;s Hot Dog Eating Contest Results, 1981-2017&quot;, subtitle = &quot;(Male contestants only)&quot;) +
+  scale_fill_manual(values = c(&#39;#E9602B&#39;,&#39;#2277A0&#39;,&#39;#CCB683&#39;),
+                    name = &quot;IFOCE-affiliation&quot;)</code></pre>
+<pre><code>Error in ggplot(hdm_affil, aes(x = year, y = num_eaten)): object &#39;hdm_affil&#39; not found</code></pre>
+<pre class="r"><code>affil_plot</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found</code></pre>
+</div>
+</div>
+<div id="sweating-the-details" class="section level1">
+<h1>Sweating the Details</h1>
+<div id="initial-plot-1" class="section level2">
+<h2>Initial plot</h2>
+<pre class="r"><code>affil_plot &lt;- affil_plot + 
+  scale_y_continuous(expand = c(0, 0),
+                     breaks = seq(0, 70, 10)) +
+  scale_x_continuous(expand = c(0, 0))</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found</code></pre>
+<pre class="r"><code>affil_plot</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found</code></pre>
+</div>
+<div id="challenge-6-custom-axes" class="section level2">
+<h2>Challenge 6: Custom Axes</h2>
+<pre class="r"><code>affil_plot &lt;- affil_plot + 
+  coord_cartesian(xlim = c(1980, 2018), ylim = c(0, 80)) </code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found</code></pre>
+<pre class="r"><code>affil_plot</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found</code></pre>
+</div>
+</div>
+<div id="themes" class="section level1">
+<h1>Themes</h1>
+<div id="initial-plot-2" class="section level2">
+<h2>Initial Plot</h2>
+<pre class="r"><code>affil_plot</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found</code></pre>
+</div>
+<div id="making-a-custom-theme" class="section level2">
+<h2>Making a Custom Theme</h2>
+<pre class="r"><code>affil_plot +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  theme(axis.text = element_text(size = 12)) +
+  theme(panel.background = element_blank()) +
+  theme(axis.line.x = element_line(color = &quot;gray80&quot;, size = 0.5)) +
+  theme(axis.ticks = element_line(color = &quot;gray80&quot;, size = 0.5))</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found</code></pre>
+<pre class="r"><code>hot_diggity &lt;- theme(plot.title = element_text(hjust = 0.5),
+                     axis.text = element_text(size = 12),
+                     panel.background = element_blank(),
+                     axis.line.x = element_line(color = &quot;gray80&quot;, size = 0.5),
+                     axis.ticks = element_line(color = &quot;gray80&quot;, size = 0.5),
+                     text = element_text(family = &quot;Lato&quot;) # need extrafont for this
+                     )</code></pre>
+<pre class="r"><code>affil_plot + hot_diggity </code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found</code></pre>
+</div>
+<div id="applying-library-themes" class="section level2">
+<h2>Applying Library Themes</h2>
+<pre class="r"><code>library(ggthemes)
+affil_plot + theme_fivethirtyeight(base_family = &quot;Lato&quot;)</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found</code></pre>
+<pre class="r"><code>affil_plot + theme_tufte( base_family = &quot;Palatino&quot;)</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found</code></pre>
+</div>
+<div id="custom-tick-marks-labels" class="section level2">
+<h2>Custom Tick Marks &amp; Labels</h2>
+<pre class="r"><code>years_to_label &lt;- seq(from = 1981, to = 2021, by = 4) 
+years_to_label</code></pre>
+<pre><code> [1] 1981 1985 1989 1993 1997 2001 2005 2009 2013 2017 2021</code></pre>
+<pre class="r"><code># add a column to the dataframe containing what we want each year&#39;s label to be
+hd_years &lt;- hdm_affil %&gt;%
+  distinct(year) %&gt;% 
+  mutate(year_lab = ifelse(year %in% years_to_label, year, &quot;&quot;))</code></pre>
+<pre><code>Error in distinct(., year): object &#39;hdm_affil&#39; not found</code></pre>
+<pre class="r"><code># manually tell ggplot what to use for breaks and labels
+affil_plot + 
+  hot_diggity +
+  scale_x_continuous(expand = c(0, 0), 
+                     breaks = hd_years$year,
+                     labels = hd_years$year_lab)</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;affil_plot&#39; not found</code></pre>
+</div>
+</div>
+<div id="finalizing-our-masterpiece" class="section level1">
+<h1>Finalizing Our Masterpiece!</h1>
+<div id="adding-custom-annotations" class="section level2">
+<h2>Adding Custom Annotations</h2>
+<pre class="r"><code>nathan_plot &lt;- ggplot(hdm_affil, aes(x = year, y = num_eaten)) + 
+  geom_col(aes(fill = affiliated)) + 
+  labs(x = &quot;Year&quot;, y = &quot;Hot Dogs and Buns Consumed&quot;) +
+  ggtitle(&quot;Nathan&#39;s Hot Dog Eating Contest Results, 1981-2017&quot;, subtitle = &quot;(Male contestants only)&quot;) +
+  scale_fill_manual(values = c(&#39;#E9602B&#39;,&#39;#2277A0&#39;,&#39;#CCB683&#39;),
+                    name = &quot;IFOCE-affiliation&quot;) + 
+  hot_diggity +
+  scale_y_continuous(expand = c(0, 0),
+                     breaks = seq(0, 70, 10)) +
+  scale_x_continuous(expand = c(0, 0), 
+                     breaks = hd_years$year,
+                     labels = hd_years$year_lab) + 
+  coord_cartesian(xlim = c(1980, 2018), ylim = c(0, 80)) </code></pre>
+<pre><code>Error in ggplot(hdm_affil, aes(x = year, y = num_eaten)): object &#39;hdm_affil&#39; not found</code></pre>
+<pre class="r"><code>nathan_plot</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;nathan_plot&#39; not found</code></pre>
+</div>
+<div id="adding-an-additional-data-layer" class="section level2">
+<h2>Adding an Additional Data Layer</h2>
+<pre class="r"><code>nathan_ann &lt;- nathan_plot +
+  guides(fill = FALSE) +
+  coord_cartesian(xlim = c(1980, 2018), ylim = c(0, 90)) +
+  annotate(&#39;segment&#39;, x=1980.75, xend=2000.25, y= 30, yend=30, size=0.5, color=&quot;#CCB683&quot;)+
+  annotate(&#39;segment&#39;, x=1980.75, xend=1980.75, y= 30, yend=28, size=0.5, color=&quot;#CCB683&quot;) +
+  annotate(&#39;segment&#39;, x=2000.25, xend=2000.25, y= 30, yend=28, size=0.5, color=&quot;#CCB683&quot;) +
+  annotate(&#39;segment&#39;, x=1990, xend=1990, y= 33, yend=30, size=0.5, color=&quot;#CCB683&quot;) +
+  annotate(&#39;text&#39;, x=1990, y=36, label=&quot;No MLE/IFOCE Affiliation&quot;, color=&quot;#CCB683&quot;, family=&quot;Lato&quot;, hjust=0.5, size = 3) +
+
+
+
+  annotate(&#39;segment&#39;, x=2000.75, xend=2006.25, y= 58, yend=58, size=0.5, color=&quot;#2277A0&quot;) +
+  annotate(&#39;segment&#39;, x=2000.75, xend=2000.75, y= 58, yend=56, size=0.5, color=&quot;#2277A0&quot;) +
+  annotate(&#39;segment&#39;, x=2006.25, xend=2006.25, y= 58, yend=56, size=0.5, color=&quot;#2277A0&quot;) +
+  annotate(&#39;segment&#39;, x=2003.5, xend=2003.5, y= 61, yend=58, size=0.5, color=&quot;#2277A0&quot;) +
+  annotate(&#39;text&#39;, x=2003.5, y=65, label=&quot;MLE/IFOCE\nFormer Member&quot;, color=&quot;#2277A0&quot;, family=&quot;Lato&quot;, hjust=0.5, size = 3) +
+
+
+  annotate(&#39;segment&#39;, x=2006.75, xend=2017.25, y= 79, yend=79, size=0.5, color=&quot;#E9602B&quot;) +
+  annotate(&#39;segment&#39;, x=2006.75, xend=2006.75, y= 79, yend=77, size=0.5, color=&quot;#E9602B&quot;) +
+  annotate(&#39;segment&#39;, x=2017.25, xend=2017.25, y= 79, yend=77, size=0.5, color=&quot;#E9602B&quot;) +
+  annotate(&#39;segment&#39;, x=2012, xend=2012, y= 82, yend=79, size=0.5, color=&quot;#E9602B&quot;) +
+  annotate(&#39;text&#39;, x=2012, y=86, label=&quot;MLE/IFOCE Current Member&quot;, color=&quot;#E9602B&quot;, family=&quot;Lato&quot;, hjust=0.5, size = 3)</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;nathan_plot&#39; not found</code></pre>
+<pre class="r"><code>nathan_ann</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;nathan_ann&#39; not found</code></pre>
+<pre class="r"><code>hdm_females &lt;- read_csv(here::here(&quot;data&quot;, &quot;hot_dog_contest_with_affiliation.csv&quot;), 
+    col_types = cols(
+      affiliated = col_factor(levels = NULL), 
+      gender = col_factor(levels = NULL)
+      )) %&gt;% 
+  mutate(post_ifoce = year &gt;= 1997) %&gt;% 
+  filter(year &gt;= 1981 &amp; gender == &quot;female&quot;) </code></pre>
+<pre><code>Error: &#39;D:/WorkSpace/Yukun-Guo.github.io/data/hot_dog_contest_with_affiliation.csv&#39; does not exist.</code></pre>
+<pre class="r"><code>glimpse(hdm_females)</code></pre>
+<pre><code>Error in glimpse(hdm_females): object &#39;hdm_females&#39; not found</code></pre>
+<pre class="r"><code>nathan_w_females &lt;- nathan_ann +
+  # add in the female data, and manually set a fill color
+  geom_col(data = hdm_females, 
+           width = 0.75, 
+           fill = &quot;#F68A39&quot;) +
+  labs(subtitle = NULL) # no longer need the subtitle warning about male-only data!</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;nathan_ann&#39; not found</code></pre>
+<pre class="r"><code>nathan_w_females</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;nathan_w_females&#39; not found</code></pre>
+<pre class="r"><code>caption &lt;- paste(strwrap(&quot;* From 2011 on, separate Men&#39;s and Women&#39;s prizes have been awarded. All female champions to date have been MLE/IFOCE-affiliated.&quot;, 70), collapse=&quot;\n&quot;)
+
+nathan_w_females +
+  # now an asterisk to set off the female scores, and a caption
+  annotate(&#39;text&#39;, x = 2017.8, y = 39, label=&quot;*&quot;, family = &quot;Lato&quot;, size = 8) +
+  labs(caption = caption) +
+  theme(plot.caption = element_text(family = &quot;Lato&quot;, size=8, hjust=0, margin=margin(t=15)))</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;nathan_w_females&#39; not found</code></pre>
+</div>
+</div>
