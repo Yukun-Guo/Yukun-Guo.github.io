@@ -16,6 +16,7 @@ function generateCV(personName) {
     var entriesArrayPaper = [];
     var entriesArrayPatent = [];
     var entriesArrayAward = [];
+    var entriesArrayConferencePresentation = [];
     for (var entryKey in entries) {
         switch (entries[entryKey].BIBTEXTYPEKEY) {
             case 'PATENT':
@@ -23,6 +24,9 @@ function generateCV(personName) {
                 break;
             case 'AWARD':
                 entriesArrayAward.push(entries[entryKey]);
+                break;
+            case 'CONFERENCEPRE':
+                entriesArrayConferencePresentation.push(entries[entryKey]);
                 break;
             default:
                 entriesArrayPaper.push(entries[entryKey]);
@@ -32,11 +36,11 @@ function generateCV(personName) {
     entriesArrayPaper = bibdisp.sortArray(entriesArrayPaper, 'DATE', 'DESC', 'date');
     entriesArrayAward = bibdisp.sortArray(entriesArrayAward, 'DATE', 'DESC', 'date');
     entriesArrayPatent = bibdisp.sortArray(entriesArrayPatent, 'DATE', 'DESC', 'date');
+    entriesArrayConferencePresentation = bibdisp.sortArray(entriesArrayConferencePresentation, 'DATE', 'DESC', 'date');
 
-
-    for (var entryKey in entriesArrayPaper) {
-        var entry = entriesArrayPaper[entryKey];
-    }
+    // for (var entryKey in entriesArrayPaper) {
+    //     var entry = entriesArrayPaper[entryKey];
+    // }
     // assemble PDF
     var doc = new window.jspdf.jsPDF('p', 'em', 'A4');
 
@@ -55,14 +59,19 @@ function generateCV(personName) {
     doc.text(27, 7, doc.splitTextToSize('guoyu@ohsu.edu', 10));
 
     doc.setTextColor(0, 0, 0);
-    doc.text(24, 9, 'Website:');
+    doc.text(24, 8.25, 'Website:');
     doc.setTextColor(0, 0, 255);
-    doc.text(28, 9, 'https://Yukun-Guo.github.io');
+    doc.text(28, 8.25, 'https://Yukun-Guo.github.io');
 
     doc.setTextColor(0, 0, 0);
-    doc.text(24, 11, 'Google Scholar:');
+    doc.text(24, 9.5, 'ORCID:');
     doc.setTextColor(0, 0, 255);
-    doc.text(31, 11, 'https://bit.ly/scholar-Yukun-Guo');
+    doc.text(28, 9.5, 'https://orcid.org/0000-0002-6784-2355');
+
+    doc.setTextColor(0, 0, 0);
+    doc.text(24, 10.75, 'Google Scholar:');
+    doc.setTextColor(0, 0, 255);
+    doc.text(31, 10.75, 'https://bit.ly/scholar-Yukun-Guo');
 
     doc.setTextColor(0, 0, 0);
     doc.setFont('times', 'bold');
@@ -83,6 +92,7 @@ function generateCV(personName) {
     doc.text(4, 23, '2019-2022     Research assistant   Casey Eye Institute, OHSU, Portland OR, U.S.');
     doc.text(4, 24.3, '2017-2018     Visiting scholar       Casey Eye Institute, OHSU, Portland OR, U.S.');
 
+    // add patents
     doc.setTextColor(0, 0, 0);
     doc.setFont('times', 'bold');
     doc.text(4, 27, 'INTELLECTUAL PROPERTY');
@@ -124,6 +134,7 @@ function generateCV(personName) {
         mrgtop = mrgtop + 1.5;
     }
 
+    // add awards
     mrgtop = mrgtop + 1
     doc.setTextColor(0, 0, 0);
     doc.setFont('times', 'bold');
@@ -161,10 +172,11 @@ function generateCV(personName) {
         mrgtop = mrgtop + 1.5;
     }
 
+    // add papers
     mrgtop = mrgtop + 1;
     doc.setTextColor(0, 0, 0);
     doc.setFont('times', 'bold');
-    doc.text(4, mrgtop, 'PEER REVIEWED JOURNAL PAPERS');
+    doc.text(4, mrgtop, 'PEER-REVIEWED JOURNAL PAPERS');
     doc.line(4, mrgtop + 0.5, 46, mrgtop + 0.5);
 
     mrgtop = mrgtop + 2;
@@ -245,12 +257,103 @@ function generateCV(personName) {
             jornalinfo = jornalinfo + '(' + entry.NUMBER + ')';
         }
         if (typeof entry.PAGES !== "undefined") {
-            jornalinfo = jornalinfo + ': ' + entry.PAGES + '.';
+            jornalinfo = jornalinfo + ': ' + entry.PAGES + '. ';
+        }
+        if (typeof entry.PMID !== "undefined") {
+            jornalinfo = jornalinfo + 'PMID: ' + entry.PMID;
         }
         var journalstr = doc.splitTextToSize(jornalinfo, 42);
         doc.text(journalstr, 4, mrgtop);
         mrgtop = mrgtop + 1.2 * journalstr.length + 0.5;
     }
+
+    // add conference presentations
+
+    mrgtop = mrgtop + 1;
+    doc.setTextColor(0, 0, 0);
+    doc.setFont('times', 'bold');
+    doc.text(4, mrgtop, 'CONFERENCE PRESENTATIONS');
+    doc.line(4, mrgtop + 0.5, 46, mrgtop + 0.5);
+
+    mrgtop = mrgtop + 2;
+    doc.setFont('times', 'normal');
+    doc.setFontSize(11);
+    for (let i = 0; i < entriesArrayConferencePresentation.length; i++) {
+        var entry = entriesArrayConferencePresentation[i];
+        if (mrgtop > 60) {
+            doc.addPage('A4');
+            mrgtop = 6;
+        }
+        doc.setFont('times', 'bold');
+        doc.setTextColor(50, 150, 250);
+        var titlestr = doc.splitTextToSize((i + 1).toString() + '. ' + entry.TITLE.replace('{', '').replace('}', ''), 42);
+        for (var tstr in titlestr) {
+            if (entry.URL) {
+                doc.textWithLink(titlestr[tstr], 4, mrgtop, {
+                    url: entry.URL
+                });
+            } else if (entry.DOI) {
+                doc.textWithLink(titlestr[tstr], 4, mrgtop, {
+                    url: 'http: //dx.doi.org/' + entry.DOI
+                });
+            } else {
+                doc.text(titlestr[tstr], 4, mrgtop);
+            }
+            mrgtop = mrgtop + 1.2
+        }
+
+        doc.setFont('times', 'normal');
+        doc.setTextColor(0);
+        var authstr = doc.splitTextToSize(spraseAuthor(entry.AUTHOR).trim(), 42);
+
+        // doc.text(authstr, 4, mrgtop);
+        // mrgtop = mrgtop + 1.2 * authstr.length;
+
+        for (var tstr in authstr) {
+            a = authstr[tstr].indexOf(personName)
+            if (a > -1) {
+                var p_auth = authstr[tstr].substring(0, a)
+                doc.text(p_auth, 4, mrgtop);
+                var rt = 1 - (p_auth.match(/,/g) || []).length * 0.01;
+
+                doc.setFont('times', 'bold');
+                var l1 = 4 + doc.getTextWidth(p_auth.trim()) * rt
+                doc.text(personName, l1, mrgtop);
+                doc.setFont('times', 'normal');
+                var l2 = l1 + doc.getTextWidth(personName) + 0.45;
+                doc.text(authstr[tstr].substring(a + personName.length, authstr[tstr].length), l2, mrgtop);
+            } else {
+                doc.text(authstr[tstr], 4, mrgtop);
+            }
+
+
+            mrgtop = mrgtop + 1.2
+        }
+
+
+        doc.setTextColor(0);
+        doc.setFont('times', 'italic');
+        var pubJ = '';
+        if (entry.ORGANIZATION) {
+            pubJ = entry.ORGANIZATION;
+        }
+        if (entry.LOCATION) {
+            pubJ = pubJ + '. ' + entry.LOCATION;
+        }
+
+        var jornalinfo = pubJ;
+        if (typeof entry.MONTH !== "undefined") {
+            jornalinfo = jornalinfo + ', ' + entry.MONTH;
+        }
+        if (typeof entry.YEAR !== "undefined") {
+            jornalinfo = jornalinfo + ', ' + entry.YEAR + '. ';
+        }
+        var journalstr = doc.splitTextToSize(jornalinfo, 42);
+        doc.text(journalstr, 4, mrgtop);
+        mrgtop = mrgtop + 1.2 * journalstr.length + 0.5;
+    }
+
+
     doc.output('save', 'CV - Yukun Guo.pdf');
     // const { userAgent } = navigator;
     // if (userAgent.includes('Windows')) {
