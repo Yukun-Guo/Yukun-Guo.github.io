@@ -94,9 +94,9 @@ function generateCV(personName) {
   doc.text(39, 7, doc.splitTextToSize("guoyu@ohsu.edu", 10));
 
   doc.setTextColor(0, 0, 0);
-  doc.text(30.9, 8.25, "Website:");
+  doc.text(31.7, 8.25, "Website:");
   doc.setTextColor(0, 0, 255);
-  doc.text(34.7, 8.25, "https://Yukun-Guo.github.io");
+  doc.text(35.5, 8.25, "https://bit.ly/profile-yukun");
 
   doc.setTextColor(0, 0, 0);
   doc.text(26.5, 9.5, "ORCID:");
