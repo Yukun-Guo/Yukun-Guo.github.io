@@ -17,6 +17,11 @@ function generateCV(personName) {
   var entriesArrayAward = [];
   var entriesArrayConferencePresentation = [];
   var entriesArrayConferenceAbstract = [];
+  var entriesArrayConferencePaper = [];
+  var entriesArrayPreprint = [];
+  var entriesArrayBookChapters = [];
+  var entriesArrayTechnicalReport = [];
+  var entriesArrayOther = [];
   for (var entryKey in entries) {
     switch (entries[entryKey].BIBTEXTYPEKEY) {
       case "PATENT":
@@ -31,8 +36,23 @@ function generateCV(personName) {
       case "CONFERENCEABS":
         entriesArrayConferenceAbstract.push(entries[entryKey]);
         break;
-      default:
+      case "INPROCEEDINGS":
+        entriesArrayConferencePaper.push(entries[entryKey]);
+        break;
+      case "ARTICLE":
         entriesArrayPaper.push(entries[entryKey]);
+        break;
+      case "PREPRINT":
+        entriesArrayPreprint.push(entries[entryKey]);
+        break;
+      case "INBOOK":
+        entriesArrayBookChapters.push(entries[entryKey]);
+        break;
+      case "TECHREPORT":
+        entriesArrayTechnicalReport.push(entries[entryKey]);
+        break;
+      default:
+        entriesArrayOther.push(entries[entryKey]);
         break;
     }
   }
@@ -66,6 +86,37 @@ function generateCV(personName) {
     "DESC",
     "date"
   );
+  entriesArrayConferencePaper = bibdisp.sortArray(
+    entriesArrayConferencePaper,
+    "DATE",
+    "DESC",
+    "date"
+  );
+  entriesArrayPreprint = bibdisp.sortArray(
+    entriesArrayPreprint,
+    "DATE",
+    "DESC",
+    "date"
+  );
+  entriesArrayOther = bibdisp.sortArray(
+    entriesArrayOther,
+    "DATE",
+    "DESC",
+    "date"
+  );
+  entriesArrayBookChapters = bibdisp.sortArray(
+    entriesArrayBookChapters,
+    "DATE",
+    "DESC",
+    "date"
+  );
+  entriesArrayTechnicalReport = bibdisp.sortArray(
+    entriesArrayTechnicalReport,
+    "DATE",
+    "DESC",
+    "date"
+  );
+
 
   // for (var entryKey in entriesArrayPaper) {
   //     var entry = entriesArrayPaper[entryKey];
@@ -79,7 +130,7 @@ function generateCV(personName) {
   doc.text("Yukun Guo", 20, 5);
 
   doc.setFont("times", "normal");
-  doc.setFontSize(12);
+  doc.setFontSize(11);
   doc.text(
     4,
     7,
@@ -120,9 +171,10 @@ function generateCV(personName) {
 
   doc.setTextColor(0, 0, 0);
   doc.setFont("times", "bold");
+  doc.setFontSize(12);
   doc.text(4, 14, "EDUCATION");
   doc.line(4, 14.5, 46, 14.5);
-
+  doc.setFontSize(11);
   doc.setFont("times", "normal");
   doc.text(
     4,
@@ -142,8 +194,10 @@ function generateCV(personName) {
 
   doc.setTextColor(0, 0, 0);
   doc.setFont("times", "bold");
+  doc.setFontSize(12);
   doc.text(4, 21, "PROFESSIONAL POSITIONS");
   doc.line(4, 21.5, 46, 21.5);
+  doc.setFontSize(11);
   doc.setFont("times", "normal");
 
   doc.text(
@@ -158,384 +212,33 @@ function generateCV(personName) {
   );
 
   // add patents
-  doc.setTextColor(0, 0, 0);
-  doc.setFont("times", "bold");
-  doc.text(4, 27, "INTELLECTUAL PROPERTY");
-  doc.line(4, 27.5, 46, 27.5);
   var mrgtop = 28.8;
-
-  doc.setFont("times", "normal");
-  for (let i = 0; i < entriesArrayPatent.length; i++) {
-    var entry = entriesArrayPatent[i];
-    if (mrgtop > 60) {
-      doc.addPage("A4");
-      mrgtop = 6;
-    }
-    doc.setFont("times", "bold");
-    doc.setTextColor(50, 150, 250);
-    var titlestr = doc.splitTextToSize(
-      (i + 1).toString() + ". " + entry.TITLE.replace("{", "").replace("}", ""),
-      42
-    );
-    for (var tstr in titlestr) {
-      if (entry.URL) {
-        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
-          url: entry.URL,
-        });
-      } else if (entry.DOI) {
-        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
-          url: "http: //dx.doi.org/" + entry.DOI,
-        });
-      } else {
-        doc.text(titlestr[tstr], 4, mrgtop);
-      }
-      mrgtop = mrgtop + 1.2;
-    }
-
-    doc.setFont("times", "normal");
-    doc.setTextColor(0);
-    doc.text("   " + spraseAuthor(entry.AUTHOR), 4, mrgtop);
-    mrgtop = mrgtop + 1.2;
-    doc.setTextColor(0);
-    doc.setFont("times", "italic");
-    doc.text("    " + entry.JOURNAL + ", " + entry.YEAR, 4, mrgtop);
-    mrgtop = mrgtop + 1.5;
-  }
+  mrgtop = formatPatentList(entriesArrayPatent,"INTELLECTUAL PROPERTY",doc,mrgtop);
 
   // add awards
-  mrgtop = mrgtop + 1;
-  doc.setTextColor(0, 0, 0);
-  doc.setFont("times", "bold");
-  doc.text(4, mrgtop, "ACADEMIC AWARDS");
-  doc.line(4, mrgtop + 0.5, 46, mrgtop + 0.5);
-
-  mrgtop = mrgtop + 2;
-  doc.setFont("times", "normal");
-  for (let i = 0; i < entriesArrayAward.length; i++) {
-    var entry = entriesArrayAward[i];
-    if (mrgtop > 60) {
-      doc.addPage("A4");
-      mrgtop = 6;
-    }
-    doc.setFont("times", "bold");
-    doc.setTextColor(50, 150, 250);
-    var titlestr = doc.splitTextToSize(
-      (i + 1).toString() + ". " + entry.TITLE.replace("{", "").replace("}", ""),
-      42
-    );
-    for (var tstr in titlestr) {
-      if (entry.URL) {
-        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
-          url: entry.URL,
-        });
-      } else if (entry.DOI) {
-        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
-          url: "http: //dx.doi.org/" + entry.DOI,
-        });
-      } else {
-        doc.text(titlestr[tstr], 4, mrgtop);
-      }
-      mrgtop = mrgtop + 1.2;
-    }
-    doc.setFont("times", "italic");
-    doc.setTextColor(0);
-    doc.text("    " + entry.JOURNAL + ", " + entry.YEAR, 4, mrgtop);
-    mrgtop = mrgtop + 1.5;
-  }
+  mrgtop = formatAwardList(entriesArrayAward,"ACADEMIC AWARDS",doc,mrgtop);
 
   // add papers
-  mrgtop = mrgtop + 1;
-  doc.setTextColor(0, 0, 0);
-  doc.setFont("times", "bold");
-  doc.text(4, mrgtop, "PEER-REVIEWED JOURNAL PAPERS");
-  doc.line(4, mrgtop + 0.5, 46, mrgtop + 0.5);
+  mrgtop = formatList(entriesArrayPaper,"PEER-REVIEWED JOURNAL PAPERS", doc, mrgtop, personName);
 
-  mrgtop = mrgtop + 2;
-  doc.setFont("times", "normal");
-  doc.setFontSize(11);
-  for (let i = 0; i < entriesArrayPaper.length; i++) {
-    var entry = entriesArrayPaper[i];
-    if (mrgtop > 60) {
-      doc.addPage("A4");
-      mrgtop = 6;
-    }
-    doc.setFont("times", "bold");
-    doc.setTextColor(50, 150, 250);
-    var titlestr = doc.splitTextToSize(
-      (i + 1).toString() + ". " + entry.TITLE.replace("{", "").replace("}", ""),
-      42
-    );
-    for (var tstr in titlestr) {
-      if (entry.URL) {
-        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
-          url: entry.URL,
-        });
-      } else if (entry.DOI) {
-        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
-          url: "http: //dx.doi.org/" + entry.DOI,
-        });
-      } else {
-        doc.text(titlestr[tstr], 4, mrgtop);
-      }
-      mrgtop = mrgtop + 1.2;
-    }
+  // add conference papers
+  mrgtop = formatList(entriesArrayConferencePaper,"PEER-REVIEWED CONFERENCE PAPERS", doc, mrgtop, personName);
 
-    doc.setFont("times", "normal");
-    doc.setTextColor(0);
-    var authstr = doc.splitTextToSize(spraseAuthor(entry.AUTHOR).trim(), 42);
-
-    // doc.text(authstr, 4, mrgtop);
-    // mrgtop = mrgtop + 1.2 * authstr.length;
-
-    for (var tstr in authstr) {
-      a = authstr[tstr].indexOf(personName);
-      if (a > -1) {
-        var p_auth = authstr[tstr].substring(0, a);
-        doc.text(p_auth, 4, mrgtop);
-        var rt = 1 - (p_auth.match(/,/g) || []).length * 0.01;
-
-        doc.setFont("times", "bold");
-        var l1 = 4 + doc.getTextWidth(p_auth.trim()) * rt;
-        doc.text(personName, l1, mrgtop);
-        doc.setFont("times", "normal");
-        var l2 = l1 + doc.getTextWidth(personName) + 0.45;
-        doc.text(
-          authstr[tstr].substring(a + personName.length, authstr[tstr].length),
-          l2,
-          mrgtop
-        );
-      } else {
-        doc.text(authstr[tstr], 4, mrgtop);
-      }
-
-      mrgtop = mrgtop + 1.2;
-    }
-
-    doc.setTextColor(0);
-    doc.setFont("times", "italic");
-    if (entry.JOURNAL) {
-      var pubJ = entry.JOURNAL;
-    } else if (entry.BOOKTITLE) {
-      var pubJ = "In " + entry.BOOKTITLE;
-    }
-
-    var jornalinfo = pubJ;
-    if (typeof entry.MONTH !== "undefined") {
-      jornalinfo = jornalinfo + ", " + entry.MONTH;
-    }
-    if (typeof entry.YEAR !== "undefined") {
-      jornalinfo = jornalinfo + ", " + entry.YEAR + ". ";
-    }
-    if (typeof entry.VOLUME !== "undefined") {
-      jornalinfo = jornalinfo + entry.VOLUME;
-    }
-    if (typeof entry.NUMBER !== "undefined") {
-      jornalinfo = jornalinfo + "(" + entry.NUMBER + ")";
-    }
-    if (typeof entry.PAGES !== "undefined") {
-      jornalinfo = jornalinfo + ": " + entry.PAGES + ". ";
-    }
-    if (typeof entry.PMID !== "undefined") {
-      jornalinfo = jornalinfo + "PMID: " + entry.PMID;
-    }
-    var journalstr = doc.splitTextToSize(jornalinfo, 42);
-    doc.text(journalstr, 4, mrgtop);
-    mrgtop = mrgtop + 1.2 * journalstr.length + 0.5;
-  }
-
+  // add preprints
+  mrgtop = formatList(entriesArrayPreprint, "PREPRINTS", doc, mrgtop, personName);
 
   // add abstracts
-  mrgtop = mrgtop + 1;
-  doc.setTextColor(0, 0, 0);
-  doc.setFont("times", "bold");
-  doc.text(4, mrgtop, "CONFERENCE ABSTRACTS");
-  doc.line(4, mrgtop + 0.5, 46, mrgtop + 0.5);
-
-  mrgtop = mrgtop + 2;
-  doc.setFont("times", "normal");
-  doc.setFontSize(11);
-  for (let i = 0; i < entriesArrayConferenceAbstract.length; i++) {
-    var entry = entriesArrayConferenceAbstract[i];
-    if (mrgtop > 60) {
-      doc.addPage("A4");
-      mrgtop = 6;
-    }
-    doc.setFont("times", "bold");
-    doc.setTextColor(50, 150, 250);
-    var titlestr = doc.splitTextToSize(
-      (i + 1).toString() + ". " + entry.TITLE.replace("{", "").replace("}", ""),
-      42
-    );
-    for (var tstr in titlestr) {
-      if (entry.URL) {
-        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
-          url: entry.URL,
-        });
-      } else if (entry.DOI) {
-        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
-          url: "http: //dx.doi.org/" + entry.DOI,
-        });
-      } else {
-        doc.text(titlestr[tstr], 4, mrgtop);
-      }
-      mrgtop = mrgtop + 1.2;
-    }
-
-    doc.setFont("times", "normal");
-    doc.setTextColor(0);
-    var authstr = doc.splitTextToSize(spraseAuthor(entry.AUTHOR).trim(), 42);
-
-    // doc.text(authstr, 4, mrgtop);
-    // mrgtop = mrgtop + 1.2 * authstr.length;
-
-    for (var tstr in authstr) {
-      a = authstr[tstr].indexOf(personName);
-      if (a > -1) {
-        var p_auth = authstr[tstr].substring(0, a);
-        doc.text(p_auth, 4, mrgtop);
-        var rt = 1 - (p_auth.match(/,/g) || []).length * 0.01;
-
-        doc.setFont("times", "bold");
-        var l1 = 4 + doc.getTextWidth(p_auth.trim()) * rt;
-        doc.text(personName, l1, mrgtop);
-        doc.setFont("times", "normal");
-        var l2 = l1 + doc.getTextWidth(personName) + 0.45;
-        doc.text(
-          authstr[tstr].substring(a + personName.length, authstr[tstr].length),
-          l2,
-          mrgtop
-        );
-      } else {
-        doc.text(authstr[tstr], 4, mrgtop);
-      }
-
-      mrgtop = mrgtop + 1.2;
-    }
-
-    doc.setTextColor(0);
-    doc.setFont("times", "italic");
-    if (entry.JOURNAL) {
-      var pubJ = entry.JOURNAL;
-    } else if (entry.BOOKTITLE) {
-      var pubJ = "In " + entry.BOOKTITLE;
-    }
-
-    var jornalinfo = pubJ;
-    if (typeof entry.MONTH !== "undefined") {
-      jornalinfo = jornalinfo + ", " + entry.MONTH;
-    }
-    if (typeof entry.YEAR !== "undefined") {
-      jornalinfo = jornalinfo + ", " + entry.YEAR + ". ";
-    }
-    if (typeof entry.VOLUME !== "undefined") {
-      jornalinfo = jornalinfo + entry.VOLUME;
-    }
-    if (typeof entry.NUMBER !== "undefined") {
-      jornalinfo = jornalinfo + "(" + entry.NUMBER + ")";
-    }
-    if (typeof entry.PAGES !== "undefined") {
-      jornalinfo = jornalinfo + ": " + entry.PAGES + ". ";
-    }
-    if (typeof entry.PMID !== "undefined") {
-      jornalinfo = jornalinfo + "PMID: " + entry.PMID;
-    }
-    var journalstr = doc.splitTextToSize(jornalinfo, 42);
-    doc.text(journalstr, 4, mrgtop);
-    mrgtop = mrgtop + 1.2 * journalstr.length + 0.5;
-  }
+  mrgtop = formatList(entriesArrayConferenceAbstract, "CONFERENCE ABSTRACTS", doc, mrgtop, personName);
   
   // add conference presentations
+  mrgtop = formatList(entriesArrayConferencePresentation, "CONFERENCE PRESENTATIONS", doc, mrgtop, personName);
 
-  mrgtop = mrgtop + 1;
-  doc.setTextColor(0, 0, 0);
-  doc.setFont("times", "bold");
-  doc.text(4, mrgtop, "CONFERENCE PRESENTATIONS");
-  doc.line(4, mrgtop + 0.5, 46, mrgtop + 0.5);
+  // add book chapters
+  mrgtop = formatList(entriesArrayBookChapters, "BOOK CHAPTERS", doc, mrgtop, personName);
 
-  mrgtop = mrgtop + 2;
-  doc.setFont("times", "normal");
-  doc.setFontSize(11);
-  for (let i = 0; i < entriesArrayConferencePresentation.length; i++) {
-    var entry = entriesArrayConferencePresentation[i];
-    if (mrgtop > 60) {
-      doc.addPage("A4");
-      mrgtop = 6;
-    }
-    doc.setFont("times", "bold");
-    doc.setTextColor(50, 150, 250);
-    var titlestr = doc.splitTextToSize(
-      (i + 1).toString() + ". " + entry.TITLE.replace("{", "").replace("}", ""),
-      42
-    );
-    for (var tstr in titlestr) {
-      if (entry.URL) {
-        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
-          url: entry.URL,
-        });
-      } else if (entry.DOI) {
-        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
-          url: "http: //dx.doi.org/" + entry.DOI,
-        });
-      } else {
-        doc.text(titlestr[tstr], 4, mrgtop);
-      }
-      mrgtop = mrgtop + 1.2;
-    }
 
-    doc.setFont("times", "normal");
-    doc.setTextColor(0);
-    var authstr = doc.splitTextToSize(spraseAuthor(entry.AUTHOR).trim(), 42);
-
-    // doc.text(authstr, 4, mrgtop);
-    // mrgtop = mrgtop + 1.2 * authstr.length;
-
-    for (var tstr in authstr) {
-      a = authstr[tstr].indexOf(personName);
-      if (a > -1) {
-        var p_auth = authstr[tstr].substring(0, a);
-        doc.text(p_auth, 4, mrgtop);
-        var rt = 1 - (p_auth.match(/,/g) || []).length * 0.01;
-
-        doc.setFont("times", "bold");
-        var l1 = 4 + doc.getTextWidth(p_auth.trim()) * rt;
-        doc.text(personName, l1, mrgtop);
-        doc.setFont("times", "normal");
-        var l2 = l1 + doc.getTextWidth(personName) + 0.45;
-        doc.text(
-          authstr[tstr].substring(a + personName.length, authstr[tstr].length),
-          l2,
-          mrgtop
-        );
-      } else {
-        doc.text(authstr[tstr], 4, mrgtop);
-      }
-
-      mrgtop = mrgtop + 1.2;
-    }
-
-    doc.setTextColor(0);
-    doc.setFont("times", "italic");
-    var pubJ = "";
-    if (entry.ORGANIZATION) {
-      pubJ = entry.ORGANIZATION;
-    }
-    if (entry.LOCATION) {
-      pubJ = pubJ + ". " + entry.LOCATION;
-    }
-
-    var jornalinfo = pubJ;
-    if (typeof entry.MONTH !== "undefined") {
-      jornalinfo = jornalinfo + ", " + entry.MONTH;
-    }
-    if (typeof entry.YEAR !== "undefined") {
-      jornalinfo = jornalinfo + ", " + entry.YEAR + ". ";
-    }
-    var journalstr = doc.splitTextToSize(jornalinfo, 42);
-    doc.text(journalstr, 4, mrgtop);
-    mrgtop = mrgtop + 1.2 * journalstr.length + 0.5;
-  }
-
-  doc.output("save", "CV - Yukun Guo.pdf");
+  var dateStr =new Date().toLocaleDateString('en-us', { year:"numeric", month:"short"});
+  doc.output("save", `CV - Yukun Guo - ${dateStr}.pdf`);
   // const { userAgent } = navigator;
   // if (userAgent.includes('Windows')) {
   //     window.open(doc.output('bloburl'))
@@ -565,4 +268,206 @@ function spraseAuthor(authors) {
   }
 
   return authstr.slice(2, authstr.length);
+}
+
+function formatList(elementArray, sectionTitle, doc, mrgtop, personName){
+  if (elementArray.length == 0) {
+    return mrgtop;
+  }
+  mrgtop = mrgtop + 1;
+  doc.setTextColor(0, 0, 0);
+  doc.setFont("times", "bold");
+  doc.setFontSize(12);
+  doc.text(4, mrgtop, sectionTitle);
+  doc.line(4, mrgtop + 0.5, 46, mrgtop + 0.5);
+  mrgtop = mrgtop + 2;
+  doc.setFont("times", "normal");
+  doc.setFontSize(11);
+  for (let i = 0; i < elementArray.length; i++) {
+    var entry = elementArray[i];
+    if (mrgtop > 60) {
+      doc.addPage("A4");
+      mrgtop = 6;
+    }
+    doc.setFont("times", "bold");
+    doc.setTextColor(50, 150, 250);
+    var titlestr = doc.splitTextToSize(
+      (i + 1).toString() + ". " + entry.TITLE.replace("{", "").replace("}", ""),
+      42
+    );
+    for (var tstr in titlestr) {
+      if (entry.URL) {
+        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
+          url: entry.URL,
+        });
+      } else if (entry.DOI) {
+        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
+          url: "http://dx.doi.org/" + entry.DOI,
+        });
+      } else {
+        doc.text(titlestr[tstr], 4, mrgtop);
+      }
+      mrgtop = mrgtop + 1.2;
+    }
+
+    doc.setFont("times", "normal");
+    doc.setTextColor(0);
+    var authstr = doc.splitTextToSize(spraseAuthor(entry.AUTHOR).trim(), 42);
+
+    // doc.text(authstr, 4, mrgtop);
+    // mrgtop = mrgtop + 1.2 * authstr.length;
+
+    for (var tstr in authstr) {
+      a = authstr[tstr].indexOf(personName);
+      if (a > -1) {
+        var p_auth = authstr[tstr].substring(0, a);
+        doc.text(p_auth, 4, mrgtop);
+        var rt = 1 - (p_auth.match(/,/g) || []).length * 0.01;
+
+        doc.setFont("times", "bold");
+        var l1 = 4 + doc.getTextWidth(p_auth.trim()) * rt;
+        doc.text(personName, l1, mrgtop);
+        doc.setFont("times", "normal");
+        var l2 = l1 + doc.getTextWidth(personName) + 0.45;
+        doc.text(
+          authstr[tstr].substring(a + personName.length, authstr[tstr].length),
+          l2,
+          mrgtop
+        );
+      } else {
+        doc.text(authstr[tstr], 4, mrgtop);
+      }
+
+      mrgtop = mrgtop + 1.2;
+    }
+
+    doc.setTextColor(0);
+    doc.setFont("times", "italic");
+    if (entry.JOURNAL) {
+      var pubJ = entry.JOURNAL;
+    } else if (entry.BOOKTITLE) {
+      var pubJ = "In " + entry.BOOKTITLE;
+    }
+
+    var jornalinfo = pubJ;
+    if (typeof entry.MONTH !== "undefined") {
+      jornalinfo = jornalinfo + ", " + entry.MONTH;
+    }
+    if (typeof entry.YEAR !== "undefined") {
+      jornalinfo = jornalinfo + ", " + entry.YEAR + ". ";
+    }
+    if (typeof entry.VOLUME !== "undefined") {
+      jornalinfo = jornalinfo + entry.VOLUME;
+    }
+    if (typeof entry.NUMBER !== "undefined") {
+      jornalinfo = jornalinfo + "(" + entry.NUMBER + ")";
+    }
+    if (typeof entry.PAGES !== "undefined") {
+      jornalinfo = jornalinfo + ": " + entry.PAGES + ". ";
+    }
+    if (typeof entry.PMID !== "undefined") {
+      jornalinfo = jornalinfo + "PMID: " + entry.PMID;
+    }
+    var journalstr = doc.splitTextToSize(jornalinfo, 42);
+    doc.text(journalstr, 4, mrgtop);
+    mrgtop = mrgtop + 1.2 * journalstr.length + 0.5;
+  }
+  return mrgtop;
+}
+
+function formatAwardList(elementArray,sectionTitle,doc,mrgtop){
+  if (elementArray.length == 0) {
+    return mrgtop;
+  }
+  mrgtop = mrgtop + 1;
+  doc.setTextColor(0, 0, 0);
+  doc.setFont("times", "bold");
+  doc.setFontSize(12);
+  doc.text(4, mrgtop, sectionTitle);
+  doc.line(4, mrgtop + 0.5, 46, mrgtop + 0.5);
+  doc.setFontSize(11);
+  mrgtop = mrgtop + 2;
+  doc.setFont("times", "normal");
+  for (let i = 0; i < elementArray.length; i++) {
+    var entry = elementArray[i];
+    if (mrgtop > 60) {
+      doc.addPage("A4");
+      mrgtop = 6;
+    }
+    doc.setFont("times", "bold");
+    doc.setTextColor(50, 150, 250);
+    var titlestr = doc.splitTextToSize(
+      (i + 1).toString() + ". " + entry.TITLE.replace("{", "").replace("}", ""),
+      42
+    );
+    for (var tstr in titlestr) {
+      if (entry.URL) {
+        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
+          url: entry.URL,
+        });
+      } else if (entry.DOI) {
+        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
+          url: "http://dx.doi.org/" + entry.DOI,
+        });
+      } else {
+        doc.text(titlestr[tstr], 4, mrgtop);
+      }
+      mrgtop = mrgtop + 1.2;
+    }
+    doc.setFont("times", "italic");
+    doc.setTextColor(0);
+    doc.text("    " + entry.JOURNAL + ", " + entry.YEAR, 4, mrgtop);
+    mrgtop = mrgtop + 1.5;
+  }
+  return mrgtop;
+}
+
+function formatPatentList(elementArray,sectionTitle,doc,mrgtop){
+  if (elementArray.length == 0) {
+    return mrgtop;
+  }
+  doc.setTextColor(0, 0, 0);
+  doc.setFont("times", "bold");
+  doc.setFontSize(12);
+  doc.text(4, 27, sectionTitle);
+  doc.line(4, 27.5, 46, 27.5);
+  doc.setFontSize(11);
+  doc.setFont("times", "normal");
+  for (let i = 0; i < elementArray.length; i++) {
+    var entry = elementArray[i];
+    if (mrgtop > 60) {
+      doc.addPage("A4");
+      mrgtop = 6;
+    }
+    doc.setFont("times", "bold");
+    doc.setTextColor(50, 150, 250);
+    var titlestr = doc.splitTextToSize(
+      (i + 1).toString() + ". " + entry.TITLE.replace("{", "").replace("}", ""),
+      42
+    );
+    for (var tstr in titlestr) {
+      if (entry.URL) {
+        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
+          url: entry.URL,
+        });
+      } else if (entry.DOI) {
+        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
+          url: "http://dx.doi.org/" + entry.DOI,
+        });
+      } else {
+        doc.text(titlestr[tstr], 4, mrgtop);
+      }
+      mrgtop = mrgtop + 1.2;
+    }
+
+    doc.setFont("times", "normal");
+    doc.setTextColor(0);
+    doc.text("   " + spraseAuthor(entry.AUTHOR), 4, mrgtop);
+    mrgtop = mrgtop + 1.2;
+    doc.setTextColor(0);
+    doc.setFont("times", "italic");
+    doc.text("    " + entry.JOURNAL + ", " + entry.YEAR, 4, mrgtop);
+    mrgtop = mrgtop + 1.5;
+  }
+  return mrgtop;
 }

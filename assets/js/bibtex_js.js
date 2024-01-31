@@ -232,6 +232,8 @@ function BibtexParser() {
             this.entries[this.currentEntry]["BIBTEXTYPE"] = "award";
         } else if (directive == "@CONFERENCEPRE") {
             this.entries[this.currentEntry]["BIBTEXTYPE"] = "conference presentation";
+        } else if (directive == "@CONFERENCEABS") {
+            this.entries[this.currentEntry]["BIBTEXTYPE"] = "conference abstract";
         }
         this.entries[this.currentEntry]["BIBTEXTYPEKEY"] = directive.substr(1);
         this.match(",");
@@ -507,7 +509,7 @@ function BibtexDisplay() {
             newString += " et al.";
         }
         return newString;
-    }
+    };
 
     this.createTemplate = function(entry, output) {
         // Check if bibtex keys are limiting output (bibtexkeys="key1|key2|...|keyN")
@@ -754,13 +756,11 @@ function BibtexDisplay() {
         var entriesArray = [];
         for (var entryKey in entries) {
             switch (entries[entryKey].BIBTEXTYPEKEY) {
-                case 'PATENT':
-                case 'AWARD':
-                case 'CONFERENCEPRE':
-                    // skip non-paper items
-                    break;
-
-                default:
+                case 'ARTICLE':
+                case 'INPROCEEDINGS':
+                case 'INCOLLECTION':
+                case 'BOOK':
+                case 'INBOOK':
                     entriesArray.push(entries[entryKey]);
                     break;
             }
