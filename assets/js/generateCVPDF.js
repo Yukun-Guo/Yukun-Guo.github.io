@@ -16,6 +16,7 @@ function generateCV(personName) {
   var entriesArrayPatent = [];
   var entriesArrayAward = [];
   var entriesArrayConferencePresentation = [];
+  var entriesArrayConferenceAbstract = [];
   for (var entryKey in entries) {
     switch (entries[entryKey].BIBTEXTYPEKEY) {
       case "PATENT":
@@ -26,6 +27,9 @@ function generateCV(personName) {
         break;
       case "CONFERENCEPRE":
         entriesArrayConferencePresentation.push(entries[entryKey]);
+        break;
+      case "CONFERENCEABS":
+        entriesArrayConferenceAbstract.push(entries[entryKey]);
         break;
       default:
         entriesArrayPaper.push(entries[entryKey]);
@@ -52,6 +56,12 @@ function generateCV(personName) {
   );
   entriesArrayConferencePresentation = bibdisp.sortArray(
     entriesArrayConferencePresentation,
+    "DATE",
+    "DESC",
+    "date"
+  );
+  entriesArrayConferenceAbstract = bibdisp.sortArray(
+    entriesArrayConferenceAbstract,
     "DATE",
     "DESC",
     "date"
@@ -333,6 +343,107 @@ function generateCV(personName) {
     mrgtop = mrgtop + 1.2 * journalstr.length + 0.5;
   }
 
+
+  // add abstracts
+  mrgtop = mrgtop + 1;
+  doc.setTextColor(0, 0, 0);
+  doc.setFont("times", "bold");
+  doc.text(4, mrgtop, "CONFERENCE ABSTRACTS");
+  doc.line(4, mrgtop + 0.5, 46, mrgtop + 0.5);
+
+  mrgtop = mrgtop + 2;
+  doc.setFont("times", "normal");
+  doc.setFontSize(11);
+  for (let i = 0; i < entriesArrayConferenceAbstract.length; i++) {
+    var entry = entriesArrayConferenceAbstract[i];
+    if (mrgtop > 60) {
+      doc.addPage("A4");
+      mrgtop = 6;
+    }
+    doc.setFont("times", "bold");
+    doc.setTextColor(50, 150, 250);
+    var titlestr = doc.splitTextToSize(
+      (i + 1).toString() + ". " + entry.TITLE.replace("{", "").replace("}", ""),
+      42
+    );
+    for (var tstr in titlestr) {
+      if (entry.URL) {
+        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
+          url: entry.URL,
+        });
+      } else if (entry.DOI) {
+        doc.textWithLink(titlestr[tstr], 4, mrgtop, {
+          url: "http: //dx.doi.org/" + entry.DOI,
+        });
+      } else {
+        doc.text(titlestr[tstr], 4, mrgtop);
+      }
+      mrgtop = mrgtop + 1.2;
+    }
+
+    doc.setFont("times", "normal");
+    doc.setTextColor(0);
+    var authstr = doc.splitTextToSize(spraseAuthor(entry.AUTHOR).trim(), 42);
+
+    // doc.text(authstr, 4, mrgtop);
+    // mrgtop = mrgtop + 1.2 * authstr.length;
+
+    for (var tstr in authstr) {
+      a = authstr[tstr].indexOf(personName);
+      if (a > -1) {
+        var p_auth = authstr[tstr].substring(0, a);
+        doc.text(p_auth, 4, mrgtop);
+        var rt = 1 - (p_auth.match(/,/g) || []).length * 0.01;
+
+        doc.setFont("times", "bold");
+        var l1 = 4 + doc.getTextWidth(p_auth.trim()) * rt;
+        doc.text(personName, l1, mrgtop);
+        doc.setFont("times", "normal");
+        var l2 = l1 + doc.getTextWidth(personName) + 0.45;
+        doc.text(
+          authstr[tstr].substring(a + personName.length, authstr[tstr].length),
+          l2,
+          mrgtop
+        );
+      } else {
+        doc.text(authstr[tstr], 4, mrgtop);
+      }
+
+      mrgtop = mrgtop + 1.2;
+    }
+
+    doc.setTextColor(0);
+    doc.setFont("times", "italic");
+    if (entry.JOURNAL) {
+      var pubJ = entry.JOURNAL;
+    } else if (entry.BOOKTITLE) {
+      var pubJ = "In " + entry.BOOKTITLE;
+    }
+
+    var jornalinfo = pubJ;
+    if (typeof entry.MONTH !== "undefined") {
+      jornalinfo = jornalinfo + ", " + entry.MONTH;
+    }
+    if (typeof entry.YEAR !== "undefined") {
+      jornalinfo = jornalinfo + ", " + entry.YEAR + ". ";
+    }
+    if (typeof entry.VOLUME !== "undefined") {
+      jornalinfo = jornalinfo + entry.VOLUME;
+    }
+    if (typeof entry.NUMBER !== "undefined") {
+      jornalinfo = jornalinfo + "(" + entry.NUMBER + ")";
+    }
+    if (typeof entry.PAGES !== "undefined") {
+      jornalinfo = jornalinfo + ": " + entry.PAGES + ". ";
+    }
+    if (typeof entry.PMID !== "undefined") {
+      jornalinfo = jornalinfo + "PMID: " + entry.PMID;
+    }
+    var journalstr = doc.splitTextToSize(jornalinfo, 42);
+    doc.text(journalstr, 4, mrgtop);
+    mrgtop = mrgtop + 1.2 * journalstr.length + 0.5;
+  }
+  
   // add conference presentations
 
   mrgtop = mrgtop + 1;
