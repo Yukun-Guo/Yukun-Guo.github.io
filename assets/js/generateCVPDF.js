@@ -347,7 +347,10 @@ function formatList(elementArray, sectionTitle, doc, mrgtop, personName){
       var pubJ = entry.JOURNAL;
     } else if (entry.BOOKTITLE) {
       var pubJ = "In " + entry.BOOKTITLE;
+    } else if (entry.ORGANIZATION) {
+      var pubJ = entry.ORGANIZATION;
     }
+
 
     var jornalinfo = pubJ;
     if (typeof entry.MONTH !== "undefined") {
