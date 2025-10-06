@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>404 — Not Found</title>
+    <style>
+      body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;padding:2rem;background:#f8fafc;color:#0f172a }
+      .card { max-width:720px;background:white;padding:2rem;border-radius:8px;box-shadow:0 6px 24px rgba(2,6,23,0.08);text-align:center }
+      a.btn { display:inline-block;margin-top:1rem;padding:.6rem 1rem;border-radius:6px;background:#0ea5e9;color:white;text-decoration:none }
+    </style>
+  </head>
+  <body>
+    <div class="card" id="message">
+      <h1 id="title">404 — Page not found</h1>
+      <p id="desc">The requested resource was not found on this server.</p>
+      <p><a class="btn" href="/">Go to homepage</a></p>
+    </div>
+
+    <script>
+      (function(){
+        // When GitHub Pages serves this 404.html for missing files it preserves
+        // the original URL in location.pathname. We can detect requests for
+        // /ImageLabeler.zip and redirect the browser to the actual file inside
+        // the repository so the browser will download it.
+
+        const pathname = decodeURIComponent(location.pathname || '/');
+        // Normalize trailing slash
+        const path = pathname.replace(/\/+$/, '');
+
+        if (path.toLowerCase() === '/imagelabeler.zip') {
+          // The real zip file lives at /data/ImageLabeler.zip in the repo.
+          const fileUrl = '/data/ImageLabeler.zip';
+
+          // Try to programmatically trigger a download by creating an anchor
+          // with the download attribute. Some browsers/security policies ignore
+          // the attribute for cross-origin requests, so also navigate to the
+          // file as a fallback which causes the browser to download it.
+          function triggerDownload(url) {
+            try {
+              const a = document.createElement('a');
+              a.href = url;
+              a.setAttribute('download', 'ImageLabeler.zip');
+              a.style.display = 'none';
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+            } catch (e) {
+              // ignore and fallback to navigation
+            }
+            // Fallback: navigate to the file URL (this usually triggers the
+            // browser to download the file if it's a binary resource).
+            setTimeout(function(){ location.href = fileUrl; }, 300);
+          }
+
+          // Update UI to indicate automatic download
+          var title = document.getElementById('title');
+          var desc = document.getElementById('desc');
+          if (title) title.textContent = 'Preparing download...';
+          if (desc) desc.textContent = 'If the download does not start automatically, click the button below.';
+
+          var btn = document.createElement('a');
+          btn.className = 'btn';
+          btn.href = fileUrl;
+          btn.textContent = 'Download ImageLabeler.zip';
+          document.getElementById('message').appendChild(btn);
+
+          // Start the download
+          triggerDownload(fileUrl);
+
+        }
+      })();
+    </script>
+  </body>
+</html>
