@@ -77,10 +77,16 @@ function devhelp
 end
 alias help="devhelp"
 
-# fzf completion
-if type -q fzf
-    source (brew --prefix)/opt/fzf/shell/completion.fish
-    source (brew --prefix)/opt/fzf/shell/key-bindings.fish
+# fzf completion (only source Homebrew-installed fzf files when brew is available)
+# If fzf was installed via apt / system package, those completions may be elsewhere.
+if type -q brew
+    set -l BREW_PREFIX (brew --prefix)
+    if test -f "$BREW_PREFIX/opt/fzf/shell/completion.fish"
+        source "$BREW_PREFIX/opt/fzf/shell/completion.fish"
+    end
+    if test -f "$BREW_PREFIX/opt/fzf/shell/key-bindings.fish"
+        source "$BREW_PREFIX/opt/fzf/shell/key-bindings.fish"
+    end
 end
 EOF
 
