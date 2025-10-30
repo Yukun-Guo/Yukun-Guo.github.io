@@ -1,6 +1,6 @@
 # 🐍 Ultimate Python Dev Shell Environment
 
-一个跨平台（**Ubuntu / macOS / Windows PowerShell 7**）的高效开发环境配置脚本，专为 Python 开发者设计。  
+一个跨平台（**Ubuntu / macOS）的高效开发环境配置脚本，专为 Python 开发者设计。  
 包含常用工具、命令别名、语法高亮、智能补全、fzf 搜索、starship 美化等。  
 
 ---
@@ -52,7 +52,7 @@ fhist, help
 ### 🐧 Ubuntu / Debian
 
 ```bash
-curl -fsSL https://yukun-guo.github.io/install_dev_shell.sh | bash
+curl -fsSL https://yukun-guo.github.io/data/tools/install_dev_shell.sh | bash
 ```
 
 或手动执行脚本：
@@ -75,7 +75,7 @@ fish
 ### 🍎 macOS
 
 ```bash
-curl -fsSL https://yukun-guo.github.io/install_dev_shell.sh | bash
+curl -fsSL https://yukun-guo.github.io/data/tools/install_dev_shell.sh | bash
 ```
 
 系统会自动安装：
@@ -90,25 +90,6 @@ fish
 
 ---
 
-### 🪟 Windows 10/11 (PowerShell 7)
-
-打开 PowerShell 7（或 Windows Terminal 的 PowerShell 7 配置文件）：
-
-```powershell
-iwr -useb https://yukun-guo.github.io/install_dev_shell.ps1 | iex
-```
-
-系统会自动：
-- 安装 Scoop（如果未安装）
-- 通过 Scoop 安装 git、python、fzf、bat、eza、starship、uv
-- 配置 PowerShell profile
-
-安装完成后重启 PowerShell：
-```powershell
-Restart-Computer  # 或手动关闭重开终端
-```
-
----
 
 ## 🧠 常用命令说明
 
