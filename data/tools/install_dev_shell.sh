@@ -15,7 +15,7 @@ if [[ "$OS_TYPE" == "Linux" || "$OS_TYPE" == "Darwin" ]]; then
 
     if [[ "$PLATFORM" == "ubuntu" ]]; then
         sudo apt update -y
-        sudo apt install -y fish git fzf bat eza ripgrep unzip python3 python3-pip curl
+        sudo apt install -y fish git fzf bat exa ripgrep unzip python3 python3-pip curl
     else
         # macOS
         if ! command -v brew >/dev/null 2>&1; then
@@ -23,7 +23,7 @@ if [[ "$OS_TYPE" == "Linux" || "$OS_TYPE" == "Darwin" ]]; then
             /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         fi
         brew tap homebrew/core
-        brew install fish git fzf bat eza ripgrep unzip python starship
+        brew install fish git fzf bat exa ripgrep unzip python starship
     fi
 
     # Install Python packages
@@ -35,8 +35,8 @@ if [[ "$OS_TYPE" == "Linux" || "$OS_TYPE" == "Darwin" ]]; then
     cat > ~/.config/fish/config.fish <<'EOF'
 starship init fish | source
 
-alias ll="eza -alh --icons"
-alias la="eza -a --icons"
+alias ll="exa -alh --icons"
+alias la="exa -a --icons"
 alias cat="bat"
 alias py="uv run python"
 alias act="source .venv/bin/activate"
@@ -100,7 +100,7 @@ if [[ "$OS_TYPE" == MINGW* || "$OS_TYPE" == MSYS* || "$OS_TYPE" == CYGWIN* ]]; t
             Invoke-Expression (New-Object System.Net.WebClient).DownloadString('https://get.scoop.sh')
         }
 
-        scoop install pwsh git python fzf bat eza unzip starship
+        scoop install pwsh git python fzf bat exa unzip starship
 
         python -m pip install --upgrade pip
         pip install uv ipython ruff
@@ -112,8 +112,8 @@ Import-Module PSReadLine
 Set-PSReadLineOption -EditMode Windows
 Invoke-Expression (&starship init powershell)
 
-Set-Alias ll eza
-Set-Alias la "eza -a"
+Set-Alias ll exa
+Set-Alias la "exa -a"
 Set-Alias cat bat
 Set-Alias py "uv run python"
 Set-Alias act "uv activate"
