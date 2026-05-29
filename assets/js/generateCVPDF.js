@@ -891,36 +891,72 @@ function _sortedEntries(entries) {
 }
 
 /**
+ * Return entries grouped by publication type in canonical order,
+ * each group already sorted by date DESC.
+ * Returns an array of { title: string, entries: array } objects.
+ */
+function _groupedEntries(entries) {
+  var order = [
+    { key: "ARTICLE",       title: "Journal Articles"        },
+    { key: "PREPRINT",      title: "Preprints"               },
+    { key: "INPROCEEDINGS", title: "Conference Papers"        },
+    { key: "CONFERENCEPRE", title: "Conference Presentations" },
+    { key: "CONFERENCEABS", title: "Conference Abstracts"     },
+    { key: "INBOOK",        title: "Book Chapters"            },
+    { key: "TECHREPORT",    title: "Technical Reports"        },
+    { key: "PATENT",        title: "Patents"                  },
+    { key: "AWARD",         title: "Awards"                   }
+  ];
+  var buckets = {};
+  order.forEach(function (g) { buckets[g.key] = []; });
+  buckets["OTHER"] = [];
+  _sortedEntries(entries).forEach(function (e) {
+    var t = (e.BIBTEXTYPEKEY || "").toUpperCase();
+    (Object.prototype.hasOwnProperty.call(buckets, t) ? buckets[t] : buckets["OTHER"]).push(e);
+  });
+  var result = [];
+  order.forEach(function (g) {
+    if (buckets[g.key].length) result.push({ title: g.title, entries: buckets[g.key] });
+  });
+  if (buckets["OTHER"].length) result.push({ title: "Other", entries: buckets["OTHER"] });
+  return result;
+}
+
+/**
  * NLM numbered bibliography (Vancouver style).
  * e.g.  1. Guo Y, Smith J. Title. J Name. 2023;10(2):15-22. doi:10.1000/xyz.
  */
 function _fmtNLM(entries) {
-  var lines  = [];
-  var sorted = _sortedEntries(entries);
-  for (var i = 0; i < sorted.length; i++) {
-    var e   = sorted[i];
-    var au  = spraseAuthorNLM(e.AUTHOR || "");
-    var ti  = (e.TITLE || "").replace(/\{/g, "").replace(/\}/g, "");
-    var doi = cleanDOI(e.DOI);
-
-    var venue = "";
-    if (e.JOURNAL)           venue = e.JOURNAL;
-    else if (e.BOOKTITLE)    venue = "In " + e.BOOKTITLE.replace(/\{/g, "").replace(/\}/g, "");
-    else if (e.ORGANIZATION) venue = e.ORGANIZATION;
-
-    var jInfo = venue;
-    if (e.YEAR)   jInfo += ". " + e.YEAR;
-    if (e.MONTH)  jInfo += " " + e.MONTH;
-    if (e.VOLUME) jInfo += ";" + e.VOLUME;
-    if (e.NUMBER) jInfo += "(" + e.NUMBER + ")";
-    if (e.PAGES)  jInfo += ":" + e.PAGES.replace(/--/g, "-");
-    jInfo += ".";
-    if (doi)    jInfo += " doi: " + doi + ".";
-    if (e.PMID) jInfo += " PMID: " + e.PMID + ".";
-
-    lines.push((i + 1) + ". " + au + ". " + ti + ". " + jInfo);
-  }
-  return lines.join("\n\n");
+  var groups = _groupedEntries(entries);
+  var output = [];
+  var n      = 0;
+  groups.forEach(function (group) {
+    var heading = group.title.toUpperCase() + "\n" +
+                  new Array(group.title.length + 1).join("=");
+    var block = [heading];
+    group.entries.forEach(function (e) {
+      n++;
+      var au  = spraseAuthorNLM(e.AUTHOR || "");
+      var ti  = (e.TITLE || "").replace(/\{/g, "").replace(/\}/g, "");
+      var doi = cleanDOI(e.DOI);
+      var venue = "";
+      if (e.JOURNAL)           venue = e.JOURNAL;
+      else if (e.BOOKTITLE)    venue = "In " + e.BOOKTITLE.replace(/\{/g, "").replace(/\}/g, "");
+      else if (e.ORGANIZATION) venue = e.ORGANIZATION;
+      var jInfo = venue;
+      if (e.YEAR)   jInfo += ". " + e.YEAR;
+      if (e.MONTH)  jInfo += " " + e.MONTH;
+      if (e.VOLUME) jInfo += ";" + e.VOLUME;
+      if (e.NUMBER) jInfo += "(" + e.NUMBER + ")";
+      if (e.PAGES)  jInfo += ":" + e.PAGES.replace(/--/g, "-");
+      jInfo += ".";
+      if (doi)    jInfo += " doi: " + doi + ".";
+      if (e.PMID) jInfo += " PMID: " + e.PMID + ".";
+      block.push(n + ". " + au + ". " + ti + ". " + jInfo);
+    });
+    output.push(block.join("\n\n"));
+  });
+  return output.join("\n\n\n");
 }
 
 /**
@@ -937,41 +973,41 @@ function _fmtRIS(entries) {
     "TECHREPORT":    "RPRT",
     "PATENT":        "PAT"
   };
-
   var lines  = [];
-  var sorted = _sortedEntries(entries);
-  for (var ri = 0; ri < sorted.length; ri++) {
-    var e       = sorted[ri];
-    var risType = risTypeMap[(e.BIBTEXTYPEKEY || "").toUpperCase()] || "GEN";
-
-    lines.push("TY  - " + risType);
-
-    // Authors: split on " and " and keep raw BibTeX name for Endnote
-    var auStr = (e.AUTHOR || "").replace(/\{/g, "").replace(/\}/g, "");
-    auStr.split(/\s+and\s+/i).forEach(function (au) {
-      au = au.trim();
-      if (au) lines.push("AU  - " + au);
-    });
-
-    if (e.TITLE)      lines.push("TI  - " + e.TITLE.replace(/\{/g, "").replace(/\}/g, ""));
-    if (e.JOURNAL)    lines.push("JO  - " + e.JOURNAL);
-    if (e.BOOKTITLE)  lines.push("BT  - " + e.BOOKTITLE.replace(/\{/g, "").replace(/\}/g, ""));
-    if (e.YEAR)       lines.push("PY  - " + e.YEAR);
-    if (e.VOLUME)     lines.push("VL  - " + e.VOLUME);
-    if (e.NUMBER)     lines.push("IS  - " + e.NUMBER);
-    if (e.PAGES) {
-      var pp = e.PAGES.replace(/\{/g, "").replace(/\}/g, "").split(/--|-/);
-      lines.push("SP  - " + pp[0].trim());
-      if (pp[1]) lines.push("EP  - " + pp[1].trim());
-    }
-    if (e.ABSTRACT)  lines.push("AB  - " + e.ABSTRACT.replace(/\{/g, "").replace(/\}/g, ""));
-    if (e.KEYWORDS)  lines.push("KW  - " + e.KEYWORDS.replace(/\{/g, "").replace(/\}/g, ""));
-    if (e.DOI)       lines.push("DO  - " + cleanDOI(e.DOI));
-    if (e.PMID)      lines.push("AN  - " + e.PMID);
-    if (e.URL)       lines.push("UR  - " + e.URL);
-    lines.push("ER  - ");
+  var groups = _groupedEntries(entries);
+  groups.forEach(function (group) {
+    var sep = "; \u2500\u2500 " + group.title + " ";
+    sep += new Array(Math.max(1, 62 - sep.length)).join("\u2500");
+    lines.push(sep);
     lines.push("");
-  }
+    group.entries.forEach(function (e) {
+      var risType = risTypeMap[(e.BIBTEXTYPEKEY || "").toUpperCase()] || "GEN";
+      lines.push("TY  - " + risType);
+      var auStr = (e.AUTHOR || "").replace(/\{/g, "").replace(/\}/g, "");
+      auStr.split(/\s+and\s+/i).forEach(function (au) {
+        au = au.trim();
+        if (au) lines.push("AU  - " + au);
+      });
+      if (e.TITLE)     lines.push("TI  - " + e.TITLE.replace(/\{/g, "").replace(/\}/g, ""));
+      if (e.JOURNAL)   lines.push("JO  - " + e.JOURNAL);
+      if (e.BOOKTITLE) lines.push("BT  - " + e.BOOKTITLE.replace(/\{/g, "").replace(/\}/g, ""));
+      if (e.YEAR)      lines.push("PY  - " + e.YEAR);
+      if (e.VOLUME)    lines.push("VL  - " + e.VOLUME);
+      if (e.NUMBER)    lines.push("IS  - " + e.NUMBER);
+      if (e.PAGES) {
+        var pp = e.PAGES.replace(/\{/g, "").replace(/\}/g, "").split(/--|-/);
+        lines.push("SP  - " + pp[0].trim());
+        if (pp[1]) lines.push("EP  - " + pp[1].trim());
+      }
+      if (e.ABSTRACT) lines.push("AB  - " + e.ABSTRACT.replace(/\{/g, "").replace(/\}/g, ""));
+      if (e.KEYWORDS) lines.push("KW  - " + e.KEYWORDS.replace(/\{/g, "").replace(/\}/g, ""));
+      if (e.DOI)      lines.push("DO  - " + cleanDOI(e.DOI));
+      if (e.PMID)     lines.push("AN  - " + e.PMID);
+      if (e.URL)      lines.push("UR  - " + e.URL);
+      lines.push("ER  - ");
+      lines.push("");
+    });
+  });
   return lines.join("\r\n");
 }
 
@@ -979,36 +1015,36 @@ function _fmtRIS(entries) {
  * Self-contained HTML file with a styled numbered publication list.
  */
 function _fmtHTMLCitations(entries) {
-  var items  = [];
-  var sorted = _sortedEntries(entries);
-  for (var hi = 0; hi < sorted.length; hi++) {
-    var e   = sorted[hi];
-    var au  = spraseAuthorNLM(e.AUTHOR || "");
-    var ti  = (e.TITLE || "").replace(/\{/g, "").replace(/\}/g, "");
-    var doi = cleanDOI(e.DOI);
-
-    var venue = "";
-    if (e.JOURNAL)           venue = "<em>" + e.JOURNAL + "</em>";
-    else if (e.BOOKTITLE)    venue = "In <em>" + e.BOOKTITLE.replace(/\{/g, "").replace(/\}/g, "") + "</em>";
-    else if (e.ORGANIZATION) venue = e.ORGANIZATION;
-
-    var line = "<span class=\"authors\">" + au + ".</span> ";
-    line    += "<span class=\"title\">" + ti + ".</span> ";
-    if (venue) line += venue + ". ";
-    if (e.YEAR)   line += e.YEAR;
-    if (e.MONTH)  line += " " + e.MONTH;
-    if (e.VOLUME) line += ";" + e.VOLUME;
-    if (e.NUMBER) line += "(" + e.NUMBER + ")";
-    if (e.PAGES)  line += ":" + e.PAGES.replace(/--/g, "-");
-    line += ".";
-    if (doi) {
-      line += " doi: <a href=\"https://doi.org/" + doi + "\">" + doi + "</a>.";
-    }
-    if (e.PMID) line += " PMID: " + e.PMID + ".";
-
-    items.push("    <li>" + line + "</li>");
-  }
-
+  var groups    = _groupedEntries(entries);
+  var bodyParts = [];
+  var n         = 0;
+  groups.forEach(function (group) {
+    bodyParts.push("  <h3>" + group.title + "</h3>");
+    bodyParts.push("  <ol start=\"" + (n + 1) + "\">");
+    group.entries.forEach(function (e) {
+      n++;
+      var au  = spraseAuthorNLM(e.AUTHOR || "");
+      var ti  = (e.TITLE || "").replace(/\{/g, "").replace(/\}/g, "");
+      var doi = cleanDOI(e.DOI);
+      var venue = "";
+      if (e.JOURNAL)           venue = "<em>" + e.JOURNAL + "</em>";
+      else if (e.BOOKTITLE)    venue = "In <em>" + e.BOOKTITLE.replace(/\{/g, "").replace(/\}/g, "") + "</em>";
+      else if (e.ORGANIZATION) venue = e.ORGANIZATION;
+      var line = "<span class=\"authors\">" + au + ".</span> ";
+      line    += "<span class=\"title\">" + ti + ".</span> ";
+      if (venue) line += venue + ". ";
+      if (e.YEAR)   line += e.YEAR;
+      if (e.MONTH)  line += " " + e.MONTH;
+      if (e.VOLUME) line += ";" + e.VOLUME;
+      if (e.NUMBER) line += "(" + e.NUMBER + ")";
+      if (e.PAGES)  line += ":" + e.PAGES.replace(/--/g, "-");
+      line += ".";
+      if (doi) line += " doi: <a href=\"https://doi.org/" + doi + "\">" + doi + "</a>.";
+      if (e.PMID) line += " PMID: " + e.PMID + ".";
+      bodyParts.push("    <li>" + line + "</li>");
+    });
+    bodyParts.push("  </ol>");
+  });
   return [
     "<!DOCTYPE html>",
     "<html lang=\"en\">",
@@ -1018,17 +1054,16 @@ function _fmtHTMLCitations(entries) {
     "  <style>",
     "    body { font-family: Arial, sans-serif; max-width: 860px; margin: 40px auto; font-size: 14px; line-height: 1.7; color: #333; }",
     "    h2   { border-bottom: 2px solid #0075bd; padding-bottom: 6px; }",
+    "    h3   { color: #0075bd; margin-top: 28px; margin-bottom: 4px; font-size: 1em; text-transform: uppercase; letter-spacing: .05em; }",
     "    ol   { padding-left: 22px; }",
     "    li   { margin-bottom: 10px; }",
-    "    .title   { font-weight: bold; }",
+    "    .title { font-weight: bold; }",
     "    a    { color: #0075bd; }",
     "  </style>",
     "</head>",
     "<body>",
     "<h2>Publications</h2>",
-    "<ol>",
-    items.join("\n"),
-    "</ol>",
+    bodyParts.join("\n"),
     "</body>",
     "</html>"
   ].join("\n");
@@ -1040,33 +1075,35 @@ function _fmtHTMLCitations(entries) {
  * Format:  Author List (Year). Title. Venue. Pages. DOI.
  */
 function _fmtPlainText(entries) {
-  var lines  = [];
-  var sorted = _sortedEntries(entries);
-  for (var pi = 0; pi < sorted.length; pi++) {
-    var e   = sorted[pi];
-    var au  = spraseAuthorNLM(e.AUTHOR || "");
-    var ti  = (e.TITLE || "").replace(/\{/g, "").replace(/\}/g, "");
-    var doi = cleanDOI(e.DOI);
-
-    var venue = "";
-    if (e.JOURNAL)           venue = e.JOURNAL;
-    else if (e.BOOKTITLE)    venue = e.BOOKTITLE.replace(/\{/g, "").replace(/\}/g, "");
-    else if (e.ORGANIZATION) venue = e.ORGANIZATION;
-
-    var parts = [];
-    if (au) parts.push(au + (e.YEAR ? " (" + e.YEAR + ")" : ""));
-    if (ti) parts.push(ti);
-    var venueDetail = venue;
-    if (e.VOLUME) venueDetail += " " + e.VOLUME;
-    if (e.NUMBER) venueDetail += "(" + e.NUMBER + ")";
-    if (e.PAGES)  venueDetail += ":" + e.PAGES.replace(/--/g, "-");
-    if (venueDetail.trim()) parts.push(venueDetail.trim());
-    if (doi)    parts.push("doi:" + doi);
-    if (e.PMID) parts.push("PMID:" + e.PMID);
-
-    lines.push(parts.join(". ") + ".");
-  }
-  return lines.join("\n\n");
+  var groups = _groupedEntries(entries);
+  var output = [];
+  groups.forEach(function (group) {
+    var heading = group.title.toUpperCase() + "\n" +
+                  new Array(group.title.length + 1).join("-");
+    var block = [heading];
+    group.entries.forEach(function (e) {
+      var au  = spraseAuthorNLM(e.AUTHOR || "");
+      var ti  = (e.TITLE || "").replace(/\{/g, "").replace(/\}/g, "");
+      var doi = cleanDOI(e.DOI);
+      var venue = "";
+      if (e.JOURNAL)           venue = e.JOURNAL;
+      else if (e.BOOKTITLE)    venue = e.BOOKTITLE.replace(/\{/g, "").replace(/\}/g, "");
+      else if (e.ORGANIZATION) venue = e.ORGANIZATION;
+      var parts = [];
+      if (au) parts.push(au + (e.YEAR ? " (" + e.YEAR + ")" : ""));
+      if (ti) parts.push(ti);
+      var venueDetail = venue;
+      if (e.VOLUME) venueDetail += " " + e.VOLUME;
+      if (e.NUMBER) venueDetail += "(" + e.NUMBER + ")";
+      if (e.PAGES)  venueDetail += ":" + e.PAGES.replace(/--/g, "-");
+      if (venueDetail.trim()) parts.push(venueDetail.trim());
+      if (doi)    parts.push("doi:" + doi);
+      if (e.PMID) parts.push("PMID:" + e.PMID);
+      block.push(parts.join(". ") + ".");
+    });
+    output.push(block.join("\n\n"));
+  });
+  return output.join("\n\n\n");
 }
 
 /**
