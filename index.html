@@ -67,6 +67,65 @@
         .dispicon {
             display: contents;
         }
+
+        /* ── CV dropdown menu ─────────────────────────────── */
+        /* Use high-specificity selector (2 IDs) to beat
+           #header .profile .social-links a  (specificity 0,1,2,1)
+           which would otherwise set width:36px, border-radius:50%, etc. */
+        #cv-dropdown-container {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        #header .profile #cv-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 8px);
+            background: #fff;
+            border-radius: 8px;
+            min-width: 175px;
+            z-index: 99999;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.22);
+            padding: 5px 0;
+            font-family: 'Poppins', 'Raleway', sans-serif;
+            font-size: 13.5px;
+            color: #444;
+            animation: cvMenuIn 0.14s ease;
+        }
+        @keyframes cvMenuIn {
+            from { opacity: 0; transform: translateY(-6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        /* 0,2,2,1 beats 0,1,2,1 from .social-links a */
+        #header .profile #cv-menu a.cv-item {
+            display: flex !important;
+            align-items: center;
+            gap: 8px;
+            width: auto !important;
+            height: auto !important;
+            padding: 9px 16px !important;
+            margin: 2px 5px;
+            color: #333 !important;
+            background: transparent !important;
+            border-radius: 4px !important;
+            text-align: left !important;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 13.5px !important;
+            line-height: 1.5 !important;
+            white-space: nowrap;
+            transition: background 0.13s, color 0.13s;
+        }
+        #header .profile #cv-menu a.cv-item:hover {
+            background: #eef2ff !important;
+            color: #1a5ce8 !important;
+        }
+        #cv-menu .cv-divider {
+            height: 1px;
+            background: #eee;
+            margin: 4px 10px;
+        }
     </style>
 </head>
 </head>
@@ -86,7 +145,18 @@
                     <a href="https://www.researchgate.net/profile/Yukun-Guo-4" target="_blank" title="ResearchGate" class="researchgate"><i class="ai ai-researchgate big-icon"></i></a>
                     <a href="https://orcid.org/0000-0002-6784-2355" target="_blank" title="ORCID" class="orcid"><i class="ai ai-orcid big-icon"></i></a>
                     <a href="https://github.com/Yukun-Guo" target="_blank" title="Github" class="github"><i class="fa-brands fa-github"></i></a>
-                    <a id='cvlink' onclick="generateCV('Yukun Guo')" href="javascript:void(0);" class="cv" title="Curriculum Vitae"><i class="ai ai-cv big-icon"></i></a>
+                    <div id="cv-dropdown-container">
+                        <a href="#" class="cv" title="Curriculum Vitae" onclick="toggleCVMenu(event)"><i class="ai ai-cv big-icon"></i></a>
+                        <div id="cv-menu">
+                            <a class="cv-item" onclick="generateCV('Yukun Guo'); closeCVMenu();">
+                                <i class="bi bi-file-earmark-person"></i> Full CV
+                            </a>
+                            <div class="cv-divider"></div>
+                            <a class="cv-item" onclick="generatePapersOnlyCV('Yukun Guo'); closeCVMenu();">
+                                <i class="bi bi-file-earmark-text"></i> Papers
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <nav id="navbar" class="nav-menu navbar">
@@ -304,6 +374,16 @@
                     <div class="row">
                         <div class="container-fluid" style="margin-bottom: 20px;">
                             <div class="searchbar">
+                                <div class="mycustom-control" style="position:relative;">
+                                    <button type="button" id="downloadCitationBtn" class="btn btn-outline-success dropdown-toggle" style="text-transform:none; height:40px; margin:5px; white-space:nowrap;" onclick="toggleCitationMenu(event)">Download Citation</button>
+                                    <div id="citation-menu" class="dropdown-menu" style="display:none; min-width:170px;">
+                                        <a class="dropdown-item" href="javascript:void(0)" onclick="downloadAllCitations('nlm')">Citation Text</a>
+                                        <a class="dropdown-item" href="javascript:void(0)" onclick="downloadAllCitations('bibtex')">BibTeX</a>
+                                        <a class="dropdown-item" href="javascript:void(0)" onclick="downloadAllCitations('ris')">Endnote (RIS)</a>
+                                        <a class="dropdown-item" href="javascript:void(0)" onclick="downloadAllCitations('html')">HTML</a>
+                                        <a class="dropdown-item" href="javascript:void(0)" onclick="downloadAllCitations('text')">Plain Text</a>
+                                    </div>
+                                </div>
                                 <div class="mycustom-control">
                                     <button type="button" class="btn btn-outline-primary" style="text-transform: none; width:70px; height: 40px; margin: 5px;" onclick="reset()">Reset</button>
                                 </div>
@@ -316,6 +396,7 @@
                                     <input type="text" class="bibtex_search form-control control-search" id="searchbar" placeholder="Search publications">
                                 </div>
                             </div>
+                            <div id="refresh-status" style="display:none; margin-top:6px; font-size:13px; padding:4px 8px;"></div>
                         </div>
                         <div class="bibtex_structure">
                             <div class="group year" extra="DESC number">
@@ -376,6 +457,7 @@
                                             <span class="if pmid">PMID: <span class="pmid"></span>.</span>
                                             <a class="bibtexVar publication-buttons" role="button" data-toggle="collapse" href="#bib+BIBTEXKEY+" aria-expanded="false" aria-controls="bib+BIBTEXKEY+" extra="BIBTEXKEY" bibtexjs-css-escape> &nbsp;&nbsp;&nbsp;[BibTex]&nbsp; </a>
                                             <span class=' if file'><a class="bibtexVar publication-buttons" href="+FILE+" target="_blank" aria-expanded="false" extra="file"> [PDF]&nbsp; </a></span>
+                                            <a class="publication-buttons" href="javascript:void(0)" onclick="copyCiteNLM(this)" title="Copy NLM citation to clipboard">[Cite]&nbsp;</a>
                                             <span class=' if code'><a class="bibtexVar publication-buttons" role="button" href="+CODE+" extra="code" target="_blank">[Code]&nbsp;</a></span>
                                             <span class='if software'><a class="bibtexVar publication-buttons" role="button" href="+SOFTWARE+" extra="software" target="_blank">[Software]&nbsp;</a></span>
                                             <span class='if dataset'><a class="bibtexVar publication-buttons" role="button" href="+DATASET+" extra="dataset" target="_blank">[Dataset]</a></span>
