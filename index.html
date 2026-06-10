@@ -13,7 +13,9 @@
     <link href="assets/img/favicon.png" rel="icon" type="image/x-icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/aos/aos.css" rel="stylesheet">
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -77,6 +79,7 @@
             display: inline-block;
             vertical-align: middle;
         }
+
         #header .profile #cv-menu {
             display: none;
             position: absolute;
@@ -86,17 +89,26 @@
             border-radius: 8px;
             min-width: 175px;
             z-index: 99999;
-            box-shadow: 0 8px 28px rgba(0,0,0,0.22);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
             padding: 5px 0;
             font-family: 'Poppins', 'Raleway', sans-serif;
             font-size: 13.5px;
             color: #444;
             animation: cvMenuIn 0.14s ease;
         }
+
         @keyframes cvMenuIn {
-            from { opacity: 0; transform: translateY(-6px); }
-            to   { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         /* 0,2,2,1 beats 0,1,2,1 from .social-links a */
         #header .profile #cv-menu a.cv-item {
             display: flex !important;
@@ -117,10 +129,12 @@
             white-space: nowrap;
             transition: background 0.13s, color 0.13s;
         }
+
         #header .profile #cv-menu a.cv-item:hover {
             background: #eef2ff !important;
             color: #1a5ce8 !important;
         }
+
         #cv-menu .cv-divider {
             height: 1px;
             background: #eee;
@@ -141,12 +155,18 @@
                 <h1 class="text-light"><a href="index.html">Yukun Guo</a></h1>
                 <div class="social-links mt-3 text-center" style="font-size: xx-large;">
                     <!-- <a href="#" class="email"><i class="fa fa-envelope big-icon"></i></a> -->
-                    <a href="https://scholar.google.com/citations?user=BCrQPWUAAAAJ&hl=en" target="_blank" title="Google Scholar Citations" class="google-scholar"><i class="ai ai-google-scholar big-icon"></i></a>
-                    <a href="https://www.researchgate.net/profile/Yukun-Guo-4" target="_blank" title="ResearchGate" class="researchgate"><i class="ai ai-researchgate big-icon"></i></a>
-                    <a href="https://orcid.org/0000-0002-6784-2355" target="_blank" title="ORCID" class="orcid"><i class="ai ai-orcid big-icon"></i></a>
-                    <a href="https://github.com/Yukun-Guo" target="_blank" title="Github" class="github"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://scholar.google.com/citations?user=BCrQPWUAAAAJ&hl=en" target="_blank"
+                        title="Google Scholar Citations" class="google-scholar"><i
+                            class="ai ai-google-scholar big-icon"></i></a>
+                    <a href="https://www.researchgate.net/profile/Yukun-Guo-4" target="_blank" title="ResearchGate"
+                        class="researchgate"><i class="ai ai-researchgate big-icon"></i></a>
+                    <a href="https://orcid.org/0000-0002-6784-2355" target="_blank" title="ORCID" class="orcid"><i
+                            class="ai ai-orcid big-icon"></i></a>
+                    <a href="https://github.com/Yukun-Guo" target="_blank" title="Github" class="github"><i
+                            class="fa-brands fa-github"></i></a>
                     <div id="cv-dropdown-container">
-                        <a href="#" class="cv" title="Curriculum Vitae" onclick="toggleCVMenu(event)"><i class="ai ai-cv big-icon"></i></a>
+                        <a href="#" class="cv" title="Curriculum Vitae" onclick="toggleCVMenu(event)"><i
+                                class="ai ai-cv big-icon"></i></a>
                         <div id="cv-menu">
                             <a class="cv-item" onclick="generateCV('Yukun Guo'); closeCVMenu();">
                                 <i class="bi bi-file-earmark-person"></i> Full CV
@@ -155,17 +175,26 @@
                             <a class="cv-item" onclick="generatePapersOnlyCV('Yukun Guo'); closeCVMenu();">
                                 <i class="bi bi-file-earmark-text"></i> Papers
                             </a>
+                            <div class="cv-divider"></div>
+                            <a class="cv-item" href="data/CV_YukunGuo.docx" download onclick="closeCVMenu();">
+                                <i class="fa-regular fa-file-word"></i> Two-Page CV
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
             <nav id="navbar" class="nav-menu navbar">
                 <ul>
-                    <li><a href="#hero" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Biography</span></a></li>
-                    <li><a href="#featured-works" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Featured works</span></a></li>
-                    <li><a href="#recent-works" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Recent works</span></a></li>
-                    <li><a href="#publications" class="nav-link scrollto"><i class="bx bx-book"></i><span>Publications</span></a></li>
-                    <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+                    <li><a href="#hero" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Biography</span></a>
+                    </li>
+                    <li><a href="#featured-works" class="nav-link scrollto"><i class="bx bx-book-content"></i>
+                            <span>Featured works</span></a></li>
+                    <li><a href="#recent-works" class="nav-link scrollto"><i class="bx bx-book-content"></i>
+                            <span>Recent works</span></a></li>
+                    <li><a href="#publications" class="nav-link scrollto"><i
+                                class="bx bx-book"></i><span>Publications</span></a></li>
+                    <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i>
+                            <span>Contact</span></a></li>
                 </ul>
             </nav>
             <!-- .nav-menu -->
@@ -178,17 +207,27 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-lg-3" data-aos="fade-right">
-                        <img src="assets/img/profile-img.jpg" style="border-radius: 50%; border-color: aquamarine;" class="img-fluid" alt="">
+                        <img src="assets/img/profile-img.jpg" style="border-radius: 50%; border-color: aquamarine;"
+                            class="img-fluid" alt="">
                         <div class="hero-container" data-aos="fade-in">
                             <h1 style="font-family: ' Poppins', sans-serif;">Yukun Guo</h1>
-                            <h4>BME PhD Candidate</h4>
-                            <h4>Oregon Health &amp; Science University</h4>
+                            <h4>Ph.D. in Biomedical Engineering</h4>
+                            <h4>M.S. in Computer Science</h4>
                         </div>
                     </div>
                     <div class=" col-12 col-lg-9" style="font-size: small;" data-aos="fade-left">
                         <h2>Biography</h2>
-                        <p> I am working at <a href='https://www.ohsu.edu/'>Oregon Health & Science University</a>. My research focuses on the development of optic coherence tomography (OCT) and OCT angiography (OCTA). </p>
-                        <p> As a researcher in <a href='https://www.coollab.net/'>Center for Ophthalmic Optics and Lasers (COOL)</a> at <a href='https://www.ohsu.edu/casey-eye-institute'>Casey Eye Institute</a>, I contribute to plan, design and conduct highly technical and complex research projects in consultation with supervisor/colleagues; contribute to the development of new concepts, techniques and standards; analyze research data and provide interpretation (projects including segmentation, registration and quantification of OCT angiography); contribute to the development of research documentation for publication and prepare technique reports, papers and grant applications. </p>
+                        <p> I am working at <a href='https://www.ohsu.edu/'>Oregon
+                                Health & Science University</a>. My research focuses on the development of optic
+                            coherence tomography (OCT) and OCT angiography (OCTA). </p>
+                        <p> As a researcher in <a href='https://www.coollab.net/'>Center for Ophthalmic Optics
+                                and Lasers (COOL)</a> at <a href='https://www.ohsu.edu/casey-eye-institute'>Casey Eye
+                                Institute</a>, I contribute to plan, design and conduct highly technical and complex
+                            research projects in consultation with supervisor/colleagues; contribute to the development
+                            of new concepts, techniques and standards; analyze research data and provide interpretation
+                            (projects including segmentation, registration and quantification of OCT angiography);
+                            contribute to the development of research documentation for publication and prepare
+                            technique reports, papers and grant applications. </p>
                         <div class="row biography">
                             <div class="col-lg-6">
                                 <h3>Interests</h3>
@@ -201,7 +240,8 @@
                             <div class="col-lg-6">
                                 <h3>Education</h3>
                                 <ul>
-                                    <li><i class="bi"></i> <span>2022-Present, Ph.D Oregon Health & Science University</span></li>
+                                    <li><i class="bi"></i> <span>2022-Present, Ph.D Oregon Health & Science
+                                            University</span></li>
                                     <li><i class="bi"></i> <span>2017, MS University of Jinan</span></li>
                                     <li><i class="bi"></i> <span>2013, BS University of Jinan</span></li>
                                 </ul>
@@ -223,58 +263,68 @@
                         <div class="progress">
                             <span class="skill" style="font-size:medium">Python <i class="val">95%</i></span>
                             <div class="progress-bar-wrap">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0"
+                                    aria-valuemax="100">
                                 </div>
                             </div>
                         </div>
                         <div class="progress">
                             <span class="skill" style="font-size:medium">Matlab <i class="val">95%</i></span>
                             <div class="progress-bar-wrap">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0"
+                                    aria-valuemax="100">
                                 </div>
                             </div>
                         </div>
                         <div class="progress">
                             <span class="skill" style="font-size:medium">C/C++ <i class="val">90%</i></span>
                             <div class="progress-bar-wrap">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0"
+                                    aria-valuemax="100">
                                 </div>
                             </div>
                         </div>
                         <div class="progress">
-                            <span class="skill" style="font-size:medium">HTML/CSS/JavaScript <i class="val">80%</i></span>
+                            <span class="skill" style="font-size:medium">HTML/CSS/JavaScript <i
+                                    class="val">80%</i></span>
                             <div class="progress-bar-wrap">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0"
+                                    aria-valuemax="100">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="progress">
-                            <span class="skill" style="font-size:medium">Tensorflow/Pytorch <i class="val">90%</i></span>
+                            <span class="skill" style="font-size:medium">Tensorflow/Pytorch <i
+                                    class="val">90%</i></span>
                             <div class="progress-bar-wrap">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0"
+                                    aria-valuemax="100">
                                 </div>
                             </div>
                         </div>
                         <div class="progress">
                             <span class="skill" style="font-size:medium">OpenCV <i class="val">90%</i></span>
                             <div class="progress-bar-wrap">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0"
+                                    aria-valuemax="100">
                                 </div>
                             </div>
                         </div>
                         <div class="progress">
                             <span class="skill" style="font-size:medium">MedCalc <i class="val">70%</i></span>
                             <div class="progress-bar-wrap">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
+                                    aria-valuemax="100">
                                 </div>
                             </div>
                         </div>
                         <div class="progress">
                             <span class="skill" style="font-size:medium">Blender <i class="val">25%</i></span>
                             <div class="progress-bar-wrap">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0"
+                                    aria-valuemax="100">
                                 </div>
                             </div>
                         </div>
@@ -291,22 +341,30 @@
                 </div>
                 <!-- <div id="featured-work-items" class="row portfolio-container" data-aos="fade-up" data-aos-delay="100"></div>-->
                 <!-- TODO -->
-                <div id="bibtex_featuredwork" class="row portfolio-container" data-aos="fade-up" data-aos-delay="100" style="position: relative; height: 330px;">
+                <div id="bibtex_featuredwork" class="row portfolio-container" data-aos="fade-up" data-aos-delay="100"
+                    style="position: relative; height: 330px;">
                     <div class="col-lg-4 col-md-6 portfolio-item">
                         <div class="bibtex_template_fw">
                             <span class="if imgurl">
                                 <div class="portfolio-wrap">
-                                    <img class="bibtexVar img-fluid" src="+IMGURL+" alt="" style="height:300px; width:400px; object-fit: scale-down;" extra="imgurl"></img>
+                                    <img class="bibtexVar img-fluid" src="+IMGURL+" alt=""
+                                        style="height:300px; width:400px; object-fit: scale-down;" extra="imgurl"></img>
                                     <div class="portfolio-links">
                                         <span class="if file" style="display: contents;">
-                                            <a class="portfolio-lightbox bibtexVar" href="+FILE+" target="_blank" data-gallery="portfolioGallery" title="PDF file" extra="file"><i class="fa-solid fa-file-pdf"></i></a>
+                                            <a class="portfolio-lightbox bibtexVar" href="+FILE+" target="_blank"
+                                                data-gallery="portfolioGallery" title="PDF file" extra="file"><i
+                                                    class="fa-solid fa-file-pdf"></i></a>
                                         </span>
                                         <span class="if url" style="display: contents; font-size: small;">
-                                            <a class="bibtexVar portfolio-lightbox" href=" +URL+" target="_blank" title="More Details" , extra="url"><i class="fas fa-link" style="font-size: 0.9em;"></i></a>
+                                            <a class="bibtexVar portfolio-lightbox" href=" +URL+" target="_blank"
+                                                title="More Details" , extra="url"><i class="fas fa-link"
+                                                    style="font-size: 0.9em;"></i></a>
                                         </span>
                                         <span class="if !url" style="display: contents; ">
                                             <span class="if doi" style="display: contents;">
-                                                <a class="bibtexVar" href="http://dx.doi.org/+DOI+" target="_blank" title="More Details" , extra="doi"><i class="fas fa-link" style=" font-size: 0.9em;"></i></a>
+                                                <a class="bibtexVar" href="http://dx.doi.org/+DOI+" target="_blank"
+                                                    title="More Details" , extra="doi"><i class="fas fa-link"
+                                                        style=" font-size: 0.9em;"></i></a>
                                             </span>
                                         </span>
                                     </div>
@@ -327,22 +385,30 @@
                 </div>
                 <!-- <div id="recent-work-items" class="row portfolio-container" data-aos="fade-up" data-aos-delay="100"></div> -->
                 <!-- TODO -->
-                <div id="bibtex_recentwork" class="row portfolio-container" data-aos="fade-up" data-aos-delay="100" style="position: relative">
+                <div id="bibtex_recentwork" class="row portfolio-container" data-aos="fade-up" data-aos-delay="100"
+                    style="position: relative">
                     <div class="col-lg-4 col-md-6 portfolio-item">
                         <div class="bibtex_template_rw" style="display: none;">
                             <span class="if imgurl">
                                 <div class="portfolio-wrap">
-                                    <img class="bibtexVar img-fluid" src="+IMGURL+" alt="" style="height:300px; width:400px; object-fit: scale-down;" extra="imgurl"></img>
+                                    <img class="bibtexVar img-fluid" src="+IMGURL+" alt=""
+                                        style="height:300px; width:400px; object-fit: scale-down;" extra="imgurl"></img>
                                     <div class="portfolio-links">
                                         <span class="if file" style="display: contents;">
-                                            <a class="portfolio-lightbox bibtexVar" href="+FILE+" target="_blank" data-gallery="portfolioGallery" class="" extra="file"><i class="fa-solid fa-file-pdf"></i></a>
+                                            <a class="portfolio-lightbox bibtexVar" href="+FILE+" target="_blank"
+                                                data-gallery="portfolioGallery" class="" extra="file"><i
+                                                    class="fa-solid fa-file-pdf"></i></a>
                                         </span>
                                         <span class="if url" style="display: contents;">
-                                            <a class="bibtexVar portfolio-lightbox" href=" +URL+" target="_blank" title="More Details" , extra="url"><i class="fas fa-link " style="font-size: 0.9em;"></i></a>
+                                            <a class="bibtexVar portfolio-lightbox" href=" +URL+" target="_blank"
+                                                title="More Details" , extra="url"><i class="fas fa-link "
+                                                    style="font-size: 0.9em;"></i></a>
                                         </span>
                                         <span class="if !url" style="display: contents;">
                                             <span class="if doi" style="display: contents;">
-                                                <a class="bibtexVar" href="http://dx.doi.org/+DOI+" target="_blank" title="More Details" , extra="doi"><i class="fas fa-link " style="font-size: 0.9em;"></i></a>
+                                                <a class="bibtexVar" href="http://dx.doi.org/+DOI+" target="_blank"
+                                                    title="More Details" , extra="doi"><i class="fas fa-link "
+                                                        style="font-size: 0.9em;"></i></a>
                                             </span>
                                         </span>
                                     </div>
@@ -375,28 +441,43 @@
                         <div class="container-fluid" style="margin-bottom: 20px;">
                             <div class="searchbar">
                                 <div class="mycustom-control" style="position:relative;">
-                                    <button type="button" id="downloadCitationBtn" class="btn btn-outline-success dropdown-toggle" style="text-transform:none; height:40px; margin:5px; white-space:nowrap;" onclick="toggleCitationMenu(event)">Download Citation</button>
-                                    <div id="citation-menu" class="dropdown-menu" style="display:none; min-width:170px;">
-                                        <a class="dropdown-item" href="javascript:void(0)" onclick="downloadAllCitations('nlm')">Citation Text</a>
-                                        <a class="dropdown-item" href="javascript:void(0)" onclick="downloadAllCitations('bibtex')">BibTeX</a>
-                                        <a class="dropdown-item" href="javascript:void(0)" onclick="downloadAllCitations('ris')">Endnote (RIS)</a>
-                                        <a class="dropdown-item" href="javascript:void(0)" onclick="downloadAllCitations('html')">HTML</a>
-                                        <a class="dropdown-item" href="javascript:void(0)" onclick="downloadAllCitations('text')">Plain Text</a>
+                                    <button type="button" id="downloadCitationBtn"
+                                        class="btn btn-outline-success dropdown-toggle"
+                                        style="text-transform:none; height:40px; margin:5px; white-space:nowrap;"
+                                        onclick="toggleCitationMenu(event)">Download Citation</button>
+                                    <div id="citation-menu" class="dropdown-menu"
+                                        style="display:none; min-width:170px;">
+                                        <a class="dropdown-item" href="javascript:void(0)"
+                                            onclick="downloadAllCitations('nlm')">Citation Text</a>
+                                        <a class="dropdown-item" href="javascript:void(0)"
+                                            onclick="downloadAllCitations('bibtex')">BibTeX</a>
+                                        <a class="dropdown-item" href="javascript:void(0)"
+                                            onclick="downloadAllCitations('ris')">Endnote (RIS)</a>
+                                        <a class="dropdown-item" href="javascript:void(0)"
+                                            onclick="downloadAllCitations('html')">HTML</a>
+                                        <a class="dropdown-item" href="javascript:void(0)"
+                                            onclick="downloadAllCitations('text')">Plain Text</a>
                                     </div>
                                 </div>
                                 <div class="mycustom-control">
-                                    <button type="button" class="btn btn-outline-primary" style="text-transform: none; width:70px; height: 40px; margin: 5px;" onclick="reset()">Reset</button>
+                                    <button type="button" class="btn btn-outline-primary"
+                                        style="text-transform: none; width:70px; height: 40px; margin: 5px;"
+                                        onclick="reset()">Reset</button>
                                 </div>
                                 <div class="mycustom-control">
-                                    <select id="authorselect" class="btn bibtex_search bibtex_generate_author control-forms" style="border: 1px solid lightgrey; text-transform: none;" search="author">
+                                    <select id="authorselect"
+                                        class="btn bibtex_search bibtex_generate_author control-forms"
+                                        style="border: 1px solid lightgrey; text-transform: none;" search="author">
                                         <option value="">Search Author</option>
                                     </select>
                                 </div>
                                 <div class="mycustom-control">
-                                    <input type="text" class="bibtex_search form-control control-search" id="searchbar" placeholder="Search publications">
+                                    <input type="text" class="bibtex_search form-control control-search" id="searchbar"
+                                        placeholder="Search publications">
                                 </div>
                             </div>
-                            <div id="refresh-status" style="display:none; margin-top:6px; font-size:13px; padding:4px 8px;"></div>
+                            <div id="refresh-status"
+                                style="display:none; margin-top:6px; font-size:13px; padding:4px 8px;"></div>
                         </div>
                         <div class="bibtex_structure">
                             <div class="group year" extra="DESC number">
@@ -413,13 +494,16 @@
                                 <ul>
                                     <li>
                                         <span class="if url">
-                                            <a class="bibtexVar publication-title" href="+URL+" target="_blank" extra="url">
-                                                <span class="if title"><span class="title" style="text-transform: capitalize"></span></span>
+                                            <a class="bibtexVar publication-title" href="+URL+" target="_blank"
+                                                extra="url">
+                                                <span class="if title"><span class="title"
+                                                        style="text-transform: capitalize"></span></span>
                                             </a>
                                         </span>
                                         <span class="if !url">
                                             <div class="if doi">
-                                                <a class="bibtexVar publication-title" href="http://dx.doi.org/+DOI+" target="_blank" extra="doi">
+                                                <a class="bibtexVar publication-title" href="http://dx.doi.org/+DOI+"
+                                                    target="_blank" extra="doi">
                                                     <span class="if title"><span class="title"></span></span>
                                                 </a>
                                             </div>
@@ -430,23 +514,29 @@
                                         <div>
                                             <span class="if url">
                                                 <a class="bibtexVar" href="+URL+" target="_blank" extra="url">
-                                                    <span class="if journal"><em><span class="journal"></span></em>,</span>
+                                                    <span class="if journal"><em><span
+                                                                class="journal"></span></em>,</span>
                                                     <span class="if !journal">
-                                                        <span class="if publisher"><em><span class="publisher"></span></em>,</span>
+                                                        <span class="if publisher"><em><span
+                                                                    class="publisher"></span></em>,</span>
                                                     </span>
                                                 </a>
                                             </span>
                                             <span class="if !url">
                                                 <span class="if doi">
-                                                    <a class="bibtexVar" href="http://dx.doi.org/+DOI+" target="_blank" extra="doi">
-                                                        <span class="if journal"><em><span class="journal"></span></em>,</span>
+                                                    <a class="bibtexVar" href="http://dx.doi.org/+DOI+" target="_blank"
+                                                        extra="doi">
+                                                        <span class="if journal"><em><span
+                                                                    class="journal"></span></em>,</span>
                                                         <span class="if !journal">
-                                                            <span class="if publisher"><em><span class="publisher"></span></em>,</span>
+                                                            <span class="if publisher"><em><span
+                                                                        class="publisher"></span></em>,</span>
                                                         </span>
                                                     </a>
                                                 </span>
                                             </span>
-                                            <span class="if booktitle">In <em><span class="booktitle"></span></em>,</span>
+                                            <span class="if booktitle">In <em><span
+                                                        class="booktitle"></span></em>,</span>
                                             <span class="if address"><span class="address"></span>,</span>
                                             <span class="if month"><span class="month"></span>,</span>
                                             <span class="if year"><span class="year"></span>.</span>
@@ -455,12 +545,25 @@
                                             <span class="if number">(<span class="number"></span>):</span>
                                             <span class="if pages"><span class="pages"></span>.</span>
                                             <span class="if pmid">PMID: <span class="pmid"></span>.</span>
-                                            <a class="bibtexVar publication-buttons" role="button" data-toggle="collapse" href="#bib+BIBTEXKEY+" aria-expanded="false" aria-controls="bib+BIBTEXKEY+" extra="BIBTEXKEY" bibtexjs-css-escape> &nbsp;&nbsp;&nbsp;[BibTex]&nbsp; </a>
-                                            <span class=' if file'><a class="bibtexVar publication-buttons" href="+FILE+" target="_blank" aria-expanded="false" extra="file"> [PDF]&nbsp; </a></span>
-                                            <a class="publication-buttons" href="javascript:void(0)" onclick="copyCiteNLM(this)" title="Copy NLM citation to clipboard">[Cite]&nbsp;</a>
-                                            <span class=' if code'><a class="bibtexVar publication-buttons" role="button" href="+CODE+" extra="code" target="_blank">[Code]&nbsp;</a></span>
-                                            <span class='if software'><a class="bibtexVar publication-buttons" role="button" href="+SOFTWARE+" extra="software" target="_blank">[Software]&nbsp;</a></span>
-                                            <span class='if dataset'><a class="bibtexVar publication-buttons" role="button" href="+DATASET+" extra="dataset" target="_blank">[Dataset]</a></span>
+                                            <a class="bibtexVar publication-buttons" role="button"
+                                                data-toggle="collapse" href="#bib+BIBTEXKEY+" aria-expanded="false"
+                                                aria-controls="bib+BIBTEXKEY+" extra="BIBTEXKEY" bibtexjs-css-escape>
+                                                &nbsp;&nbsp;&nbsp;[BibTex]&nbsp; </a>
+                                            <span class=' if file'><a class="bibtexVar publication-buttons"
+                                                    href="+FILE+" target="_blank" aria-expanded="false" extra="file">
+                                                    [PDF]&nbsp; </a></span>
+                                            <a class="publication-buttons" href="javascript:void(0)"
+                                                onclick="copyCiteNLM(this)"
+                                                title="Copy NLM citation to clipboard">[Cite]&nbsp;</a>
+                                            <span class=' if code'><a class="bibtexVar publication-buttons"
+                                                    role="button" href="+CODE+" extra="code"
+                                                    target="_blank">[Code]&nbsp;</a></span>
+                                            <span class='if software'><a class="bibtexVar publication-buttons"
+                                                    role="button" href="+SOFTWARE+" extra="software"
+                                                    target="_blank">[Software]&nbsp;</a></span>
+                                            <span class='if dataset'><a class="bibtexVar publication-buttons"
+                                                    role="button" href="+DATASET+" extra="dataset"
+                                                    target="_blank">[Dataset]</a></span>
                                         </div>
                                         <div class="bibtexVar collapse" id="bib+BIBTEXKEY+" extra="BIBTEXKEY">
                                             <div class="well bibtex-full-width">
@@ -490,12 +593,14 @@
                             <li>
                                 <span class="if url">
                                     <a class="bibtexVar publication-title" href="+URL+" target="_blank" extra="url">
-                                        <span class="if title"><span class="title" style="text-transform: capitalize"></span></span>
+                                        <span class="if title"><span class="title"
+                                                style="text-transform: capitalize"></span></span>
                                     </a>
                                 </span>
                                 <span class="if !url">
                                     <div class="if doi">
-                                        <a class="bibtexVar publication-title" href="http://dx.doi.org/+DOI+" target="_blank" extra="doi">
+                                        <a class="bibtexVar publication-title" href="http://dx.doi.org/+DOI+"
+                                            target="_blank" extra="doi">
                                             <span class="if title"><span class="title"></span>,</span>
                                         </a>
                                     </div>
@@ -513,22 +618,26 @@
                                         <a class="bibtexVar" href="+URL+" target="_blank" extra="url">
                                             <span class="if journal"><em><span class="journal"></span></em>,</span>
                                             <span class="if !journal">
-                                                <span class="if publisher"><em><span class="publisher"></span></em>,</span>
+                                                <span class="if publisher"><em><span
+                                                            class="publisher"></span></em>,</span>
                                             </span>
                                         </a>
                                     </span>
                                     <span class="if !url">
                                         <span class="if doi">
-                                            <a class="bibtexVar" href="http://dx.doi.org/+DOI+" target="_blank" extra="doi">
+                                            <a class="bibtexVar" href="http://dx.doi.org/+DOI+" target="_blank"
+                                                extra="doi">
                                                 <span class="if journal"><em><span class="journal"></span></em>,</span>
                                                 <span class="if !journal">
-                                                    <span class="if publisher"><em><span class="publisher"></span></em>,</span>
+                                                    <span class="if publisher"><em><span
+                                                                class="publisher"></span></em>,</span>
                                                 </span>
                                             </a>
                                         </span>
                                     </span>
                                     <span class="if year"><span class="year"></span>.</span>
-                                    <a class="bibtexVar publication-buttons" href="+FILE+" target="_blank" aria-expanded="false" extra="file"> [PDF]&nbsp; </a>
+                                    <a class="bibtexVar publication-buttons" href="+FILE+" target="_blank"
+                                        aria-expanded="false" extra="file"> [PDF]&nbsp; </a>
                                 </div>
                                 <div class="bibtexVar collapse" id="bib+BIBTEXKEY+" extra="BIBTEXKEY">
                                     <div class="well bibtex-full-width">
@@ -555,12 +664,14 @@
                             <li>
                                 <span class="if url">
                                     <a class="bibtexVar publication-title" href="+URL+" target="_blank" extra="url">
-                                        <span class="if title"><span class="title" style="text-transform: capitalize"></span></span>
+                                        <span class="if title"><span class="title"
+                                                style="text-transform: capitalize"></span></span>
                                     </a>
                                 </span>
                                 <span class="if !url">
                                     <div class="if doi">
-                                        <a class="bibtexVar publication-title" href="http://dx.doi.org/+DOI+" target="_blank" extra="doi">
+                                        <a class="bibtexVar publication-title" href="http://dx.doi.org/+DOI+"
+                                            target="_blank" extra="doi">
                                             <span class="if title"><span class="title"></span>,</span>
                                         </a>
                                     </div>
@@ -578,22 +689,26 @@
                                         <a class="bibtexVar" href="+URL+" target="_blank" extra="url">
                                             <span class="if journal"><em><span class="journal"></span></em>,</span>
                                             <span class="if !journal">
-                                                <span class="if publisher"><em><span class="publisher"></span></em>,</span>
+                                                <span class="if publisher"><em><span
+                                                            class="publisher"></span></em>,</span>
                                             </span>
                                         </a>
                                     </span>
                                     <span class="if !url">
                                         <span class="if doi">
-                                            <a class="bibtexVar" href="http://dx.doi.org/+DOI+" target="_blank" extra="doi">
+                                            <a class="bibtexVar" href="http://dx.doi.org/+DOI+" target="_blank"
+                                                extra="doi">
                                                 <span class="if journal"><em><span class="journal"></span></em>,</span>
                                                 <span class="if !journal">
-                                                    <span class="if publisher"><em><span class="publisher"></span></em>,</span>
+                                                    <span class="if publisher"><em><span
+                                                                class="publisher"></span></em>,</span>
                                                 </span>
                                             </a>
                                         </span>
                                     </span>
                                     <span class="if year"><span class="year"></span>.</span>
-                                    <span class="if file"><a class="bibtexVar publication-buttons" href="+FILE+" target="_blank" aria-expanded="false" extra="file"> [PDF]&nbsp; </a></span>
+                                    <span class="if file"><a class="bibtexVar publication-buttons" href="+FILE+"
+                                            target="_blank" aria-expanded="false" extra="file"> [PDF]&nbsp; </a></span>
                                 </div>
                                 <div class="bibtexVar collapse" id="bib+BIBTEXKEY+" extra="BIBTEXKEY">
                                     <div class="well bibtex-full-width">
@@ -628,7 +743,9 @@
                                 <p><a href="mailto:guoyu@ohsu.edu">guoyu@ohsu.edu</a></p>
                             </div>
                         </div>
-                        <iframe width=100% height="290" id="gmap_canvas" src="https://maps.google.com/maps?q=515%20SW%20Campus%20Dr.%20Portland%20OR,%2097239&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                        <iframe width=100% height="290" id="gmap_canvas"
+                            src="https://maps.google.com/maps?q=515%20SW%20Campus%20Dr.%20Portland%20OR,%2097239&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                            frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                     </div>
                 </div>
             </div>
@@ -648,12 +765,14 @@
                     <!-- All the links in the footer should remain intact. -->
                     <!-- You can delete the links only if you purchased the pro version. -->
                     <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/ -->Designed
+                    by <a href="https://bootstrapmade.com/">BootstrapMade</a>
                 </div>
             </div>
             </footer>
             <!-- End  Footer -->
-            <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+            <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+                    class="bi bi-arrow-up-short"></i></a>
             <!-- Vendor JS Files -->
             <script src="assets/vendor/aos/aos.js"></script>
             <!-- <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
