@@ -135,7 +135,7 @@ function generateCV(personName) {
     4,
     7,
     doc.splitTextToSize(
-      "Department of Ophthalmology and Biomedical Engineering",
+      "Department of Biomedical Engineering",
       27
     )
   );
@@ -143,16 +143,12 @@ function generateCV(personName) {
     4,
     8.25,
     doc.splitTextToSize(
-      "School of Medicine, Oregon Health & Science University (OHSU) ",
+      "Washington University in St. Louis",
       27
     )
   );
-  doc.text(4, 9.5, doc.splitTextToSize("515 Southwest Campus Drive", 19));
-  doc.text(4, 10.75, doc.splitTextToSize("Portland OR 97239", 19));
-
-  doc.text(36, 7, doc.splitTextToSize("Email:", 10));
-  doc.setTextColor(0, 0, 255);
-  doc.text(39, 7, doc.splitTextToSize("guoyu@ohsu.edu", 10));
+  doc.text(4, 9.5, doc.splitTextToSize("Whitaker Hall", 19));
+  doc.text(4, 10.75, doc.splitTextToSize("St. Louis, MO 63130", 19));
 
   doc.setTextColor(0, 0, 0);
   doc.text(31.7, 8.25, "Website:");
@@ -203,16 +199,21 @@ function generateCV(personName) {
   doc.text(
     4,
     23,
-    "2019.1 - 2022.3     Research assistant   Casey Eye Institute, OHSU, Portland OR, U.S."
+    "2026.8 - Present     Postdoctoral Research Associate   Dept. of Biomedical Engineering, Washington University in St. Louis"
   );
   doc.text(
     4,
     24.3,
+    "2019.1 - 2022.3     Research assistant   Casey Eye Institute, OHSU, Portland OR, U.S."
+  );
+  doc.text(
+    4,
+    25.6,
     "2017.4 - 2019.1     Visiting scholar       Casey Eye Institute, OHSU, Portland OR, U.S."
   );
 
   // add patents
-  var mrgtop = 28.8;
+  var mrgtop = 30.1;
   mrgtop = formatPatentList(entriesArrayPatent,"INTELLECTUAL PROPERTY",doc,mrgtop);
 
   // add awards
@@ -687,14 +688,10 @@ function generatePapersOnlyCV(personName) {
 
   doc.setFont("times", "normal");
   doc.setFontSize(11);
-  doc.text(4, 7,     doc.splitTextToSize("Department of Ophthalmology and Biomedical Engineering", 27));
-  doc.text(4, 8.25,  doc.splitTextToSize("School of Medicine, Oregon Health & Science University (OHSU) ", 27));
-  doc.text(4, 9.5,   doc.splitTextToSize("515 Southwest Campus Drive", 19));
-  doc.text(4, 10.75, doc.splitTextToSize("Portland OR 97239", 19));
-
-  doc.text(36, 7, doc.splitTextToSize("Email:", 10));
-  doc.setTextColor(0, 0, 255);
-  doc.text(39, 7, doc.splitTextToSize("guoyu@ohsu.edu", 10));
+  doc.text(4, 7,     doc.splitTextToSize("Department of Biomedical Engineering", 27));
+  doc.text(4, 8.25,  doc.splitTextToSize("Washington University in St. Louis", 27));
+  doc.text(4, 9.5,   doc.splitTextToSize("Whitaker Hall", 19));
+  doc.text(4, 10.75, doc.splitTextToSize("St. Louis, MO 63130", 19));
 
   doc.setTextColor(0, 0, 0);
   doc.text(31.7, 8.25, "Website:");
@@ -729,10 +726,11 @@ function generatePapersOnlyCV(personName) {
   doc.line(4, 21.5, 46, 21.5);
   doc.setFontSize(11);
   doc.setFont("times", "normal");
-  doc.text(4, 23,   "2019.1 - 2022.3     Research assistant   Casey Eye Institute, OHSU, Portland OR, U.S.");
-  doc.text(4, 24.3, "2017.4 - 2019.1     Visiting scholar       Casey Eye Institute, OHSU, Portland OR, U.S.");
+  doc.text(4, 23,   "2026.8 - Present     Postdoctoral Research Associate   Dept. of Biomedical Engineering, Washington University in St. Louis");
+  doc.text(4, 24.3, "2019.1 - 2022.3     Research assistant   Casey Eye Institute, OHSU, Portland OR, U.S.");
+  doc.text(4, 25.6, "2017.4 - 2019.1     Visiting scholar       Casey Eye Institute, OHSU, Portland OR, U.S.");
 
-  var mrgtop = 28.8;
+  var mrgtop = 30.1;
   mrgtop = formatPatentList(entriesArrayPatent, "INTELLECTUAL PROPERTY", doc, mrgtop);
   mrgtop = formatAwardList(entriesArrayAward, "ACADEMIC AWARDS", doc, mrgtop);
   mrgtop = formatNLMList(entriesArrayPaper,           "PEER-REVIEWED JOURNAL PAPERS",   doc, mrgtop, personName);

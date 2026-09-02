@@ -1118,7 +1118,13 @@ function BibtexDisplay() {
 
         var entriesArray = this.createArrayPaper(entries);
         var sortedArray = this.sortArray(entriesArray, 'DATE', 'DESC', 'date');
-        var ssortedArray = sortedArray.slice(0, displayNum);
+        var withFigures = [];
+        for (var i = 0; i < sortedArray.length; i++) {
+            if (sortedArray[i]['IMGURL']) {
+                withFigures.push(sortedArray[i]);
+            }
+        }
+        var ssortedArray = withFigures.slice(0, displayNum);
         // save old entries to remove them later
         var old = output.find("*");
         for (var entryKey in ssortedArray) {
